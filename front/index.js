@@ -363,8 +363,14 @@ var eTreinamento = {
 								
 
                 //Listar exercicios
-                document.querySelector(".pagina_treinamento_detalhe .exercicios").innerHTML = '';
+                pg.querySelector(".exercicios").innerHTML = '';
                 let diaAnterior = '';
+				
+				pg.querySelector(".exercicios").innerHTML = '';
+				
+				let temp = pg.querySelector('.tem_exercioadicionar');
+				let clon = temp.content.cloneNode(true);
+				pg.querySelector(".exercicios").appendChild(clon);
 
 				if(data.detalhe.exercicios.length < 1){
 					document.querySelector(".pagina_treinamento_detalhe .exercicios").innerHTML = 'Nenum Exercicio encontrado';
@@ -375,8 +381,8 @@ var eTreinamento = {
 					
                     //Colocar linha de dia
                     if (diaAnterior != exercicio.ciclo) {
-                        var temp = document.querySelector(".pagina_treinamento_detalhe .tem_dia");
-                        var clon = temp.content.cloneNode(true);
+                        let temp = document.querySelector(".pagina_treinamento_detalhe .tem_dia");
+                        let clon = temp.content.cloneNode(true);
                         clon.querySelector('.dia .dia').innerHTML = exercicio.ciclo;
                         document.querySelector(".pagina_treinamento_detalhe .exercicios").appendChild(clon);
                     }
@@ -384,8 +390,8 @@ var eTreinamento = {
 
                     diaAnterior = exercicio.ciclo;
 
-                    var temp = document.querySelector(".pagina_treinamento_detalhe .tem_exercicio");
-                    var clon = temp.content.cloneNode(true);
+                    let temp = document.querySelector(".pagina_treinamento_detalhe .tem_exercicio");
+                    let clon = temp.content.cloneNode(true);
 
                     //Editar
                     //clon.querySelector('.edit [name="nome"]').innerHTML = exercicio.nome;
@@ -446,6 +452,9 @@ var eTreinamento = {
             }
         );
 	},
+	detalhe_exercicionovo:function(){
+		
+	}
 
     pLista: function() {
         ePagina.para('treinamento_lista');
