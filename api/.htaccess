@@ -1,0 +1,4 @@
+Options +FollowSymlinks
+RewriteEngine on
+RewriteCond  %{THE_REQUEST} "\ (.*)\ "
+RewriteRule . "index.php?r=%1"

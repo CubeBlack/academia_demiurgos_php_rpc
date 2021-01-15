@@ -1,0 +1,671 @@
+{
+	"info": {
+		"_postman_id": "385cca9f-1b6b-4e72-bfb9-45801fe30f29",
+		"name": "dk_academia",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Usuariosessao",
+			"item": [
+				{
+					"name": "usuariosessao/adicionar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"usuario\":\"t@t.t\",\r\n    \"senha\":\"1\"\r\n}"
+						},
+						"url": {
+							"raw": "https://localhost/dannke/academia/api/usuariosessao/adicionar",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"dannke",
+								"academia",
+								"api",
+								"usuariosessao",
+								"adicionar"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Usuario",
+			"item": [
+				{
+					"name": "Usuario/lista",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://localhost/dannke/academia/api/usuario/lista",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"dannke",
+								"academia",
+								"api",
+								"usuario",
+								"lista"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Usuario/Adicionar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"academia\":\"xisue\",\r\n    \"nome\":\"Algusto umm\",\r\n    \"cpf\":\"54654\",\r\n    \"email\":\"a@b.c\",\r\n    \"senha\":\"sdf\",\r\n    \"contatos\":[\r\n        {\"tipo\":\"telefone\",\"valor\":\"45318\"},\r\n        {\"tipo\":\"endereco\",\"vlor\":\"rua das flores, numero 13\"}\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost/dannke/academia/api/usuario/adicionar",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"dannke",
+								"academia",
+								"api",
+								"usuario",
+								"adicionar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Usuario/detalhe",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "codigo",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://localhost/dannke/academia/api/usuario/detalhe",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"dannke",
+								"academia",
+								"api",
+								"usuario",
+								"detalhe"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Academia",
+			"item": [
+				{
+					"name": "Academia/adicionar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ativo\":true,\r\n    \"nome\":\"vVvisdriattooo do Braçãooo\",\r\n    \"razao\":\"Viriato Nunes\",\r\n    \"cnpj\":\"\",\r\n    \"senha\":\"1\",\r\n    \"email\":\"aeeeaddasasdd@a.b\",\r\n    \"contatos\":[\r\n        {\"tipo\":\"telefone\",\"valor\":\"(81)1234-5794\"},\r\n        {\"tipo\":\"endereco\",\"valor\":\"Rua das flores, numero 35\"}\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost/dannke/academia/api/academia/adicionar",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"dannke",
+								"academia",
+								"api",
+								"academia",
+								"adicionar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Academia/listar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost/dannke/academia/api/academia/listar",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"dannke",
+								"academia",
+								"api",
+								"academia",
+								"listar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Academia/detalhe",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"codigo\":4\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost/dannke/academia/api/academia/detalhe",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"dannke",
+								"academia",
+								"api",
+								"academia",
+								"detalhe"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Contato",
+			"item": [
+				{
+					"name": "Contato/adicionar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "usuario",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "tipo",
+									"value": "telefone",
+									"type": "text"
+								},
+								{
+									"key": "valor",
+									"value": "3512648",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://localhost/dannke/academia/api/contato/adicionar",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"dannke",
+								"academia",
+								"api",
+								"contato",
+								"adicionar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Contato/detalhe",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "codigo",
+									"value": "3",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://localhost/dannke/academia/api/contato/detalhe",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"dannke",
+								"academia",
+								"api",
+								"contato",
+								"detalhe"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Perimetria",
+			"item": [
+				{
+					"name": "Perimetria/adicionar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"aluno\":1,\r\n    \"instrutor\":2,\r\n    \"sessao_chave\":\"dfg5s6dfg\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost/dannke/academia/api/perimetria/adicionar",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"dannke",
+								"academia",
+								"api",
+								"perimetria",
+								"adicionar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Perimetria/listar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"aluno\":1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost/dannke/academia/api/perimetria/listar",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"dannke",
+								"academia",
+								"api",
+								"perimetria",
+								"listar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Perimetria/detalhe",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"codigo\":1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost/dannke/academia/api/perimetria/detalhe",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"dannke",
+								"academia",
+								"api",
+								"perimetria",
+								"detalhe"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Perimetria/valorpor",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"perimetria\":1,\r\n    \"chave\":\"dedo_minimo_esquerdo\",\r\n    \"valor\":\"46\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost/dannke/academia/api/perimetria/valorpor",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"dannke",
+								"academia",
+								"api",
+								"perimetria",
+								"valorpor"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Exercicio",
+			"item": [
+				{
+					"name": "Exercicio/adicionar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"academia\":\"1\",\r\n    \"nome\":\"supine\",\r\n    \"descricao\":\"Deitar no banco, por o alteres em cima do peito preço a aletas laterais um pouco a baixo a altura do peito...\",\r\n    \"aparelho\":\"Alteres, banco\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost/dannke/academia/api/exercicio/adicionar",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"dannke",
+								"academia",
+								"api",
+								"exercicio",
+								"adicionar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Exercicio/listar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost/dannke/academia/api/exercicio/listar",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"dannke",
+								"academia",
+								"api",
+								"exercicio",
+								"listar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Exercicio/detalhe",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"codigo\":1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost/dannke/academia/api/exercicio/detalhe",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"dannke",
+								"academia",
+								"api",
+								"exercicio",
+								"detalhe"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Treinamento",
+			"item": [
+				{
+					"name": "Treinamento/adicionar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"academia\":1,\r\n    \"nome\":\"sgsdfg\",\r\n    \"descricao\":\"hdfghdfgh\",\r\n    \"ciclo\":2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost/dannke/academia/api/treinamento/adicionar",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"dannke",
+								"academia",
+								"api",
+								"treinamento",
+								"adicionar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Treinamento/listar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"academia\":1,\r\n    \"nome\":\"sgsdfg\",\r\n    \"descricao\":\"hdfghdfgh\",\r\n    \"ciclo\":2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost/dannke/academia/api/treinamento/listar",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"dannke",
+								"academia",
+								"api",
+								"treinamento",
+								"listar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Treinamento/detalhe",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"codigo\":1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost/dannke/academia/api/treinamento/detalhe",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"dannke",
+								"academia",
+								"api",
+								"treinamento",
+								"detalhe"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Treinamento/hoje",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"codigo\":1,\r\n    \"sessao_chave\":\"8765635628b36c28944866ab0ba05ecd\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost/dannke/academia/api/treinamento/hoje",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"dannke",
+								"academia",
+								"api",
+								"treinamento",
+								"hoje"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
