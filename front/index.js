@@ -41,7 +41,7 @@ var ePagina = {
         //console.log(paginaNome);
         var paginas = document.querySelectorAll(".pagina");
         ePagina.menuHidden();
-        ePagina.setTitulo(paginaNome);
+        ePagina.setTitulo('...');
 
         for (var i = 0; i < paginas.length; i++) {
             paginas[i].style.display = "none";
@@ -360,7 +360,9 @@ var eTreinamento = {
 				pg.querySelector('.cabecario_form [name="nome"]').value = data.detalhe.nome;
 				pg.querySelector('.cabecario_form [name="dias"]').value = data.detalhe.ciclo;
 				pg.querySelector('.cabecario_form [name="descricao"]').value = data.detalhe.descricao;
-								
+				
+				//Ocultar formulario de exercicio
+				pg.querySelector('.exercicioadicionar').style.display = 'none';
 
                 //Listar exercicios
                 pg.querySelector(".exercicios").innerHTML = '';
@@ -453,8 +455,18 @@ var eTreinamento = {
         );
 	},
 	detalhe_exercicionovo:function(){
-		
-	}
+		document.querySelector('.pagina_treinamento_detalhe .exercicioadicionar').style.display = 'block';
+		document.querySelector('.pagina_treinamento_detalhe .cabecario_detalhe').style.display = 'none';
+		document.querySelector('.pagina_treinamento_detalhe .exercicioadicionar').onSubmit = function(event){
+			event.preventDefault();
+			eTreinamento.detalhe_exerciciosalvar();
+		}
+	},
+	detalhe_exercicionovosalvar:function(){
+		apiRequest('treinamentoexercicio/adicionar',{},function(data){
+			
+		});
+	},
 
     pLista: function() {
         ePagina.para('treinamento_lista');
