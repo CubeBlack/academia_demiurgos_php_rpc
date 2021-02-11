@@ -47,16 +47,24 @@ class Exercicio{
         
         $sql = 'SELECT * FROM  exercicio ';
         $params = [];
-
+		
+		//Tratar pesquisa
         if($data['pequisa']!=''){
             $sql .= 'where nome like :nome  or descricao like :descricao ';
+            $sql .= 'order by nome ';
             $params['nome'] = "%{$data['pesquisa']}%";
             $params['descricao'] = "%{$data['pesquisa']}%";
         }
-
-        //var_dump($params);
-
-        $sql .= 'order by nome ';
+		
+	   //Tratar Quantidade
+       $data['quantidade'] = isset($data['quantidade'])?$data['quantidade']:0;
+       
+       if($data['quantidade']>0){
+       		$sql .= "limit {$data['quantidade']} ";	
+       }
+       
+       //var_dump($sql); die();
+        
         
         $dbh = conect();
         $sth = $dbh->prepare($sql);

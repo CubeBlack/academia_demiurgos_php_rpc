@@ -337,7 +337,7 @@ var eTreinamento = {
         apiRequest(
             'treinamento/detalhe', { 'codigo': eTreinamento.objeto.codigo },
             function(data) {
-                var pg = document.querySelector('.pagina_treinamento_detalhe');
+                let pg = document.querySelector('.pagina_treinamento_detalhe');
 
                 if (data.result != true) {
                     ePagina.error(
@@ -457,13 +457,58 @@ var eTreinamento = {
 	detalhe_exercicionovo:function(){
 		document.querySelector('.pagina_treinamento_detalhe .exercicioadicionar').style.display = 'block';
 		document.querySelector('.pagina_treinamento_detalhe .cabecario_detalhe').style.display = 'none';
-		document.querySelector('.pagina_treinamento_detalhe .exercicioadicionar').onSubmit = function(event){
+		
+		document.querySelector('.pagina_treinamento_detalhe .exercicioadicionar').onsubmit = function(event){
 			event.preventDefault();
-			eTreinamento.detalhe_exerciciosalvar();
+			eTreinamento.detalhe_exercicionovosalvar();
+		}
+		
+		document.querySelector('.pagina_treinamento_detalhe [name="exercicio_valor"]').onkeyup = function(event){
+			eTreinamento.detalhe_exercicionovolistar();
 		}
 	},
+	detalhe_exercicionovolistar:function(){
+		let pg = document.querySelector('.pagina_treinamento_detalhe');
+		
+		apiRequest('exercicio/lista',{
+			"quantidade":5,
+			"pesquisa":pg.querySelector('.exercicioadicionar [name="exercicio_codigo"]').value
+		},function(data){
+			
+			let lista = pg.querySelector(".exercicioadicionar .exercicio_lista");
+			
+			lista.innerHTML = '';
+
+            if (data.result != true) {
+                lista.innerHTML = data.msg;
+                return;
+            }
+
+
+            data.lista.forEach(function(exercicio, i) {
+            
+                let temp = document.querySelector(".pagina_treinamento_detalhe .tem_exercicioopcao");
+                   let clon = temp.content.cloneNode(true);
+	
+                clon.querySelector('.nome').innerHTML = exercicio.nome;
+                clon.querySelector('.codigo').innerHTML = exercicio.codigo;
+
+
+                clon.querySelector('.exercicio').setAttribute(
+                    'onclick',
+                    "eTreinamento.detalhe(" + exercicio.codigo + ");"
+                );
+
+                lista.appendChild(clon);
+            });
+		});
+	},
 	detalhe_exercicionovosalvar:function(){
-		apiRequest('treinamentoexercicio/adicionar',{},function(data){
+		let pg = document.querySelector('.pagina_treinamento_detalhe');
+		
+		apiRequest('treinamento/adicionar',{
+			"exercicio":pg.querySelector('.exercicioadicionar [name="exercicio_codigo"]').value,
+		},function(data){
 			
 		});
 	},

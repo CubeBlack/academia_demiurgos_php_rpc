@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+<head>
+    <title>Ducabo Fitness</title>
+    <meta charset="utf8">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="layer conteudo"></div>
+<div class="layer popup"></div>
+
+
+<div class="menu_base" onclick="sys.menu.hidden();"></div>
+<nav class="menu">
+    <span class="button close" onclick="sys.menu.hidden();">X</span>
+
+    <div class="header">
+        <img src="img/logo.svg" />
+    </div>
+
+    <div class="box">
+        <span>Usuario</span>
+        <span class="button" onclick="eSessao.sair();">Sair</span>
+    </div>
+
+    <div class="lista suporte">
+        <a class="item">
+            <img src="img/home-solid.svg" />
+            <label for="">Inicio</label>
+        </a>
+
+        <a class="item">
+            <img src="img/users-solid.svg" />
+            <label for="">Alunos</label>
+        </a>
+
+        <a  class="subitem subitem_alunodetalhe">
+            <label for="">Ver <span class="aluno">[aluno]</span></label>
+        </a>
+
+        <a  class="item">
+            <img src="img/users-solid.svg" />
+            <label for="">Treinamentos</label>
+        </a>
+
+        <a  onclick="sys.layerLoadContent('conteudo','sessao-login');" class="item">
+            <img src="img/users-solid.svg" />
+            <label for="">Exercicios</label>
+        </a>
+    </div>
+
+    <div class="footer" onclick="window.open('http://dannkegames.com.br');">
+        <img src="img/logo_dannkenome.svg" alt="dannke_logo">
+    </div>
+</nav>
+
+	<template class="template sessao-login">
+		<div class="sessao-login">
+			<form class="formulario">
+			    <img class="logo" src="img/logo.svg" />
+			    <p class="msg">
+			        Entre com suas credenciais.
+			    </p>
+			
+			    <p class="chavevalor">
+			        <label for="usuairo">Usuario:</label>
+			        <input type="text" name="usuairo" class="usuario" placeholder="e-mail / matricula" required>
+			    </p>
+			
+			    <p class="chavevalor">
+			        <label for="senha">Senha:</label>
+			        <input type="password" name="senha" class="senha" placeholder="********" required>
+			    </p>
+			
+			    <p class="acao">
+			        <input type="submit" value="Entrar">
+			        <input type="button" class="cadastrar" value="Cadastrar">
+			    </p>
+			
+			</form>
+		</div>
+	</template>
+    <script src="script.js"></script>
+</body>
+</html>

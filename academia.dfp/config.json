@@ -1,0 +1,7 @@
+{
+    "titulo":"Ducabo Fitness",
+    "realise":{
+        "path":"realise",
+        "api_url":"http://localhost/dannke/academia/api/"
+    }
+}

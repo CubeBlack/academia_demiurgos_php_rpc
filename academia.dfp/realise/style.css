@@ -1,0 +1,488 @@
+
+/* sessao-login */
+.layer .sessao-login {
+    display:block;
+    position:fixed;
+    overFlow:visible;
+    top:calc(50vh - 145px);
+    left:calc(50vw - 120px);
+    width: 240px;
+    height: 290px;
+}
+
+.layer .sessao-login .formulario {
+    position: relative;
+    display: block;
+
+    border: 1px solid gray
+}
+
+.layer .sessao-login .logo {
+    position: absolute;
+    top: -80px;
+    width: 300px;
+    left: -25px;
+}
+
+.layer .sessao-login .msg {
+    font-size: 15px;
+    text-align: center;
+    margin-top: 80px;
+}
+
+.layer .sessao-login .cv {
+    display: grid;
+}
+
+.layer .sessao-login .cv label {
+    color: grey;
+}
+
+.layer .sessao-login .acao {
+    text-align: center;
+}
+
+@media screen and (max-width: 700px) {/**/
+.layer .sessao-login     {
+        position: relative;
+        left: 0;
+        width: 100vw;
+        max-width: 300px;
+        height: auto;
+        margin: 10px;
+        
+        border:none;
+        margin:auto;
+        
+    }
+.layer .sessao-login     .logo {
+        position: absolute;
+        top: -80px;
+        max-width: 320px;
+        width: calc(100% + 20px);
+        left:-10px;
+    }
+.layer .sessao-login     .msg {
+        margin-top: 80px;
+    }
+
+}
+
+.pagina_login {
+    margin: -50px;
+}
+
+.pagina_login .conteudo {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 70px);
+}
+
+.pagina_login .formulario {
+    position: relative;
+    display: block;
+    width: 240px;
+    height: 290px;
+}
+
+.pagina_login .logo {
+    position: absolute;
+    width: 300px;
+    top: -60px;
+    left: -25px;
+}
+
+.pagina_login .msg {
+    font-size: 15px;
+    text-align: center;
+    margin-top: 80px;
+}
+
+.pagina_login .cv {
+    display: grid;
+}
+
+.pagina_login .cv label {
+    color: grey;
+}
+
+.pagina_login .acao {
+    text-align: center;
+}
+
+@media screen and (max-width: 700px) {}
+
+
+/* Landscape layout (with min-width) */
+
+@media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {}@font-face {
+    font-family: "osc-light";
+    src: url("etc/open_sans_condensed/OpenSansCondensed-Light.ttf");
+}
+
+* {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+    margin: 0;
+    padding: 0;
+    font-family: "osc-light";
+}
+
+body {
+    background-color: white;
+    font-family: osc-light;
+    font-size: 15px;
+}
+
+input:focus, select:focus, textarea:focus, button:focus {
+    outline: none;
+}
+
+input[type=text], input[type=password], input[type=tel], input[type=number] {
+    padding: 5px;
+    font-size: 16px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #888888;
+    box-shadow: 5px 5px 5px lightgray;
+    margin: 3px;
+    height: 18px;
+    color: #444444;
+    font-size: 18px;
+    background-color: #FFFFFF;
+}
+
+.BUTTON, button, .button, input[type='button'], input[type='submit'] {
+    background: #54ce3c;
+    background-image: -webkit-linear-gradient(top, #54ce3c, #2e861c);
+    background-image: -moz-linear-gradient(top, #54ce3c, #2e861c);
+    background-image: -ms-linear-gradient(top, #54ce3c, #2e861c);
+    background-image: -o-linear-gradient(top, #54ce3c, #2e861c);
+    background-image: -webkit-gradient(top, #54ce3c, #2e861c);
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    color: white;
+    /*font-size: 20px;*/
+    padding: 5px 10px;
+    -webkit-box-shadow: 1px 1px 5px 0 #000000;
+    -moz-box-shadow: 1px 1px 5px 0 #000000;
+    box-shadow: 3px 3px 3px lightgray;
+    border: 1px solid lightgray;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    text-align: center;
+}
+
+.BUTTON:hover, button:hover, .button:hover, input[type='button']:hover, input[type='submit']:hover {
+    background: #3D94F6;
+    background-image: -webkit-linear-gradient(top, #8cb9ec, #444444);
+    background-image: -moz-linear-gradient(top, #8cb9ec, #444444);
+    background-image: -ms-linear-gradient(top, #8cb9ec, #444444);
+    background-image: -o-linear-gradient(top, #8cb9ec, #444444);
+    background-image: -webkit-gradient(to bottom, #8cb9ec, #444444);
+}
+
+.BUTTON:active {
+    background: #777777;
+    background-image: -webkit-linear-gradient(top, #777777, #888888);
+    background-image: -moz-linear-gradient(top, #777777, #888888);
+    background-image: -ms-linear-gradient(top, #777777, #888888);
+    background-image: -o-linear-gradient(top, #777777, #888888);
+    background-image: -webkit-gradient(to bottom, #777777, #888888);
+    box-shadow: none;
+    border: 1px solid #555555;
+}
+
+p {
+    margin: 5px;
+}
+
+.box {
+    background: rgba(255, 255, 255, 0.5);
+    border: 1px solid lightgray;
+    box-shadow: 5px 5px 5px lightgray;
+    margin: 5px;
+    padding: 5px;
+    clear: left;
+    overflow: auto;
+}
+
+.block {
+    background: rgba(255, 255, 255, 0.5);
+    border: 1px solid lightgray;
+    box-shadow: 5px 5px 5px lightgray;
+    margin: 5px;
+    padding: 5px;
+}
+
+@media screen and (min-width: 600px) {
+    .block {
+        width: 300px;
+        float: left;
+    }
+}
+
+.chavevalor {
+    display: grid;
+}
+
+.chavevalor label {
+    color: grey;
+    font-size: 12px;
+}
+
+/*  */
+
+.layer .conteudo {
+    position: relative;
+    margin: auto;
+    margin-top: 50px;
+    max-width: 680px;
+}
+
+.cabecario .header {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    background-color: rgb(40, 40, 40);
+    background-image: linear-gradient(top, rgb(40, 40, 40), rgb(20, 20, 20));
+    color: white;
+    padding: 5px;
+}
+
+.conteudo>.header .menu_btn, .conteudo>.header .menu_close {
+    display: inline-block;
+    border: 1px solid grey;
+    color: grey;
+    padding: 0px 9px 5px 9px;
+    cursor: pointer;
+    translate: 0.2s;
+}
+
+.conteudo>.header .menu_close {
+    display: none;
+}
+
+.conteudo>.header .menu_btn:hover, .conteudo>.header .menu_close:hover {
+    background-color: rgb(40, 40, 40);
+    color: white;
+    border-color: white;
+    translate: 0.2s;
+}
+
+.conteudo>.header h1 {
+    display: inline;
+    font-size: 21px;
+}
+
+/* menu */
+
+.menu_base {
+    position: fixed;
+    display: none;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    cursor: pointer;
+    /*filter: blur(5px);*/
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    display: none;
+    background: white;
+    box-shadow: 1px 1px 5px #000000;
+}
+
+.menu .close {
+    position: absolute;
+    right: -53px;
+    top: 5px;
+    width: 25px;
+}
+
+.menu .header {}
+
+.menu .header img {
+    width: 300px;
+}
+
+.menu .cabecario {
+    text-align: center;
+}
+
+.menu .lista {
+    display: grid;
+}
+
+.lista>div {}
+
+.menu .lista label {
+    margin-left: 10px;
+}
+
+.menu .lista .item {
+    display: flex;
+    align-items: center;
+    background-image: linear-gradient(to bottom, gray, lightgray, gray);
+    font-size: 20px;
+    text-decoration: none;
+    font-weight: bold;
+    margin: 3px;
+    color: black;
+    cursor: pointer;
+    translate: 0.5s;
+}
+
+.menu .lista .item:hover {
+    font-size: 21px;
+    background-image: linear-gradient(to bottom, gray, yellow, gray);
+    translate: 0.5s;
+}
+
+.menu .lista .subitem {
+    margin: 3px 3px 3px 50px;
+    background-image: linear-gradient(to bottom, gray, lightgray, gray);
+    color: black;
+    padding: 5px;
+    text-decoration: none;
+}
+
+.menu .lista img {
+    width: 50px;
+}
+
+.menu .footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    border-top: 1px solid lightgray;
+    background-color: white;
+    cursor: pointer;
+    translate: 1s;
+}
+
+.menu .footer:hover {
+    background-color: purple;
+    translate: 1s;
+}
+
+.menu .footer img {
+    height: 30px;
+}
+
+.pagina_treinamento_hoje {}
+
+.pagina_treinamento_hoje .exercicio_compacto {
+    display: grid;
+    grid-template-columns: 50px auto 58px;
+    font-size: 12px;
+}
+
+.pagina_treinamento_hoje .exercicio_compacto div {
+    padding: 5px;
+}
+
+.pagina_treinamento_hoje .exercicio {
+    position: relative;
+    display: none;
+    /*display: grid;*/
+    grid-template-columns: 50px auto 58px;
+}
+
+@media screen and (min-width: 600px) {
+    .pagina_treinamento_hoje .exercicio {
+        width: 300px;
+        float: left;
+    }
+    .pagina_treinamento_hoje .exercicio_compacto {
+        width: 300px;
+        float: left;
+    }
+}
+
+.pagina_treinamento_hoje .compactar {
+    position: absolute;
+    display: block;
+    width: 36px;
+    right: 5px;
+    top: 5px;
+}
+
+/* Aluno */
+
+.pagina_aluno_lista .aluno .chavevalor {
+    float: left;
+    margin: 10px;
+}
+
+.pagina_aluno_lista .aluno .acoes {
+    float: right;
+}
+
+/* Aluno detalhe */
+
+.pagina_aluno_detalhe .chavevalor {
+    min-width: 200px;
+    float: left;
+}
+
+.pagina_aluno_detalhe .acoes {
+    clear: left;
+}
+
+/* pagina_exercicio_lista */
+
+.pagina_exercicio_lista .lista img {
+    width: 280px;
+    max-width: calc(100% - 20px);
+    float: left;
+    margin: 10px;
+}
+
+.pagina_exercicio_lista .lista .nome {
+    float: left;
+    width: 280px;
+    max-width: calc(100% - 20px);
+    font-size: 20px;
+    margin: 10px;
+}
+
+.pagina_exercicio_lista .descricao {
+    width: 280px;
+    max-width: calc(100% - 20px);
+    float: left;
+    margin: 10px;
+}
+
+/* pagina_exercicio_detalhe */
+
+.pagina_exercicio_detalhe img {
+    width: 200px;
+    max-height: 300px;
+}
+
+.pagina_treinamento_detalhe .dia {
+    background-color: lightyellow;
+    text-align: center;
+}
+
+.pagina_treinamento_detalhe .edit {
+    display: none;
+}
+
+.pagina_treinamento_detalhe .view {
+    display: block;
+}

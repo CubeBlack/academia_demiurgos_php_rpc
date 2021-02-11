@@ -2,7 +2,7 @@
 //teste
 define('T_DB_HOST',       'localhost');
 define('T_DB_USER',       'root');
-define('T_DB_PASS',       '1');
+define('T_DB_PASS',       '');
 define('T_DB_NAME',       'academia');
 
 //producao
