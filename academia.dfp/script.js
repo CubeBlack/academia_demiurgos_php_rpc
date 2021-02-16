@@ -13,11 +13,21 @@ menu:{
 
         //Detalhe do ultimo aluno visualizado
         console.log(sys.entidades["aluno"].objeto.nome);
+
         if (typeof(sys.entidades["aluno"].objeto.nome) == 'undefined') {
             document.querySelector('.menu .subitem_alunodetalhe').style.display = "none";
             return;
         }
         document.querySelector('.menu .subitem_alunodetalhe').style.display = "block";
         document.querySelector('.menu .subitem_alunodetalhe .aluno').innerHTML = eAluno.objeto.nome;
+    }
+},
+cabecario:{
+    is_show:true,
+    hidden:function(){
+        document.querySelector('.cabecario').style.display = "none";
+    },
+    show:function(){
+        document.querySelector('.cabecario').style.display = "block";
     }
 }

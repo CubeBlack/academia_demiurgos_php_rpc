@@ -12,6 +12,7 @@ logado:function(parainicio=false){
             
             if(resultado.result != true){
                 sys.layerLoadContent("conteudo","sessao-login");
+                sys.cabecario.hidden();
                 return;
             };
 
@@ -20,6 +21,7 @@ logado:function(parainicio=false){
                     "conteudo",
                     sys.getEntent("sessao").paginaInicial["instrutor"]
                 );
+                sys.cabecario.show();
             }  
             
         }

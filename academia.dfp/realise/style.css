@@ -1,4 +1,6 @@
 
+/* aluno-lista */
+
 /* sessao-login */
 .layer .sessao-login {
     display:block;
@@ -67,57 +69,9 @@
     }
 
 }
+@media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {}
 
-.pagina_login {
-    margin: -50px;
-}
-
-.pagina_login .conteudo {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    height: calc(100vh - 70px);
-}
-
-.pagina_login .formulario {
-    position: relative;
-    display: block;
-    width: 240px;
-    height: 290px;
-}
-
-.pagina_login .logo {
-    position: absolute;
-    width: 300px;
-    top: -60px;
-    left: -25px;
-}
-
-.pagina_login .msg {
-    font-size: 15px;
-    text-align: center;
-    margin-top: 80px;
-}
-
-.pagina_login .cv {
-    display: grid;
-}
-
-.pagina_login .cv label {
-    color: grey;
-}
-
-.pagina_login .acao {
-    text-align: center;
-}
-
-@media screen and (max-width: 700px) {}
-
-
-/* Landscape layout (with min-width) */
-
-@media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {}@font-face {
+@font-face {
     font-family: "osc-light";
     src: url("etc/open_sans_condensed/OpenSansCondensed-Light.ttf");
 }
@@ -235,16 +189,14 @@ p {
     font-size: 12px;
 }
 
-/*  */
-
-.layer .conteudo {
+.layer.conteudo {
     position: relative;
     margin: auto;
     margin-top: 50px;
     max-width: 680px;
 }
 
-.cabecario .header {
+.cabecario {
     display: block;
     position: fixed;
     top: 0;
@@ -256,7 +208,7 @@ p {
     padding: 5px;
 }
 
-.conteudo>.header .menu_btn, .conteudo>.header .menu_close {
+.cabecario .menu_btn, .cabecario .menu_close {
     display: inline-block;
     border: 1px solid grey;
     color: grey;
@@ -265,18 +217,18 @@ p {
     translate: 0.2s;
 }
 
-.conteudo>.header .menu_close {
+.cabecarior .menu_close {
     display: none;
 }
 
-.conteudo>.header .menu_btn:hover, .conteudo>.header .menu_close:hover {
+.cabecario .menu_btn:hover, .cabecario .menu_close:hover {
     background-color: rgb(40, 40, 40);
     color: white;
     border-color: white;
     translate: 0.2s;
 }
 
-.conteudo>.header h1 {
+.cabecario h1 {
     display: inline;
     font-size: 21px;
 }
@@ -381,108 +333,4 @@ p {
 
 .menu .footer img {
     height: 30px;
-}
-
-.pagina_treinamento_hoje {}
-
-.pagina_treinamento_hoje .exercicio_compacto {
-    display: grid;
-    grid-template-columns: 50px auto 58px;
-    font-size: 12px;
-}
-
-.pagina_treinamento_hoje .exercicio_compacto div {
-    padding: 5px;
-}
-
-.pagina_treinamento_hoje .exercicio {
-    position: relative;
-    display: none;
-    /*display: grid;*/
-    grid-template-columns: 50px auto 58px;
-}
-
-@media screen and (min-width: 600px) {
-    .pagina_treinamento_hoje .exercicio {
-        width: 300px;
-        float: left;
-    }
-    .pagina_treinamento_hoje .exercicio_compacto {
-        width: 300px;
-        float: left;
-    }
-}
-
-.pagina_treinamento_hoje .compactar {
-    position: absolute;
-    display: block;
-    width: 36px;
-    right: 5px;
-    top: 5px;
-}
-
-/* Aluno */
-
-.pagina_aluno_lista .aluno .chavevalor {
-    float: left;
-    margin: 10px;
-}
-
-.pagina_aluno_lista .aluno .acoes {
-    float: right;
-}
-
-/* Aluno detalhe */
-
-.pagina_aluno_detalhe .chavevalor {
-    min-width: 200px;
-    float: left;
-}
-
-.pagina_aluno_detalhe .acoes {
-    clear: left;
-}
-
-/* pagina_exercicio_lista */
-
-.pagina_exercicio_lista .lista img {
-    width: 280px;
-    max-width: calc(100% - 20px);
-    float: left;
-    margin: 10px;
-}
-
-.pagina_exercicio_lista .lista .nome {
-    float: left;
-    width: 280px;
-    max-width: calc(100% - 20px);
-    font-size: 20px;
-    margin: 10px;
-}
-
-.pagina_exercicio_lista .descricao {
-    width: 280px;
-    max-width: calc(100% - 20px);
-    float: left;
-    margin: 10px;
-}
-
-/* pagina_exercicio_detalhe */
-
-.pagina_exercicio_detalhe img {
-    width: 200px;
-    max-height: 300px;
-}
-
-.pagina_treinamento_detalhe .dia {
-    background-color: lightyellow;
-    text-align: center;
-}
-
-.pagina_treinamento_detalhe .edit {
-    display: none;
-}
-
-.pagina_treinamento_detalhe .view {
-    display: block;
 }

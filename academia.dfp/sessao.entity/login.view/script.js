@@ -23,6 +23,7 @@ logar:function(para_inicio){
                     "conteudo",
                     sys.getEntent("sessao").paginaInicial["instrutor"]
                 );
+                sys.cabecario.show();
             } else {
                 document.querySelector('.layer .msg').innerHTML = data.msg;
 
