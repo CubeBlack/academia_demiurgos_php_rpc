@@ -1,27 +1,20 @@
-objeto:{"sessao_chave":""},
-paginaInicial:{
-    "suporte":"aluno-lista",
-    "aluno":"exercicio-hoje",
-    "instrutor":"aluno-lista"
+objeto:{"codigo":""},
+detalhe:function(codigo){
+    this.objeto.codigo = codigo;
+    sys.layerLoadContent("conteudo",'aluno-detalhe');
 },
-logado:function(parainicio=false){
-    sys.apiRequest(
-        "usuariosessao/detalhe",
-        {"sessao_chave":sys.getEntent("sessao").objeto.sessao_chave},
-        function(resultado){
-            
-            if(resultado.result != true){
-                sys.layerLoadContent("conteudo","sessao-login");
-                return;
-            };
-
-            if(parainicio){
-                sys.layerLoadContent(
-                    "conteudo",
-                    sys.getEntent("sessao").paginaInicial["instrutor"]
-                );
-            }  
-            
-        }
-    );
+novo:function(){
+    sys.layerLoadContent("conteudo",'aluno-formulario', 'novo');
+},
+editar:function(){
+    sys.layerLoadContent("conteudo",'aluno-formulario', 'editar');
+},
+perimetria:function(){
+    sys.layerLoadContent("conteudo",'aluno-perimetria');
+},
+treinamento:function(){
+    sys.layerLoadContent("conteudo",'aluno-perimetria');
+},
+anamnese:function(){
+    sys.layerLoadContent("conteudo",'aluno_anamnese-detalhe');
 }

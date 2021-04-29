@@ -1,5 +1,9 @@
 <?php
+
 header('Access-Control-Allow-Origin: *');
+header('Content-Type: application/json');
+header('charset=utf-8');
+
 require_once 'config.php';
 //Tratar endereço
 define("SYS_DIR", dirname($_SERVER['SCRIPT_NAME']));
@@ -63,7 +67,7 @@ $data = $entidade::{$funcao}($data);
 //}
 
 //Tratar resposta
-header('Content-Type: application/json');
+
 //Segurança da aplicação zerro]
 
 

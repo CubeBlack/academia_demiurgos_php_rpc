@@ -1,5 +1,6 @@
 load:function(){
-    //sys.setTitulo('Alunos');
+    console.log('aluno-listar');
+    sys.cabecario.setTitulo('Alunos');
 
     document.querySelector('.layer [name="pesquisa"]').onkeyup = function(){
         sys.getView('aluno-lista').listar();
@@ -9,7 +10,10 @@ load:function(){
         event.preventDefault();
         sys.getView('aluno-lista').listar();
     };
+
+    sys.getView('aluno-lista').listar();
 },
+
 listar:function(){
     sys.apiRequest(
         'aluno/listar', {
@@ -37,7 +41,7 @@ listar:function(){
 
                 clon.querySelector('.aluno').setAttribute(
                     'onclick',
-                    "eAluno.detalhe(" + aluno.codigo + ");"
+                    "sys.getEntent('aluno').detalhe(" + aluno.codigo + ");"
                 );
 
                 lista.appendChild(clon);

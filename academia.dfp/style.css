@@ -23,7 +23,7 @@ input:focus, select:focus, textarea:focus, button:focus {
     outline: none;
 }
 
-input[type=text], input[type=password], input[type=tel], input[type=number] {
+input[type=text], input[type=password], input[type=tel], input[type=number], input[type=email] {
     padding: 5px;
     font-size: 16px;
     border-style: solid;
@@ -50,6 +50,7 @@ input[type=text], input[type=password], input[type=tel], input[type=number] {
     color: white;
     /*font-size: 20px;*/
     padding: 5px 10px;
+    margin: 5px 5px;;
     -webkit-box-shadow: 1px 1px 5px 0 #000000;
     -moz-box-shadow: 1px 1px 5px 0 #000000;
     box-shadow: 3px 3px 3px lightgray;
@@ -94,6 +95,16 @@ p {
     overflow: auto;
 }
 
+.separador{
+    position: relative;
+    width: calc(100% - 20px);
+    height: 0;
+    border-top: 2px solid lightgrey;
+    display: block;
+    clear: both;
+    clear: left;
+}
+
 .block {
     background: rgba(255, 255, 255, 0.5);
     border: 1px solid lightgray;
@@ -126,7 +137,7 @@ p {
 }
 
 .cabecario {
-    display: block;
+    display: none;
     position: fixed;
     top: 0;
     left: 0;

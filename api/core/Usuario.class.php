@@ -1,6 +1,9 @@
 <?php
-class Usuario
-{
+class Usuario{
+	const TIPO_ALUNO = 'aluno';
+	const IPO_INSTRUTOR = 'instrutor';
+	const TIPO_SUPORTE = 'suporte';
+
 	static function lista()
 	{
 		$data = [
@@ -18,7 +21,7 @@ class Usuario
 				usuario.email, 
 				usuario.cpf,
 				usuario.tipo,
-				usuario.ativo
+				usuario.status
 			FROM usuario
 		"
 		);
@@ -44,7 +47,7 @@ class Usuario
 		
 	}
 
-	static function r_adicionar(
+	static function ADICIONAR(
 		$nome, 
 		$cpf, 
 		$genero,
@@ -57,7 +60,7 @@ class Usuario
 		$telefone_b,
 		$email, 
 		$senha, 
-		$tipo = 'aluno'
+		$tipo
 	){
 		$dbh = conect();
 		$sth = $dbh->prepare('
@@ -97,15 +100,16 @@ class Usuario
 		]);
 
 		if ($sth->errorInfo()[1] != 0) {
-			die('Usuario/r_adicionar. MySQL error ' . $sth->errorInfo()[1] . ': ' . $sth->errorInfo()[2]);
+			die('Usuario/ADICIOANR(...) MySQL error ' . $sth->errorInfo()[1] . ': ' . $sth->errorInfo()[2]);
 		}
 
 		return $dbh->lastInsertId();
 	}
 
-	static function adicionar($data)
-	{
-
+	//Apenas o suporte deve ter acesso a essa funcão
+	/*
+	static function adicionar($data){
+		die('Usuario::adicionar(): não inplementada');
 		//nome é obrigatorio
 
 		if ($data['nome'] == '') {
@@ -144,14 +148,10 @@ class Usuario
 
 		//Verificar senha
 		$data['senha'] = isset($data['senha'])?$data['senha']:'';
-		/*
-		if ($senha == '') {
-			$data['msg'] = 'A senha deve ser vazia.';
-			return $data;
-		}*/
+
 
 		//novo dado do tipo usuario
-		$data['codigo'] = Usuario::r_adicionar(
+		$data['codigo'] = Usuario::ADICIONAR(
 			$data['nome'],
 			$data['cpf'],
 			$data['genero'],
@@ -175,6 +175,7 @@ class Usuario
 
 		return $data;
 	}
+	*/
 
 	static function detalhe($data)
 	{

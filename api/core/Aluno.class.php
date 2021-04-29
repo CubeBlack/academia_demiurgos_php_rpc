@@ -3,11 +3,11 @@ class Aluno{
     static function listar($data){
         $data['pequisa'] = isset($data["pesquisa"])?$data["pesquisa"]:'';
         
-        $sql = 'SELECT * FROM  usuario ';
+        $sql = 'SELECT * FROM  usuario where tipo = "aluno" ';
         $params = [];
 
         if($data['pequisa']!=''){
-            $sql .= 'where nome like :nome  or codigo = :codigo ';
+            $sql .= 'and nome like :nome  or codigo = :codigo ';
             $params['nome'] = "%{$data['pesquisa']}%";
             $params['codigo'] = $data['pesquisa'];
         }
@@ -61,6 +61,28 @@ class Aluno{
         $data['detalhe'] = $resultado[0];
         $data['result'] = true;
         $data['msg'] = 'Detalhado';
+        return $data;
+    }
+
+    static function adicionar($data){
+        $data['tipo'] = Usuario::TIPO_ALUNO;
+
+        $data['result'] = Usuario::ADICIONAR(
+			$data['nome'],
+			$data['cpf'],
+			$data['genero'],
+			$data['endereco'],
+			$data['numero'],
+			$data['bairro'],
+			$data['cidade'],
+			$data['estado'],
+			$data['telefone_a'],
+			$data['telefone_b'],
+			$data['email'],
+			$data['senha'],
+			$data['tipo']
+		);
+
         return $data;
     }
 }

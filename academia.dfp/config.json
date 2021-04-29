@@ -1,7 +1,10 @@
 {
     "titulo":"Ducabo Fitness",
+    "headers": [
+        "<script type=\"text/javascript\" src=\"https://www.gstatic.com/charts/loader.js\"></script>"
+    ],
     "realise":{
         "path":"realise",
-        "api_url":"http://localhost/dannke/academia/api/"
+        "api_url":"http://hammer/dannke/academia/api/"
     }
 }

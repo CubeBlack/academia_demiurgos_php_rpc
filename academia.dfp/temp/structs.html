@@ -1,12 +1,480 @@
 
 
+	<template class="template sessao-login">
+		<div class="sessao-login">
+			<form class="formulario">
+			    <img class="logo" src="img/logo.svg" />
+			    <p class="msg">
+			        Entre com suas credenciais.
+			    </p>
+			
+			    <p class="chavevalor">
+			        <label for="usuairo">Usuario:</label>
+			        <input type="text" name="usuairo" class="usuario" placeholder="e-mail / matricula" required>
+			    </p>
+			
+			    <p class="chavevalor">
+			        <label for="senha">Senha:</label>
+			        <input type="password" name="senha" class="senha" placeholder="********" required>
+			    </p>
+			
+			    <p class="acao">
+			        <input type="submit" value="Entrar">
+			        <input type="button" class="cadastrar" value="Cadastrar">
+			    </p>
+			
+			</form>
+		</div>
+	</template>
+
+
+	<template class="template aluno-treinamento">
+		<div class="aluno-treinamento">
+			<div class="box">
+			    <h1>
+			        <span class="nome">...</span>
+			    </h1>
+			
+			    <p class="chavevalor">
+			        <label>Matricula:</label>				
+			        <span class="codigo">...</span>
+			    </p>
+			    <p class="chavevalor">
+			        <label>Cadastro:</label>				
+			        <span class="cadastro">...</span>
+			    </p>
+			
+			    <p class="chavevalor">
+			        <label for="">CPF:</label>
+			        <span class="cpf">...</span>
+			    </p>
+			
+			    <p class="chavevalor">
+			        <label for="">Genero:</label>
+			        <span class="genero	">...</span>
+			    </p>
+			
+			    <p class="chavevalor">
+			        <label for="">Endereço:</label>
+			        <span class="endereco">...</span>
+			    </p>
+			
+			    <p class="chavevalor">
+			        <label for="">Numero:</label>
+			        <span class="numero">...</span>
+			    </p>
+			
+			    <p class="chavevalor">
+			        <label for="">Bairro:</label>
+			        <span class="bairro">...</span>
+			    </p>
+			
+			    <p class="chavevalor">
+			        <label for="">Cidade:</label>
+			        <span class="cidade">...</span>
+			    </p>
+			
+			    <p class="chavevalor">
+			        <label for="">Estado:</label>
+			        <span class="estado">...</span>
+			    </p>
+			
+			    <p class="chavevalor">
+			        <label for="">Telefones:</label>
+			        <span class="telefone_a">...</span>
+			        <span class="telefone_b">...</span>
+			    </p>
+			
+			
+			    <p class="chavevalor">
+			        <label for="">E-mail</label>
+			        <span class="email">...</span>
+			    </p>
+			
+			    <p class="chavevalor">
+			        <label for="">Senha</label>
+			        <span class="senha">...</span>
+			    </p>
+			
+			    <div class="acoes">
+			        <button onclick="">Perimetria</button>
+			        <button onclick="">Treinamento</button>
+			        <button>Anamnese</button>
+			    </div>
+			</div>	
+		</div>
+	</template>
+
+
+	<template class="template aluno-formulario">
+		<div class="aluno-formulario">
+			<div class="box">
+			    <p class="chavevalor">
+			        <label >Nome:</label>
+			        <input type="text" class="nome" required>
+			    </p>
+			
+			    <p class="chavevalor">
+			        <label for="">CPF:</label>
+			        <input type="text" class="cpf">
+			    </p>
+			
+			    <p class="chavevalor">
+			        <label for="">Genero:</label>
+			        <input type="text" class="genero">
+			    </p>
+			
+			    <div class="separador"></div>
+			
+			    <p class="chavevalor">
+			        <label for="">Endereço:</label>
+			        <input type="text" class="endereco">
+			    </p>
+			
+			    <p class="chavevalor">
+			        <label for="">Numero:</label>
+			        <input type="text" class="numero">
+			    </p>
+			
+			    <p class="chavevalor">
+			        <label for="">Bairro:</label>
+			        <input type="text" class="bairro">
+			    </p>
+			
+			    <p class="chavevalor">
+			        <label for="">Cidade:</label>
+			        <input type="text" class="cidade">
+			    </p>
+			
+			    <p class="chavevalor">
+			        <label for="">Estado:</label>
+			        <input type="text" class="estado">
+			    </p>
+			
+			    <p class="chavevalor">
+			        <label for="">Telefones:</label>
+			        <input type="tel" class="telefone_a">
+			        <input type="tel" class="telefone_b">
+			    </p>
+			
+			    <div class="separador"></div>
+			
+			    <p class="chavevalor">
+			        <label for="">E-mail</label>
+			        <input type="email" class="email">
+			    </p>
+			
+			    <p class="chavevalor">
+			        <label for="">Senha</label>
+			        <input type="password" class="senha">
+			    </p>
+			
+			    <div class="separador"></div>
+			
+			    <div class="acoes">
+			        <button onclick="sys.getView('aluno-formulario').salvar()">Salvar</button>
+			        <button onclick="sys.getEntent('aluno').lista()">Alunos</button>
+			    </div>
+			</div>	
+		</div>
+	</template>
+
+
+	<template class="template aluno_anamnese-formulario">
+		<div class="aluno_anamnese-formulario">
+			<div class="box">
+			    <p class="chavevalor">
+			        <label>1) Fuma? com que frequencia?</label>
+			        <input type="text" class="nome" required>
+			    </p>
+			
+			    <p class="chavevalor">
+			        <label for="">2) ???</label>
+			        <input type="text" class="cpf">
+			    </p>
+			
+			
+			    <div class="acoes">
+			        <button onclick="sys.getView('aluno-formulario').salvar()">Salvar</button>
+			        <button onclick="sys.getView('aluno-formulario').voltar()">Cancelar</button>
+			    </div>
+			</div>	
+		</div>
+	</template>
+
+
+	<template class="template aluno_anamnese-detalhe">
+		<div class="aluno_anamnese-detalhe">
+			<div class="box">
+			    <h1>
+			        <span class="aluno_nome">...</span>
+			    </h1>
+			
+			    <p class="chavevalor">
+			        <label>Fuma, com que frequencia?</label>				
+			        <span class="q1">...</span>
+			    </p>
+			
+			    <div class="acoes">
+			        <button onclick="ePerimetria.pDetalhe()">Salvar</button>
+			        <button onclick="eTreinamento.pDetalhe()">Cancelar</button>
+			    </div>
+			</div>	
+		</div>
+	</template>
+
+
+	<template class="template aluno-detalhe">
+		<div class="aluno-detalhe">
+			<div class="box">
+			    <h1>
+			        <span class="nome">...</span>
+			    </h1>
+			
+			    <p class="chavevalor">
+			        <label>Matricula:</label>				
+			        <span class="codigo">...</span>
+			    </p>
+			
+			    <p class="chavevalor">
+			        <label for="">CPF:</label>
+			        <span class="cpf">...</span>
+			    </p>
+			
+			    <p class="chavevalor">
+			        <label for="">Genero:</label>
+			        <span class="genero	">...</span>
+			    </p>
+			
+			    <p class="chavevalor">
+			        <label>Cadastro:</label>				
+			        <span class="cadastro">...</span>
+			    </p>
+			
+			    <div class="separador"></div>
+			
+			    <p class="chavevalor">
+			        <label for="">Endereço:</label>
+			        <span class="endereco">...</span>
+			    </p>
+			
+			    <p class="chavevalor">
+			        <label for="">Numero:</label>
+			        <span class="numero">...</span>
+			    </p>
+			
+			    <p class="chavevalor">
+			        <label for="">Bairro:</label>
+			        <span class="bairro">...</span>
+			    </p>
+			
+			    <p class="chavevalor">
+			        <label for="">Cidade:</label>
+			        <span class="cidade">...</span>
+			    </p>
+			
+			    <p class="chavevalor">
+			        <label for="">Estado:</label>
+			        <span class="estado">...</span>
+			    </p>
+			
+			    <p class="chavevalor">
+			        <label for="">Telefones:</label>
+			        <span class="telefone_a">...</span>
+			        <span class="telefone_b">...</span>
+			    </p>
+			
+			
+			    <div class="separador"></div>
+			
+			    <p class="chavevalor">
+			        <label for="">E-mail</label>
+			        <span class="email">...</span>
+			    </p>
+			
+			    <p class="chavevalor">
+			        <label for="">Senha</label>
+			        <span class="senha">...</span>
+			    </p>
+			
+			    <div class="separador"></div>
+			
+			    <div class="acoes">
+			        <button onclick="sys.getEntent('aluno').editar();">Editar</button>
+			        <button onclick="sys.getEntent('aluno').perimetria();">Perimetria</button>
+			        <button onclick="sys.getEntent('aluno').treinamento();">Treinamento</button>
+			        <button onclick="sys.getEntent('aluno').anamnese();">Anamnese</button>
+			        <button onclick="sys.getEntent('aluno').alunos();">Alunos</button>
+			    </div>
+			</div>	
+		</div>
+	</template>
+
+
+	<template class="template aluno-inicio">
+		<div class="aluno-inicio">
+			<div class="box">
+			    <h1>
+			        <span class="nome">...</span>
+			    </h1>
+			
+			    <p class="chavevalor">
+			        <label>Matricula:</label>				
+			        <span class="codigo">...</span>
+			    </p>
+			    <p class="chavevalor">
+			        <label>Cadastro:</label>				
+			        <span class="cadastro">...</span>
+			    </p>
+			
+			    <p class="chavevalor">
+			        <label for="">CPF:</label>
+			        <span class="cpf">...</span>
+			    </p>
+			
+			    <p class="chavevalor">
+			        <label for="">Genero:</label>
+			        <span class="genero	">...</span>
+			    </p>
+			
+			    <p class="chavevalor">
+			        <label for="">Endereço:</label>
+			        <span class="endereco">...</span>
+			    </p>
+			
+			    <p class="chavevalor">
+			        <label for="">Numero:</label>
+			        <span class="numero">...</span>
+			    </p>
+			
+			    <p class="chavevalor">
+			        <label for="">Bairro:</label>
+			        <span class="bairro">...</span>
+			    </p>
+			
+			    <p class="chavevalor">
+			        <label for="">Cidade:</label>
+			        <span class="cidade">...</span>
+			    </p>
+			
+			    <p class="chavevalor">
+			        <label for="">Estado:</label>
+			        <span class="estado">...</span>
+			    </p>
+			
+			    <p class="chavevalor">
+			        <label for="">Telefones:</label>
+			        <span class="telefone_a">...</span>
+			        <span class="telefone_b">...</span>
+			    </p>
+			
+			
+			    <p class="chavevalor">
+			        <label for="">E-mail</label>
+			        <span class="email">...</span>
+			    </p>
+			
+			    <p class="chavevalor">
+			        <label for="">Senha</label>
+			        <span class="senha">...</span>
+			    </p>
+			
+			    <div class="acoes">
+			        <button onclick="">Perimetria</button>
+			        <button onclick="">Treinamento</button>
+			        <button>Anamnese</button>
+			    </div>
+			</div>	
+		</div>
+	</template>
+
+
+	<template class="template aluno-perimetria">
+		<div class="aluno-perimetria">
+			<div class="box">
+			    <h1>
+			        <span class="nome">...</span>
+			    </h1>
+			
+			    <p class="chavevalor">
+			        <label>Matricula:</label>				
+			        <span class="codigo">...</span>
+			    </p>
+			    <p class="chavevalor">
+			        <label>Cadastro:</label>				
+			        <span class="cadastro">...</span>
+			    </p>
+			
+			    <p class="chavevalor">
+			        <label for="">CPF:</label>
+			        <span class="cpf">...</span>
+			    </p>
+			
+			    <p class="chavevalor">
+			        <label for="">Genero:</label>
+			        <span class="genero	">...</span>
+			    </p>
+			
+			    <p class="chavevalor">
+			        <label for="">Endereço:</label>
+			        <span class="endereco">...</span>
+			    </p>
+			
+			    <p class="chavevalor">
+			        <label for="">Numero:</label>
+			        <span class="numero">...</span>
+			    </p>
+			
+			    <p class="chavevalor">
+			        <label for="">Bairro:</label>
+			        <span class="bairro">...</span>
+			    </p>
+			
+			    <p class="chavevalor">
+			        <label for="">Cidade:</label>
+			        <span class="cidade">...</span>
+			    </p>
+			
+			    <p class="chavevalor">
+			        <label for="">Estado:</label>
+			        <span class="estado">...</span>
+			    </p>
+			
+			    <p class="chavevalor">
+			        <label for="">Telefones:</label>
+			        <span class="telefone_a">...</span>
+			        <span class="telefone_b">...</span>
+			    </p>
+			
+			
+			    <p class="chavevalor">
+			        <label for="">E-mail</label>
+			        <span class="email">...</span>
+			    </p>
+			
+			    <p class="chavevalor">
+			        <label for="">Senha</label>
+			        <span class="senha">...</span>
+			    </p>
+			
+			    <div class="acoes">
+			        <button onclick="ePerimetria.pDetalhe()">Perimetria</button>
+			        <button onclick="eTreinamento.pDetalhe()">Treinamento</button>
+			        <button>??medico??</button>
+			    </div>
+			</div>	
+		</div>
+	</template>
+
+
 	<template class="template aluno-lista">
 		<div class="aluno-lista">
 			<form class="box">
 			    <label for="pesquisa" class="">Pesquisa:</label>
 			    <input type="text" name="pesquisa" id="">
 			    <button type="submit">Pesquisar</button>
-			    <a href="aluno/adicionar" class="button">Novo Aluno</a>
+			    <!--a href="aluno/adicionar" class="button">Novo Aluno</a-->
+			    <button type="button" onclick="sys.getEntent('aluno').novo()">Novo aluno</button>
 			</form>
 			<div class="alunos"></div>
 			<!-- templates-->
@@ -36,29 +504,76 @@
 	</template>
 
 
-	<template class="template sessao-login">
-		<div class="sessao-login">
-			<form class="formulario">
-			    <img class="logo" src="img/logo.svg" />
-			    <p class="msg">
-			        Entre com suas credenciais.
+	<template class="template exercicio-formulario">
+		<div class="exercicio-formulario">
+			<div class="msg">...</div>
+			
+			<form class="box edit">
+			    <h1>Editar exercicio</h1>
+			    <p class="chavevalor">
+			        <label>Nome:</label>
+			        <input name="nome">
+			    </p>
+			
+			    <p class="chavevalor" > 
+			        <label>Selecione a imagem:</label>
+			        <input type="file" name="imagem">
 			    </p>
 			
 			    <p class="chavevalor">
-			        <label for="usuairo">Usuario:</label>
-			        <input type="text" name="usuairo" class="usuario" placeholder="e-mail / matricula" required>
+			        <label>Descrição: </label>
+			        <textarea name="descricao"></textarea>
 			    </p>
 			
-			    <p class="chavevalor">
-			        <label for="senha">Senha:</label>
-			        <input type="password" name="senha" class="senha" placeholder="********" required>
+			    <p>
+			        <button type="submit">Salvar</button>
+			        <button onclick="eExercicio.detalhe_cancelar();" type="button">Cancelar</button>
 			    </p>
-			
-			    <p class="acao">
-			        <input type="submit" value="Entrar">
-			        <input type="button" class="cadastrar" value="Cadastrar">
-			    </p>
-			
 			</form>
+		</div>
+	</template>
+
+
+	<template class="template exercicio-detalhe">
+		<div class="exercicio-detalhe">
+			<div class = 'box view'>
+			    <h1 class="nome">...</h1>
+			    <p>
+			        <img src="img/dumbbell-solid.svg">
+			    </p>
+			
+			    <p class="descricao">...</p>
+			    
+			    <p class="acoes">
+			        <button onclick="sys.getEntent('exercicio').editar();">Editar</button>
+			        <!--button>Excluir</button-->
+			    </p>
+			    
+			</div>
+		</div>
+	</template>
+
+
+	<template class="template exercicio-lista">
+		<div class="exercicio-lista">
+			<form class="box">
+			    <span class="">Pesquisar</span>
+			    <input type="text" class="pesquisa">
+			    <button type="submit">Pesquisar</button>
+			    <button type="button" onclick="getEntent('exercicio').adicionar();">Novo Exercicio</a>
+			</form>
+			
+			<div class="lista"></div>
+			
+			<template class="tem_exercicio">
+			    <div class="box exercicio">
+			        <img calss="imagem" src="img/logo.png" alt="">
+			        <div class="nome">...</div>
+			        <div class="descricao">...</div>
+			        <div>
+			            <button>Detalhe</button>
+			        </div>
+			    </div>
+			</template>
 		</div>
 	</template>
