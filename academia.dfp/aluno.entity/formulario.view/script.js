@@ -54,10 +54,6 @@ salvar:function (){
             'senha':document.querySelector('.layer .senha').value
         },
         function(data) {
-            if (data.result != true) {
-
-            }
-
             sys.getEntent('aluno').objeto.codigo = data.detalhe;
             sys.cabecario.setTitulo('Aluno ' + data.detalhe.nome);
             document.querySelector('.layer .nome').innerHTML = data.detalhe.nome;

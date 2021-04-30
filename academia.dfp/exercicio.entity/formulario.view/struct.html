@@ -1,7 +1,7 @@
-<div class="msg">...</div>
+<div class="box edit">
 
-<form class="box edit">
-    <h1>Editar exercicio</h1>
+    <div class="msg">...</div>
+
     <p class="chavevalor">
         <label>Nome:</label>
         <input name="nome">
@@ -9,7 +9,9 @@
 
     <p class="chavevalor" > 
         <label>Selecione a imagem:</label>
+
         <input type="file" name="imagem">
+        <img src="" alt="">
     </p>
 
     <p class="chavevalor">
@@ -18,7 +20,8 @@
     </p>
 
     <p>
-        <button type="submit">Salvar</button>
-        <button onclick="eExercicio.detalhe_cancelar();" type="button">Cancelar</button>
+        <button onclick="sys.getView('exercicio-formulario').salvar()" type="button">Salvar</button>
+        <button onclick="sys.getView('exercicio-formulario').cancelar()" type="button">Cancelar</button>
     </p>
-</form>
+
+</div>

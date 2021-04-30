@@ -7,14 +7,14 @@ load: function(operacao) {
         sys.apiRequest(
             'exercicio/detalhe', { 'codigo': sys.getEntent('exercicio').objeto.codigo },
             function(data) {
-                sys.getEntent('aluno').objeto = data.detalhe;
-                sys.cabecario.setTitulo('Aluno '+data.detalhe.nome);
+                sys.getEntent('exercicio').objeto = data.detalhe;
+                sys.cabecario.setTitulo('Exercicio '+data.detalhe.nome);
                 
-                document.querySelector('.layer [name="nome"]').value = exercicio.nome;
-                document.querySelector('.layer [name="descricao"]').innerHTML = exercicio.descricao;
+                document.querySelector('.layer [name="nome"]').value = data.detalhe.nome;
+                document.querySelector('.layer [name="descricao"]').innerHTML = data.detalhe.descricao;
                 document.querySelector('.layer img').setAttribute(
                     'src', 
-                    sys.config.apiURL + 'exercicio/img/'+exercicio.codigo+'?rand=' + Math.floor( Math.random() * 99)
+                    sys.config.apiURL + 'exercicio/img/'+data.detalhe.codigo+'?rand=' + Math.floor( Math.random() * 99)
                 );
             }
             
@@ -64,5 +64,16 @@ salvar:function(){
             sys.getView('exercicio-detalhe').detalhe();
         }
     );
+},
+cancelar:function(){
+    if(this.operacao == 'editar'){
+        sys.getEntent('exercicio').detalhe(
+            sys.getEntent('exercicio').objeto.codigo
+        );
+        return;
+    }
+
+    sys.getEntent('exercicio').lista();
+
 }
 
