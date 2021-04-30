@@ -14,4 +14,8 @@ detalhe:function(codigo){
 
 editar:function(){
     sys.layerLoadContent('conteudo','exercicio-formulario', 'editar');
+},
+
+adicionar:function(){
+    sys.layerLoadContent('conteudo','exercicio-formulario', 'novo');
 }

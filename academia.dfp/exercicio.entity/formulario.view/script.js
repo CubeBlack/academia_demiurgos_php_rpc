@@ -1,5 +1,11 @@
 load: function(operacao) {
+    //Verificar a operação a ser feita pelo formulario
     this.operacao = (operacao == 'editar')?'editar':'novo';
+
+    //Limpar a image, para  não colocar a imagem errada
+    this.imgBase64 = null;
+
+    //Carregar os dados do exercicio
     if(operacao == 'editar'){
         this.operacao = 'editar';
         sys.cabecario.setTitulo('Exercicio ...');
@@ -54,7 +60,7 @@ salvar:function(){
     let descricao = document.querySelector('.layer [name="descricao"]').value;
     
     sys.apiRequest(
-        'exercicio/atualizar',
+        (this.operacao == 'editar')?'exercicio/atualizar':'exercicio/adicionar',
         {
             'codigo':sys.getEntent('exercicio').objeto.codigo,
             'nome':nome,
@@ -67,7 +73,7 @@ salvar:function(){
                 return;
             }
 
-            sys.getEntent('exercicio').detalhe(sys.getEntent('exercicio').objeto.codigo);
+            sys.getEntent('exercicio').detalhe(data.codigo);
         }
     );
 },
