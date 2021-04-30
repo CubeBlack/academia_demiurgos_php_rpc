@@ -30,16 +30,20 @@ validar:function(){
 
     //Se não tiver imagem para atualizar
     if (img == undefined){
-        self.salvar();
+        this.salvar();
         return;
     }
+
+    //Ler a imagem antes de enviar
+    //O melhor é ler a imagem quando for colocada, e usar o img
+    //para visulizar a imagem
     let reader = new FileReader();
     reader.onloadend = function () {
-        self.imgBase64 = reader.result;
+        //Savlar a imagem carregada
+        sys.getView('exercicio-formulario').imgBase64 = reader.result;
 
-        //Enviar tudo
-        sys.getView('exercicio-detalhe').salvar();
-       
+        //Salvar
+        sys.getView('exercicio-formulario').salvar();
     };
     
     reader.readAsDataURL(img);	
@@ -55,16 +59,19 @@ salvar:function(){
             'codigo':sys.getEntent('exercicio').objeto.codigo,
             'nome':nome,
             'descricao':descricao,
-            'imagem':self.imgBase64
+            'imagem':this.imgBase64
         },function(data){
+
             if(data.result != true){
                 document.querySelector('.pagina_exercicio_detalhe .msg').innerHTML = data.msg;
                 return;
             }
-            sys.getView('exercicio-detalhe').detalhe();
+
+            sys.getEntent('exercicio').detalhe(sys.getEntent('exercicio').objeto.codigo);
         }
     );
 },
+
 cancelar:function(){
     if(this.operacao == 'editar'){
         sys.getEntent('exercicio').detalhe(
