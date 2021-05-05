@@ -1,0 +1,33 @@
+<form class="box exercicioadicionar">
+    <h1>Adicionar Exercicio</h1>
+    <p class="">
+        <label>Exercicio:</laberl>
+        <input type="text" name="exercicio_valor"/>
+        <input type="text" name="exercicio_codigo" />
+        <button type="button" >Pesquisar</button>
+    </p>
+    
+    <div class="exercicio_lista"></div>
+    <template class="tem_exercicioopcao">
+        <div class="exercicio">
+            <span class="codigo">...</span>
+            <span class="nome">...</span>
+        </div>
+    </template>
+    
+    <p class="textovalor">
+        <label>Ordem:</label>
+        <input type="text" name="" />
+    </p>
+    
+    <p class="textovalor">
+        <label>Dia:</label>
+        <input type="number" name="dia" />
+    </p>
+
+    
+    <p>
+        <button type="submit">Salvar</button>
+        <button type="button" onClick="eTreinamento.pDetalhe();">Cancelar</button>	
+    </p>
+</form>

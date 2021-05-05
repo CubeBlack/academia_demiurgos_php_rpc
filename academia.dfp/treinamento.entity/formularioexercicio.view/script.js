@@ -27,7 +27,6 @@ load: function(operacao) {
         );
     }
 },
-imgBase64:null,
 validar:function(){
     document.querySelector('.layer .msg').innerHTML = 'Salvando...';
     //Tratar imagem antes de enviar
@@ -56,16 +55,14 @@ validar:function(){
 
 },
 salvar:function(){
-    let nome = document.querySelector('.layer [name="nome"]').value;
-    let descricao = document.querySelector('.layer [name="descricao"]').value;
-    
+  
     sys.apiRequest(
         (sys.getView('exercicio-formulario').operacao == 'editar')?'exercicio/atualizar':'exercicio/adicionar',
         {
             'codigo':sys.getEntent('exercicio').objeto.codigo,
-            'nome':nome,
-            'descricao':descricao,
-            'imagem':this.imgBase64
+            'nome':document.querySelector('.layer [name="nome"]').value,
+            'descricao':document.querySelector('.layer [name="nome"]').value,
+            'ciclo':document.querySelector('.layer [name="nome"]').value
         },function(data){
 
             sys.getEntent('exercicio').detalhe(data.codigo);

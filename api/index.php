@@ -70,7 +70,7 @@ $data = $entidade::{$funcao}($data);
 
 //Segurança da aplicação zerro]
 
-
+//var_dump($data);
 $strJson = json_encode($data);
 
 if (!$strJson) echo json_encode([

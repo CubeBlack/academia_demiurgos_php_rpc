@@ -27,7 +27,7 @@ function conect() {
 	$msg = 'in[ordinatio]/conect: ';
 	//conectar com a produção
     try {
-        $dbh = new PDO('mysql:host='. DB_HOST .';dbname=' .DB_NAME, DB_USER, DB_PASS);
+        $dbh = new PDO('mysql:host='. DB_HOST .';dbname=' .DB_NAME.';charset=utf8', DB_USER, DB_PASS);
     } catch (PDOException $e) {
 		
 		$msg = $msg . $e->getMessage() . '| ';
@@ -37,7 +37,7 @@ function conect() {
 	
 	//conectar teste
     try {
-        $dbh = new PDO('mysql:host='. T_DB_HOST .';dbname=' . T_DB_NAME, T_DB_USER, T_DB_PASS);
+        $dbh = new PDO('mysql:host='. T_DB_HOST .';dbname=' . T_DB_NAME.';charset=utf8', T_DB_USER, T_DB_PASS);
     } catch (PDOException $e) {
 		print '{
 			"value":false,

@@ -1,7 +1,7 @@
 load: function() {
     sys.cabecario.setTitulo('Exercicio ...');
 
-    //console.log(sys.getEntent('exercicio').objeto.codigo);
+    console.log(sys.getEntent('exercicio').objeto.codigo);
     sys.apiRequest(
         'exercicio/detalhe',
         {'codigo':sys.getEntent('exercicio').objeto.codigo},

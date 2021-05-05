@@ -1,22 +1,30 @@
-<?php
+<?php 
 class Treinamento{
+    //Situações/status posiveis
+    const SITUACAO_ATIVO = 'ativo';
+    const SITUACAO_INATIVO = 'inativo';
+
     static function adicionar($data){
+        
         //Tratar instrutor
         //Tratar aluno
         $dbh = conect();
-		$sth = $dbh->prepare('INSERT INTO Treinamento SET 
-			academia = :academia,
+		$sth = $dbh->prepare('INSERT INTO treinamento SET 
+            codigo = null,
+			academia = 1/*:academia*/,
             nome = :nome,
             descricao = :descricao,
             ciclo = :ciclo,
-            criacao = now()
+            criacao = now(),
+            situacao = :situacao
 		');
 		
 		$sth->execute([
-            'academia'=>$data['academia'],
-            'nome'=>$data['nome'],
+            /*'academia'=>$data['academia'],*/
+            'nome'     =>$data['nome'],
             'descricao'=>$data['descricao'],
-            'ciclo' =>$data['ciclo']		
+            'ciclo'    =>$data['ciclo'],
+            'situacao' =>$data['situacao']
 		]);
 		
 		if($sth->errorInfo()[1]!=0) {
@@ -112,14 +120,27 @@ class Treinamento{
         
         return $data;
     }
+
     //
     static function listar($data){
         //Tratar aluno
         //Listar
+        $query = 'SELECT 
+                *
+            FROM   treinamento
+            where true 
+       '; 
+       
+       if($data['pesquisa']!=''){
+        $query .= 'and (nome like :pesquisa or descricao like :pesquisa)';
+       }
+
+        //Tratar melhor so filtros
+       if($data['filtro']['situacao']['inativo']){
+            $query .= 'and (situacao <> "inativo")';
+       }
         $dbh = conect();
-		$sth = $dbh->prepare('SELECT *
-			FROM    treinamento 
-   		');
+		$sth = $dbh->prepare();
 
 		$sth->execute([
             /* 'academia'=>$data['academia'] */
@@ -136,6 +157,8 @@ class Treinamento{
 
         return $data;
     }
+
+    //
     static function meu($data){
         //Tratar aluno
         $data['aluno'] = isset($data['aluno'])?$data['aluno']:'';
@@ -206,6 +229,7 @@ class Treinamento{
         return $data;
     }
 
+    //
     static function detalhe($data){
         //Tratar aluno
         $data['codigo'] = isset($data['codigo'])?$data['codigo']:'';
@@ -273,6 +297,8 @@ class Treinamento{
         
         return $data;
     }
+
+    //
 	static function atualizar($data){
 		//Tratar academia/ não implemantado
 		$data['academia'] = '1';

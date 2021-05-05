@@ -1,0 +1,103 @@
+    <div class="box cabecario_detalhe">
+        <h1 class="nome">...</h1>
+        <p class="chave_valor">
+            <label>Dias:</label>
+            <span class="dias">...</span>
+        </p>
+
+        <p class="chave_valor">
+            <label for="">Descricão:</label>
+            <span class="descricao">...</span>
+        </p>
+
+        <p>
+            <button onclick="eTreinamento.detalhe_cabecarioeditar();">Editar</button>
+            <button onclick="eTreinamento.detalhe_exercicionovo();">Adicionar Exercicio</button>
+        </p>
+
+    </div>
+
+    
+
+    <div class="exercicios"></div>
+
+    <!-- templates -->
+
+    <template class="tem_dia">
+        <div class="box center dia">
+            <span class="dia"></span>º dia
+        </div>
+    </template>
+
+
+    <template class="tem_exercicio">
+        <div class='block edit'>
+            <div class="">
+                <h2>
+                    <span class="exercicio_nome">...</span>
+                    <span class="button">Alterar</span>
+
+                </h2>
+                <div>
+
+                    <input type="text" name="" id="">
+                    <div class="lista">
+                        lista de exercicios
+                    </div>
+                </div>
+            </div>
+
+            <p class="chavevalor">
+                <label for="">Sequencia. 1º, 2º... exercicio do dia:</label>
+                <span>
+                    <span class="button">^</span>
+                    <input class="sequencia" type="text" name="" id="">º
+                    <span class="button">v</span>
+                </span>
+            </p>
+
+
+
+            <p class="chavevalor">
+                <label for="">Duração. Quantas vezes ou quanto tempo de exercicio:</label>
+                <span>
+                    <input type="text">
+
+                    <select name="" id="">
+                        <option value="">min</option>
+                        <option value="">x</option>
+                    </select>
+                </span>
+
+            </p>
+
+            <p>
+                <span class="button">Salvar</span>
+                <span class="button">Cancelar</span>
+                <span class="button">Excluir</span>
+            </p>
+        </div>
+
+        <div class="block view">
+            <h1>
+                <span class="sequencia">[sequencia]</span> -
+                <span class="exercicio_nome">[exercico_nome]</span>
+            </h1>
+            <div class="chavevalor">
+                <label for="">Descricao:</label>
+                <p class="descricao">[descricao]</p>
+            </div>
+            <div class="chavevalor">
+                <label for="">Duracao:</label>
+                <p>
+                    <span class="duracao">[duracao]</span>
+                    <span class="duracao_tipo">[tipo]</span>
+                </p>
+            </div>
+            <div>
+                <span class="button">Editar</span>
+            </div>
+        </div>
+
+    </template>
+
