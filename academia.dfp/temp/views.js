@@ -33,6 +33,231 @@
 	    );
 	}
 },
+"treinamento-formulario":{
+	load: function(operacao) {
+	    //Limpar msg
+	    document.querySelector('.layer .msg').innerHTML = '';
+	
+	    //Verificar a operação a ser feita pelo formulario
+	    this.operacao = (operacao == 'editar')?'editar':'novo';
+	
+	    //Carregar os dados do trienamento
+	    if(operacao == 'editar'){
+	        this.operacao = 'editar';
+	        sys.cabecario.setTitulo('Treinamneto ...');
+	
+	        //Pegar os dados do aluno e colocar no formulario
+	        sys.apiRequest(
+	            'treinamento/detalhe', { 'codigo': sys.getEntent('treinamento').objeto.codigo },
+	            function(data) {
+	                sys.getEntent('treinamento').objeto = data.detalhe;
+	                sys.cabecario.setTitulo('Treinamento ' + data.detalhe.nome);
+	                
+	                document.querySelector('.layer [name="nome"]').value = data.detalhe.nome;
+	                document.querySelector('.layer [name="dias"]').value = data.detalhe.dias;
+	                document.querySelector('.layer [name="descricao"]').innerHTML = data.detalhe.descricao;
+	            }
+	            
+	        );
+	    }
+	},
+	
+	salvar:function(){
+	  
+	    sys.apiRequest(
+	        (sys.getView('trienamento-formulario').operacao == 'editar')?'treinamento/atualizar':'treinamento/adicionar',
+	        {
+	            'codigo':sys.getEntent('treinamento').objeto.codigo,
+	            'nome':document.querySelector('.layer [name="nome"]').value,
+	            'descricao':document.querySelector('.layer [name="descricao"]').value,
+	            'ciclo':document.querySelector('.layer [name="dias"]').value,
+	            'situacao':document.querySelector('.layer [name="situacao"]').value
+	        },function(data){
+	            sys.getEntent('treinamento').detalhe(data.codigo);
+	        }
+	    );
+	},
+	
+	cancelar:function(){
+	    if(this.operacao == 'editar'){
+	        sys.getEntent('treinamento').detalhe(
+	            sys.getEntent('treinamento').objeto.codigo
+	        );
+	        return;
+	    }
+	
+	    sys.getEntent('treinamento').lista();
+	}
+	
+	
+},
+"treinamento-formularioexercicio":{
+	load: function(operacao) {
+	    //Verificar a operação a ser feita pelo formulario
+	    this.operacao = (operacao == 'editar')?'editar':'novo';
+	
+	    //Limpar a image, para  não colocar a imagem errada
+	    this.imgBase64 = null;
+	
+	    //Carregar os dados do exercicio
+	    if(operacao == 'editar'){
+	        this.operacao = 'editar';
+	        sys.cabecario.setTitulo('Exercicio ...');
+	        //Pegar os dados do aluno e colocar no formulario
+	        sys.apiRequest(
+	            'exercicio/detalhe', { 'codigo': sys.getEntent('exercicio').objeto.codigo },
+	            function(data) {
+	                sys.getEntent('exercicio').objeto = data.detalhe;
+	                sys.cabecario.setTitulo('Exercicio '+data.detalhe.nome);
+	                
+	                document.querySelector('.layer [name="nome"]').value = data.detalhe.nome;
+	                document.querySelector('.layer [name="descricao"]').innerHTML = data.detalhe.descricao;
+	                document.querySelector('.layer img').setAttribute(
+	                    'src', 
+	                    sys.config.apiURL + 'exercicio/img/'+data.detalhe.codigo+'?rand=' + Math.floor( Math.random() * 99)
+	                );
+	            }
+	            
+	        );
+	    }
+	},
+	validar:function(){
+	    document.querySelector('.layer .msg').innerHTML = 'Salvando...';
+	    //Tratar imagem antes de enviar
+	    let input = document.querySelector('.layer input[type=file]');
+	    let img = input.files[0];
+	
+	    //Se não tiver imagem para atualizar
+	    if (img == undefined){
+	        this.salvar();
+	        return;
+	    }
+	
+	    //Ler a imagem antes de enviar
+	    //O melhor é ler a imagem quando for colocada, e usar o img
+	    //para visulizar a imagem
+	    let reader = new FileReader();
+	    reader.onloadend = function () {
+	        //Savlar a imagem carregada
+	        sys.getView('exercicio-formulario').imgBase64 = reader.result;
+	
+	        //Salvar
+	        sys.getView('exercicio-formulario').salvar();
+	    };
+	    
+	    reader.readAsDataURL(img);	
+	
+	},
+	salvar:function(){
+	  
+	    sys.apiRequest(
+	        (sys.getView('exercicio-formulario').operacao == 'editar')?'exercicio/atualizar':'exercicio/adicionar',
+	        {
+	            'codigo':sys.getEntent('exercicio').objeto.codigo,
+	            'nome':document.querySelector('.layer [name="nome"]').value,
+	            'descricao':document.querySelector('.layer [name="nome"]').value,
+	            'ciclo':document.querySelector('.layer [name="nome"]').value
+	        },function(data){
+	
+	            sys.getEntent('exercicio').detalhe(data.codigo);
+	        }
+	    );
+	},
+	
+	cancelar:function(){
+	    if(this.operacao == 'editar'){
+	        sys.getEntent('exercicio').detalhe(
+	            sys.getEntent('exercicio').objeto.codigo
+	        );
+	        return;
+	    }
+	
+	    sys.getEntent('exercicio').lista();
+	
+	}
+	
+	
+},
+"treinamento-detalhe":{
+	load: function() {
+	    sys.cabecario.setTitulo('Treinamento ...');
+	
+	    sys.apiRequest(
+	        'treinamento/detalhe',
+	        {'codigo':sys.getEntent('treinamento').objeto.codigo},
+	        function(data){
+	           
+	            var treinamento = data.detalhe;
+	            sys.getEntent('treinamento').objeto = treinamento;
+	
+	            sys.cabecario.setTitulo('Treinamento ' + treinamento.nome);
+	            
+	            document.querySelector('.layer .nome').innerHTML = treinamento.nome;
+	            document.querySelector('.layer .descricao').innerHTML = treinamento.descricao;
+	            document.querySelector('.layer .dias').innerHTML = treinamento.ciclo;
+	            
+	        }
+	    );
+	
+	},
+	editar:function(){
+	    sys.layerLoadContent('conteudo','treinamento-formularioexercicio', 'editar');
+	}
+},
+"treinamento-lista":{
+	load: function() {
+	    sys.cabecario.setTitulo('Treinamentos');
+	
+	    document.querySelector('.layer .pesquisa').onkeyup = function(event) {
+	        sys.getView('treinamento-lista').listar();
+	    };
+	
+	    document.querySelector('.layer form').onsubmit = function(event) {
+	        event.preventDefault();
+	        sys.getView('treinamento-lista').listar();
+	    };
+	
+	    this.listar();
+	
+	},
+	listar: function() {
+	    sys.apiRequest('treinamento/listar', {
+	            'pesquisa': document.querySelector('.layer .pesquisa').value,
+	            'filtro':{
+	                'situacao':{
+	                    'ativo':true,
+	                    'inativo':document.querySelector('.layer .inativos').checked
+	                }
+	            }
+	        },
+	        function(data) {
+	            var lista = document.querySelector('.layer .lista');
+	            lista.innerHTML = '';
+	
+	            if (data.lista.length < 1) {
+	                lista.innerHTML = 'Nenhum exercicio encontrado';
+	            }
+	
+	            for (var index = 0; index < data.lista.length; index++) {
+	                var treinamento = data.lista[index];
+	                var t = document.querySelector('.layer .tem_treinamento');
+	                var clon = t.content.cloneNode(true);
+	
+	                clon.querySelector('.nome').innerHTML = treinamento.nome;
+	
+	                clon.querySelector('.descricao').innerHTML = treinamento.descricao;
+	                
+	                clon.querySelector('.treinamento').setAttribute(
+	                    'onclick',
+	                    "sys.getEntent('treinamento').detalhe("+treinamento.codigo+");"
+	                );
+	
+	                lista.appendChild(clon);
+	            }
+	        }
+	    );
+	}
+},
 "aluno-treinamento":{
 	load:function(){
 	    sys.cabecario.setTitulo('Aluno...');
@@ -124,10 +349,6 @@
 	            'senha':document.querySelector('.layer .senha').value
 	        },
 	        function(data) {
-	            if (data.result != true) {
-	
-	            }
-	
 	            sys.getEntent('aluno').objeto.codigo = data.detalhe;
 	            sys.cabecario.setTitulo('Aluno ' + data.detalhe.nome);
 	            document.querySelector('.layer .nome').innerHTML = data.detalhe.nome;
@@ -397,7 +618,13 @@
 },
 "exercicio-formulario":{
 	load: function(operacao) {
+	    //Verificar a operação a ser feita pelo formulario
 	    this.operacao = (operacao == 'editar')?'editar':'novo';
+	
+	    //Limpar a image, para  não colocar a imagem errada
+	    this.imgBase64 = null;
+	
+	    //Carregar os dados do exercicio
 	    if(operacao == 'editar'){
 	        this.operacao = 'editar';
 	        sys.cabecario.setTitulo('Exercicio ...');
@@ -405,14 +632,14 @@
 	        sys.apiRequest(
 	            'exercicio/detalhe', { 'codigo': sys.getEntent('exercicio').objeto.codigo },
 	            function(data) {
-	                sys.getEntent('aluno').objeto = data.detalhe;
-	                sys.cabecario.setTitulo('Aluno '+data.detalhe.nome);
+	                sys.getEntent('exercicio').objeto = data.detalhe;
+	                sys.cabecario.setTitulo('Exercicio '+data.detalhe.nome);
 	                
-	                document.querySelector('.layer [name="nome"]').value = exercicio.nome;
-	                document.querySelector('.layer [name="descricao"]').innerHTML = exercicio.descricao;
+	                document.querySelector('.layer [name="nome"]').value = data.detalhe.nome;
+	                document.querySelector('.layer [name="descricao"]').innerHTML = data.detalhe.descricao;
 	                document.querySelector('.layer img').setAttribute(
 	                    'src', 
-	                    sys.config.apiURL + 'exercicio/img/'+exercicio.codigo+'?rand=' + Math.floor( Math.random() * 99)
+	                    sys.config.apiURL + 'exercicio/img/'+data.detalhe.codigo+'?rand=' + Math.floor( Math.random() * 99)
 	                );
 	            }
 	            
@@ -428,16 +655,20 @@
 	
 	    //Se não tiver imagem para atualizar
 	    if (img == undefined){
-	        self.salvar();
+	        this.salvar();
 	        return;
 	    }
+	
+	    //Ler a imagem antes de enviar
+	    //O melhor é ler a imagem quando for colocada, e usar o img
+	    //para visulizar a imagem
 	    let reader = new FileReader();
 	    reader.onloadend = function () {
-	        self.imgBase64 = reader.result;
+	        //Savlar a imagem carregada
+	        sys.getView('exercicio-formulario').imgBase64 = reader.result;
 	
-	        //Enviar tudo
-	        sys.getView('exercicio-detalhe').salvar();
-	       
+	        //Salvar
+	        sys.getView('exercicio-formulario').salvar();
 	    };
 	    
 	    reader.readAsDataURL(img);	
@@ -448,20 +679,29 @@
 	    let descricao = document.querySelector('.layer [name="descricao"]').value;
 	    
 	    sys.apiRequest(
-	        'exercicio/atualizar',
+	        (sys.getView('exercicio-formulario').operacao == 'editar')?'exercicio/atualizar':'exercicio/adicionar',
 	        {
 	            'codigo':sys.getEntent('exercicio').objeto.codigo,
 	            'nome':nome,
 	            'descricao':descricao,
-	            'imagem':self.imgBase64
+	            'imagem':this.imgBase64
 	        },function(data){
-	            if(data.result != true){
-	                document.querySelector('.pagina_exercicio_detalhe .msg').innerHTML = data.msg;
-	                return;
-	            }
-	            sys.getView('exercicio-detalhe').detalhe();
+	
+	            sys.getEntent('exercicio').detalhe(data.codigo);
 	        }
 	    );
+	},
+	
+	cancelar:function(){
+	    if(this.operacao == 'editar'){
+	        sys.getEntent('exercicio').detalhe(
+	            sys.getEntent('exercicio').objeto.codigo
+	        );
+	        return;
+	    }
+	
+	    sys.getEntent('exercicio').lista();
+	
 	}
 	
 	
@@ -470,7 +710,7 @@
 	load: function() {
 	    sys.cabecario.setTitulo('Exercicio ...');
 	
-	    console.log(sys.getEntent('exercicio').objeto.codigo);
+	    //console.log(sys.getEntent('exercicio').objeto.codigo);
 	    sys.apiRequest(
 	        'exercicio/detalhe',
 	        {'codigo':sys.getEntent('exercicio').objeto.codigo},

@@ -136,11 +136,11 @@ class Treinamento{
        }
 
         //Tratar melhor so filtros
-       if($data['filtro']['situacao']['inativo']){
+       if(!$data['filtro']['situacao']['inativo']){
             $query .= 'and (situacao <> "inativo")';
        }
         $dbh = conect();
-		$sth = $dbh->prepare();
+		$sth = $dbh->prepare($query);
 
 		$sth->execute([
             /* 'academia'=>$data['academia'] */

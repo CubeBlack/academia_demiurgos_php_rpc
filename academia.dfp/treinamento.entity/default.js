@@ -1,4 +1,5 @@
 objeto:{codigo:null},
+exercicio:0,
 load:function(){
     
 },

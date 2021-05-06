@@ -21,7 +21,6 @@ class Treinamentoexercicio{
 		$sth->execute([
             'treinamento'=>$data['treinamento'],
             'exercicio'=>$data['exercicio'],
-            'situacao'=>$data['situacao'],
             'execucao' =>$data['execucao']		
 		]);
 		

@@ -1,26 +1,24 @@
 load: function() {
-    sys.cabecario.setTitulo('Exercicio ...');
+    sys.cabecario.setTitulo('Treinamento ...');
 
-    console.log(sys.getEntent('exercicio').objeto.codigo);
     sys.apiRequest(
-        'exercicio/detalhe',
-        {'codigo':sys.getEntent('exercicio').objeto.codigo},
+        'treinamento/detalhe',
+        {'codigo':sys.getEntent('treinamento').objeto.codigo},
         function(data){
            
-            var exercicio = data.detalhe;
-            sys.getEntent('exercicio').objeto = exercicio;
+            var treinamento = data.detalhe;
+            sys.getEntent('treinamento').objeto = treinamento;
 
-            sys.cabecario.setTitulo('Exercicio ' + exercicio.nome);
+            sys.cabecario.setTitulo('Treinamento ' + treinamento.nome);
             
-            document.querySelector('.layer .nome').innerHTML = exercicio.nome;
-            document.querySelector('.layer .descricao').innerHTML = exercicio.descricao;
-            document.querySelector('.layer img').setAttribute(
-                'src', 
-                sys.config.apiURL + 'exercicio/img/'+exercicio.codigo+'?rand=' + Math.floor( Math.random() * 99)
-            );
-
+            document.querySelector('.layer .nome').innerHTML = treinamento.nome;
+            document.querySelector('.layer .descricao').innerHTML = treinamento.descricao;
+            document.querySelector('.layer .dias').innerHTML = treinamento.ciclo;
             
         }
     );
 
+},
+editar:function(){
+    sys.layerLoadContent('conteudo','treinamento-formularioexercicio', 'editar');
 }
