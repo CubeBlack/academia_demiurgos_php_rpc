@@ -15,4 +15,8 @@ detalhe:function(codigo){
 
 adicionar:function(){
     sys.layerLoadContent('conteudo','treinamento-formulario', 'novo');
+},
+
+editar:function(){
+    sys.layerLoadContent('conteudo','treinamento-formulario', 'editar');
 }

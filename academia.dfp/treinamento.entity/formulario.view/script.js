@@ -1,3 +1,4 @@
+operacao:'novo',
 load: function(operacao) {
     //Limpar msg
     document.querySelector('.layer .msg').innerHTML = '';
@@ -8,17 +9,25 @@ load: function(operacao) {
     //Carregar os dados do trienamento
     if(operacao == 'editar'){
         this.operacao = 'editar';
-        sys.cabecario.setTitulo('Treinamneto ...');
+        sys.cabecario.setTitulo('Treinamento ...');
+        document.querySelector('.layer .msg').innerHTML = 'Carregando...';
 
         //Pegar os dados do aluno e colocar no formulario
         sys.apiRequest(
             'treinamento/detalhe', { 'codigo': sys.getEntent('treinamento').objeto.codigo },
             function(data) {
+                if(data.result != true){
+                    document.querySelector('.layer .msg').innerHTML = data.msg;
+                    return;
+                }
+                document.querySelector('.layer .msg').innerHTML = '';
+                
+
                 sys.getEntent('treinamento').objeto = data.detalhe;
                 sys.cabecario.setTitulo('Treinamento ' + data.detalhe.nome);
                 
                 document.querySelector('.layer [name="nome"]').value = data.detalhe.nome;
-                document.querySelector('.layer [name="dias"]').value = data.detalhe.dias;
+                document.querySelector('.layer [name="dias"]').value = data.detalhe.ciclo;
                 document.querySelector('.layer [name="descricao"]').innerHTML = data.detalhe.descricao;
             }
             
@@ -27,9 +36,9 @@ load: function(operacao) {
 },
 
 salvar:function(){
-  
+    document.querySelector('.layer .msg').innerHTML = 'Salvando...';
     sys.apiRequest(
-        (sys.getView('trienamento-formulario').operacao == 'editar')?'treinamento/atualizar':'treinamento/adicionar',
+        (sys.getView('treinamento-formulario').operacao == 'editar')?'treinamento/atualizar':'treinamento/adicionar',
         {
             'codigo':sys.getEntent('treinamento').objeto.codigo,
             'nome':document.querySelector('.layer [name="nome"]').value,
@@ -37,6 +46,10 @@ salvar:function(){
             'ciclo':document.querySelector('.layer [name="dias"]').value,
             'situacao':document.querySelector('.layer [name="situacao"]').value
         },function(data){
+            if(data.result != true){
+                document.querySelector('.layer .msg').innerHTML = data.msg;
+                return;
+            }
             sys.getEntent('treinamento').detalhe(data.codigo);
         }
     );

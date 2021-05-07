@@ -130,21 +130,23 @@ class Treinamento{
             FROM   treinamento
             where true 
        '; 
+
+       $parametros = [];
        
        if($data['pesquisa']!=''){
-        $query .= 'and (nome like :pesquisa or descricao like :pesquisa)';
+            $query .= 'and (nome like :pesquisa or descricao like :pesquisa) ';
+            $parametros['pesquisa'] = "%{$data['pesquisa']}%";
        }
 
         //Tratar melhor so filtros
        if(!$data['filtro']['situacao']['inativo']){
-            $query .= 'and (situacao <> "inativo")';
+            $query .= 'and (situacao <> "inativo") ';
+            
        }
         $dbh = conect();
 		$sth = $dbh->prepare($query);
 
-		$sth->execute([
-            /* 'academia'=>$data['academia'] */
-        ]);
+		$sth->execute($parametros);
 
 		if($sth->errorInfo()[1]!=0) {
 			$data['msg'] = 'MySQL error '.$sth->errorInfo()[1].': '.$sth->errorInfo()[2];
@@ -326,12 +328,14 @@ class Treinamento{
 		//Tratar descricao/ não obrigatorio
 		$data['descricao'] = isset($data['descricao'])?$data['descricao']:'';
 			
+        //var_dump($data); die();
 		
         $dbh = conect();
 		$sth = $dbh->prepare('UPDATE treinamento SET 
             nome = :nome,
             descricao = :descricao,
-            ciclo = :ciclo
+            ciclo = :ciclo,
+            situacao = :situaca
 			
 			where codigo = :codigo
 		');
@@ -341,7 +345,8 @@ class Treinamento{
             'nome'=>$data['nome'],
             'descricao'=>$data['descricao'],
             'ciclo' =>$data['ciclo'],
-			'codigo' => $data['ciclo'] 		
+			'codigo' =>$data['codigo'], 
+            'situaca' =>$data['situacao']		
 		]);
 		
 		if($sth->errorInfo()[1]!=0) {
