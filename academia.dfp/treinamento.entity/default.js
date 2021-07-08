@@ -1,5 +1,7 @@
 objeto:{codigo:null},
-exercicio:0,
+exercicio:{codigo:null},
+
+
 load:function(){
     
 },

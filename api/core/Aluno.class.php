@@ -1,6 +1,6 @@
 <?php
 class Aluno{
-    static function listar($data){
+    static function _listar($data){
         $data['pequisa'] = isset($data["pesquisa"])?$data["pesquisa"]:'';
         
         $sql = 'SELECT * FROM  usuario where tipo = "aluno" ';
@@ -31,7 +31,7 @@ class Aluno{
 
         return $data;
     }
-    static function detalhe($data){
+    static function _detalhe($data){
         if(!isset($data['codigo'])){
             $data['msg'] = 'Codigo invalido';
             return $data;
@@ -64,7 +64,7 @@ class Aluno{
         return $data;
     }
 
-    static function adicionar($data){
+    static function _adicionar($data){
         $data['tipo'] = Usuario::TIPO_ALUNO;
 
         $data['result'] = Usuario::ADICIONAR(

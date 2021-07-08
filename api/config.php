@@ -17,7 +17,15 @@ define('SYS_URL',  "http" . (isset($_SERVER['HTTPS']) ? (($_SERVER['HTTPS']=="on
 define('SESSAO_TEMPO', 200);
 
 spl_autoload_register(function ($class_name) {
-    require_once "core/".$class_name . '.class.php';
+    $file = "core/".$class_name . '.class.php';
+    try {
+        //code...
+        require_once $file;
+    } catch (\Throwable $th) {
+        //throw $th;
+        die("Erro autoload, arquivo '$file' ");
+    }
+    
 });
 
 

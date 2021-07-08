@@ -1,8 +1,13 @@
 @media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {}
 
 @font-face {
-    font-family: "osc-light";
+    font-family: "osc";
     src: url("etc/open_sans_condensed/OpenSansCondensed-Light.ttf");
+}
+
+@font-face {
+    font-family: "osl";
+    src: url("etc/open_sans/OpenSans-Light.ttf");
 }
 
 * {
@@ -10,12 +15,12 @@
     /* make transparent link selection, adjust last value opacity 0 to 1.0 */
     margin: 0;
     padding: 0;
-    font-family: "osc-light";
+    font-family: "osl";
 }
 
 body {
     background-color: white;
-    font-family: osc-light;
+    font-family: osl;
     font-size: 15px;
 }
 
@@ -23,7 +28,11 @@ input:focus, select:focus, textarea:focus, button:focus {
     outline: none;
 }
 
-input[type=text], input[type=password], input[type=tel], input[type=number], input[type=email] {
+input[type=text], 
+input[type=password], 
+input[type=tel], 
+input[type=number], 
+input[type=email], select {
     padding: 5px;
     font-size: 16px;
     border-style: solid;
@@ -35,6 +44,11 @@ input[type=text], input[type=password], input[type=tel], input[type=number], inp
     color: #444444;
     font-size: 18px;
     background-color: #FFFFFF;
+}
+
+select{
+    height: 30px;
+    padding: 0px;
 }
 
 .BUTTON, button, .button, input[type='button'], input[type='submit'] {
@@ -59,6 +73,8 @@ input[type=text], input[type=password], input[type=tel], input[type=number], inp
     display: inline-block;
     cursor: pointer;
     text-align: center;
+
+    font-family: osc;
 }
 
 .BUTTON:hover, button:hover, .button:hover, input[type='button']:hover, input[type='submit']:hover {
@@ -148,24 +164,21 @@ p {
     padding: 5px;
 }
 
-.cabecario .menu_btn, .cabecario .menu_close {
+.cabecario .menu_btn{
     display: inline-block;
     border: 1px solid grey;
     color: grey;
     padding: 0px 9px 5px 9px;
     cursor: pointer;
-    translate: 0.2s;
+    transition: 0.2s;
 }
 
-.cabecarior .menu_close {
-    display: none;
-}
 
-.cabecario .menu_btn:hover, .cabecario .menu_close:hover {
+.cabecario .menu_btn:hover{
     background-color: rgb(40, 40, 40);
     color: white;
     border-color: white;
-    translate: 0.2s;
+    transition: 0.2s;
 }
 
 .cabecario h1 {

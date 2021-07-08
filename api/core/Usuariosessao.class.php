@@ -1,6 +1,6 @@
 <?php
 class Usuariosessao{
-	static function lista(){
+	static function _lista(){
 		//Organizar valores a serem usados e retornados
 		$data = [
 			'acao'=>'Sessao/lista', //Identificação da ação
@@ -29,7 +29,7 @@ class Usuariosessao{
 		return $data;
 	}
 	
-	static function adicionar($data){
+	static function _adicionar($data){
 	
 		//Verificar parametros
 		if(!isset($data['usuario']) ){
@@ -134,7 +134,7 @@ class Usuariosessao{
 		return $data;
 	}
 	
-	static function detalhe($data){
+	static function _detalhe($data){
 		/*
 		$data = [
 			'acao'=>'Sessao/detalhe', 
@@ -148,6 +148,10 @@ class Usuariosessao{
 		];
 		*/
 		//Verificar parametros
+		if(!isset($data['sessao_chave'])){
+			$data['msg'] = 'sessao_chave é obrigatorio';
+			return $data;
+		}
 		if($data['sessao_chave'] == ''){
 			$data['msg'] = 'Chave invalida';
 			return $data;

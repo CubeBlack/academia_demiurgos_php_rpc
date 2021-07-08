@@ -1,14 +1,14 @@
-<div class="layer conteudo"></div>
+<div class="layer conteudo">Carregando...</div>
 
 <header class="cabecario">
     <h1>
         <span class="menu_btn" onclick="sys.menu.show();">&equiv;</span>
-        <span class="menu_close" onclick="sys.menu.hidden();">&times;</span>
         <span class="titulo">...</span>
     </h1>
 </header>
 
 <div class="menu_base" onclick="sys.menu.hidden();"></div>
+
 <nav class="menu">
     <span class="button close" onclick="sys.menu.hidden();">X</span>
 
@@ -18,7 +18,7 @@
 
     <div class="box">
         <span>Usuario</span>
-        <span class="button" onclick="eSessao.sair();">Sair</span>
+        <span class="button" onclick="sys.getEntent('sessao').sair()">Sair</span>
     </div>
 
     <div class="lista suporte">

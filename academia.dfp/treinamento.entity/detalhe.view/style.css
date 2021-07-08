@@ -2,6 +2,60 @@ img{
 	width:200px;
 	max-height:300px;	
 }
-.view {
-	display:block;
+
+.treinamento{
+	position: relative;
+	margin: 5px;
+	margin-left: 10px;
+	border: 1px solid lightgray;
+    box-shadow: 5px 5px 5px lightgray;
+    padding: 5px;
+    float: left;
+    overflow: auto; 	
 }
+
+.ciclo {
+	/*border-top: 1px solid gray;*/
+	display: block;
+	margin-top: 20px;
+	margin-bottom: 15px;
+	position: relative;
+	text-align: center;
+}
+.ciclo .valor{
+	background-color: lightgrey;
+	/*background-image: -webkit-linear-gradient(top, #54ce3c, #2e861c);*/
+	padding: 3px;
+	display: inline-block;
+	text-align: center;
+	bottom: 0;
+	width: 50px;
+	left: calc(50% - 40px);
+}
+.exercicio{
+	display: block;
+	position: relative;
+	margin-left: 5px;
+	padding: 5px;
+	border-top: 1px solid lightgrey;
+	border-left: 1px solid lightgrey;
+}
+.exercicio .sequencia{
+	background-color: lightgrey;
+	position: absolute;
+	left: -5px;
+	border: lightgrey;
+	padding: 3px;
+	top: 5px;
+	font-size: 10px;
+}
+
+.exercicio .exercicio_nome{
+	font-weight: bold;
+}
+
+.exercicio .exercicio_descricao{
+	font-size: 13px;
+	color: grey;
+}
+

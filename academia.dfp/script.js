@@ -1,4 +1,9 @@
+updatecount:0,
 load:function(){
+    //Pegar a sessao do storage
+    sys.getEntent('sessao').anterior();
+
+    //verificar se ja esta logado
     sys.getEntent('sessao').logado(true);
 },
 menu:{

@@ -4,7 +4,15 @@ load:function(){
 },
 
 lista:function(){
-    sys.layerLoadContent('conteudo','exercicio-lista');
+    sys.layerLoadContent('conteudo','exercicio-lista', 'listar');
+},
+selecionar:function(data){
+    data.acao = 'selecionar';
+    sys.layerLoadContent(
+        'conteudo',
+        'exercicio-lista', 
+        data
+    );
 },
 
 detalhe:function(codigo){

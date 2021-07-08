@@ -20,7 +20,7 @@ load: function(operacao) {
                 document.querySelector('.layer [name="descricao"]').innerHTML = data.detalhe.descricao;
                 document.querySelector('.layer img').setAttribute(
                     'src', 
-                    sys.config.apiURL + 'exercicio/img/'+data.detalhe.codigo+'?rand=' + Math.floor( Math.random() * 99)
+                    sys.config.apiURL + 'exercicio/img/'+data.detalhe.codigo+'?u_' + sys.updatecount
                 );
             }
             
@@ -67,7 +67,7 @@ salvar:function(){
             'descricao':descricao,
             'imagem':this.imgBase64
         },function(data){
-
+            sys.updatecount++;
             sys.getEntent('exercicio').detalhe(data.codigo);
         }
     );

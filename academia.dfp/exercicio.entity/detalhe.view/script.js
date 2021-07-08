@@ -16,7 +16,7 @@ load: function() {
             document.querySelector('.layer .descricao').innerHTML = exercicio.descricao;
             document.querySelector('.layer img').setAttribute(
                 'src', 
-                sys.config.apiURL + 'exercicio/img/'+exercicio.codigo+'?rand=' + Math.floor( Math.random() * 99)
+                sys.config.apiURL + 'exercicio/img/'+exercicio.codigo+'?u_' + sys.updatecount
             );
 
             

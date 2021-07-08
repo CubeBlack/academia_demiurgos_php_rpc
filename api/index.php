@@ -51,11 +51,9 @@ $data['acao'] = "{$entidade}/{$funcao}";
 $data['result'] = false;
 $data['msg'] = 'Empty!';
 
-//var_dump($data); die(file_get_contents('php://input'));
-
 //Executar função
 //try {
-$data = $entidade::{$funcao}($data);
+$data = $entidade::{'_'.$funcao}($data);
 //} catch (\Throwable $th) {
 //throw $th;
 

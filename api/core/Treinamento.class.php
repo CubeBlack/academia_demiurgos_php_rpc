@@ -4,7 +4,7 @@ class Treinamento{
     const SITUACAO_ATIVO = 'ativo';
     const SITUACAO_INATIVO = 'inativo';
 
-    static function adicionar($data){
+    static function _adicionar($data){
         
         //Tratar instrutor
         //Tratar aluno
@@ -39,90 +39,8 @@ class Treinamento{
         return $data;
     }
 
-    static function hoje($data){
-        if(!isset($data['sessao_chave'])){
-            $data['msg'] = 'sessao_chave invalido';
-            return $data;
-        }
 
-        if(!$usuario = Usuariosessao::r_detalhe($data['sessao_chave'])){
-            $data['msg'] = 'Sessao não encontrada';
-            return $data;
-        };
-
-      
-        if($usuario['tipo'] == 'aluno'){
-            $data['aluno'] = $usuario['codigo'];
-        }else if($usuario['tipo'] == 'instrutor'){
-            if(!isset($data['aluno'])){
-                $data['msg'] = 'Aluno invalido';
-                return $data;
-            }
-        }else{
-            $data['msg'] = 'Usuario sem permicao';
-            return $data;
-        }
-
-
-        //Pegar cabecario
-        $dbh = conect();
-		$sth = $dbh->prepare('SELECT 
-            *,
-            CEILING(
-                (DATEDIFF(inicio, now())) / ciclo + 1
-                ) as ciclo_atual
-			FROM    treinamento
-			/*WHERE   codigo = :codigo*/
-   		');
-
-		$sth->execute([
-            'codigo'=>$data['aluno']
-        ]);
-
-		if($sth->errorInfo()[1]!=0) {
-			$data['msg'] = 'MySQL error '.$sth->errorInfo()[1].': '.$sth->errorInfo()[2];
-			return $data;
-        }
-
-        $resposta = $sth->fetchAll(PDO::FETCH_ASSOC);
-
-        if(empty($resposta)){
-            $data['msg'] = 'Nenhum treinamento encontrado para hoje';
-            return $data;
-        }else{
-            $data['detalhe'] = $resposta[0];
-        }        
-
-        //Pegar exercicios
-        $dbh = conect();
-		$sth = $dbh->prepare('SELECT 
-            treinamento_exercicio_padrao.*,
-            "padrao" as tipo,
-            exercicio.nome
-            FROM `treinamento_exercicio_padrao`
-            inner join exercicio on exercicio.codigo = treinamento_exercicio_padrao.exercicio
-            order by ciclo, sequencia
-   		');
-
-		$sth->execute([
-            /* 'academia'=>$data['academia'] */
-        ]);
-
-		if($sth->errorInfo()[1]!=0) {
-			$data['msg'] = 'MySQL error '.$sth->errorInfo()[1].': '.$sth->errorInfo()[2];
-			return $data;
-        }
-		$data['detalhe']['exercios'] = $sth->fetchAll(PDO::FETCH_ASSOC);
-
-        //
-        $data['result'] = true;
-        $data['msg'] = 'Detalhado';
-        
-        return $data;
-    }
-
-    //
-    static function listar($data){
+    static function _listar($data){
         //Tratar aluno
         //Listar
         $query = 'SELECT 
@@ -160,79 +78,7 @@ class Treinamento{
         return $data;
     }
 
-    //
-    static function meu($data){
-        //Tratar aluno
-        $data['aluno'] = isset($data['aluno'])?$data['aluno']:'';
-        if($data['aluno'] == ''){
-            $data['msg'] = 'Aluno invalido';
-            return $data;
-        }
-
-        //Pegar cabecario
-        $dbh = conect();
-		$sth = $dbh->prepare('SELECT *
-			FROM    treinamento
-			WHERE   aluno = :aluno
-   		');
-
-		$sth->execute([
-            'aluno'=>$data['aluno']
-        ]);
-
-		if($sth->errorInfo()[1]!=0) {
-			$data['msg'] = 'MySQL error '.$sth->errorInfo()[1].': '.$sth->errorInfo()[2];
-			return $data;
-        }
-
-        $resposta = $sth->fetchAll(PDO::FETCH_ASSOC);
-
-        if(empty($resposta)){
-            $data['msg'] = 'Treinamento não encontrada.';
-            return $data;
-        }
-
-        $data['detalhe'] = $resposta[0];
-
-        //Pegar exercicios
-        $dbh = conect();
-		$sth = $dbh->prepare('SELECT 
-                treinamento_exercicio_padrao.*,
-                exercicio.nome as exercicio_nome,
-                exercicio.descricao
-            FROM `treinamento_exercicio_padrao`
-            inner join exercicio on treinamento_exercicio_padrao.exercicio = exercicio.codigo
-            order by ciclo, sequencia
-        ');
-
-		$sth->execute([
-            
-        ]);
-
-		if($sth->errorInfo()[1]!=0) {
-			$data['msg'] = 'MySQL error '.$sth->errorInfo()[1].': '.$sth->errorInfo()[2];
-			return $data;
-        }
-
-        $resposta = $sth->fetchAll(PDO::FETCH_ASSOC);
-
-        if(empty($resposta)){
-            $data['msg'] = 'Treinamento não encontrada.';
-            return $data;
-        }
-
-        $data['detalhe']['exercicios'] = $resposta;
-
-
-        //Finazliar
-        $data['result'] = true;
-        $data['msg'] = 'Detalhado';
-        
-        return $data;
-    }
-
-    //
-    static function detalhe($data){
+    static function _detalhe($data){
         //Tratar aluno
         $data['codigo'] = isset($data['codigo'])?$data['codigo']:'';
         if($data['codigo'] == ''){
@@ -265,22 +111,52 @@ class Treinamento{
         }
 
         $data['detalhe'] = $resposta[0];
+        $data['detalhe']['ciclos']=[];
+        
+        //Listar ciclos
+        for ($i=1; $i <= (int)$data['detalhe']['ciclo']; $i++) { 
+            //Listar exercicios dos ciclos
+            $data['detalhe']['ciclos'][$i] = [];
 
-        //Pegar exercicios
+            $dbh = conect();
+            $sth = $dbh->prepare('SELECT 
+                    treinamento_exercicio.*,
+                    exercicio.nome as exercicio_nome,
+                    exercicio.descricao
+                FROM `treinamento_exercicio`
+                inner join exercicio on treinamento_exercicio.exercicio = exercicio.codigo
+                where 
+                    treinamento_exercicio.treinamento = :treinamento
+                    and treinamento_exercicio.ciclo = :ciclo
+                order by sequencia
+            ');
+    
+            $sth->execute([
+                'treinamento'=>$data['codigo'],
+                'ciclo'=>$i
+            ]);
+    
+            if($sth->errorInfo()[1]!=0) {
+                $data['msg'] = 'MySQL error '.$sth->errorInfo()[1].': '.$sth->errorInfo()[2];
+                return $data;
+            }
+    
+            $data['detalhe']['ciclos'][$i] = $sth->fetchAll(PDO::FETCH_ASSOC);
+        }
 
         $dbh = conect();
-
 		$sth = $dbh->prepare('SELECT 
                 treinamento_exercicio.*,
                 exercicio.nome as exercicio_nome,
                 exercicio.descricao
             FROM `treinamento_exercicio`
             inner join exercicio on treinamento_exercicio.exercicio = exercicio.codigo
-			where treinamento_exercicio.codigo = :codigo
+			where 
+                treinamento_exercicio.treinamento = :treinamento
             order by ciclo, sequencia
         ');
 
-		$sth->execute(['codigo'=>$data['codigo']]);
+		$sth->execute(['treinamento'=>$data['codigo']]);
 
 		if($sth->errorInfo()[1]!=0) {
 			$data['msg'] = 'MySQL error '.$sth->errorInfo()[1].': '.$sth->errorInfo()[2];
@@ -301,7 +177,7 @@ class Treinamento{
     }
 
     //
-	static function atualizar($data){
+	static function _atualizar($data){
 		//Tratar academia/ não implemantado
 		$data['academia'] = '1';
 

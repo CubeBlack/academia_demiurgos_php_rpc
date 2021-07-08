@@ -1,6 +1,6 @@
 <?php 
 class Exercicio{
-    static function adicionar($data){
+    static function _adicionar($data){
         if(!isset($data['nome'])){
             $data['msg'] = 'Nome é obrigatorio';
             return $data;
@@ -40,7 +40,7 @@ class Exercicio{
         return $data;
     }
 
-    static function lista($data){
+    static function _lista($data){
         //Verificar permicao
  
         $data['pequisa'] = isset($data["pesquisa"])?$data["pesquisa"]:'';
@@ -82,7 +82,7 @@ class Exercicio{
         return $data;
     }
 
-    static function detalhe($data){
+    static function _detalhe($data){
         //Tratar aluno
         //Pegar cabecario
         $dbh = conect();
@@ -114,7 +114,7 @@ class Exercicio{
         return $data;
     }
 
-    static function atualizar($data){
+    static function _atualizar($data){
         if(!isset($data['codigo'])){
             $data['msg'] = 'Codigo é obrigatorio';
             return $data;
@@ -174,7 +174,7 @@ class Exercicio{
 
         return $data;
     }
-	static function setimg($data){
+	static function _setimg($data){
 		$pasta = "etc/exercicio/";
 
 		/* formatos de imagem permitidos */
@@ -222,7 +222,7 @@ class Exercicio{
 		return $data;
     }
 
-	static function img($data){
+	static function _img($data){
 		global $pirces;
 		header("Content-type: " . image_type_to_mime_type(IMAGETYPE_JPEG));
 		
@@ -243,7 +243,7 @@ class Exercicio{
 		}
 
 		fclose($stream);
-		//die('fim');
+		die();
 	}
 	
 }

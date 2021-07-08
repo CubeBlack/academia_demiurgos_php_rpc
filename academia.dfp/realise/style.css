@@ -1,8 +1,13 @@
 @media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {}
 
 @font-face {
-    font-family: "osc-light";
+    font-family: "osc";
     src: url("etc/open_sans_condensed/OpenSansCondensed-Light.ttf");
+}
+
+@font-face {
+    font-family: "osl";
+    src: url("etc/open_sans/OpenSans-Light.ttf");
 }
 
 * {
@@ -10,12 +15,12 @@
     /* make transparent link selection, adjust last value opacity 0 to 1.0 */
     margin: 0;
     padding: 0;
-    font-family: "osc-light";
+    font-family: "osl";
 }
 
 body {
     background-color: white;
-    font-family: osc-light;
+    font-family: osl;
     font-size: 15px;
 }
 
@@ -23,7 +28,11 @@ input:focus, select:focus, textarea:focus, button:focus {
     outline: none;
 }
 
-input[type=text], input[type=password], input[type=tel], input[type=number], input[type=email] {
+input[type=text], 
+input[type=password], 
+input[type=tel], 
+input[type=number], 
+input[type=email], select {
     padding: 5px;
     font-size: 16px;
     border-style: solid;
@@ -35,6 +44,11 @@ input[type=text], input[type=password], input[type=tel], input[type=number], inp
     color: #444444;
     font-size: 18px;
     background-color: #FFFFFF;
+}
+
+select{
+    height: 30px;
+    padding: 0px;
 }
 
 .BUTTON, button, .button, input[type='button'], input[type='submit'] {
@@ -59,6 +73,8 @@ input[type=text], input[type=password], input[type=tel], input[type=number], inp
     display: inline-block;
     cursor: pointer;
     text-align: center;
+
+    font-family: osc;
 }
 
 .BUTTON:hover, button:hover, .button:hover, input[type='button']:hover, input[type='submit']:hover {
@@ -148,24 +164,21 @@ p {
     padding: 5px;
 }
 
-.cabecario .menu_btn, .cabecario .menu_close {
+.cabecario .menu_btn{
     display: inline-block;
     border: 1px solid grey;
     color: grey;
     padding: 0px 9px 5px 9px;
     cursor: pointer;
-    translate: 0.2s;
+    transition: 0.2s;
 }
 
-.cabecarior .menu_close {
-    display: none;
-}
 
-.cabecario .menu_btn:hover, .cabecario .menu_close:hover {
+.cabecario .menu_btn:hover{
     background-color: rgb(40, 40, 40);
     color: white;
     border-color: white;
-    translate: 0.2s;
+    transition: 0.2s;
 }
 
 .cabecario h1 {
@@ -274,6 +287,114 @@ p {
 .menu .footer img {
     height: 30px;
 }
+/* aluno_anamnese-detalhe */
+.layer .aluno_anamnese-detalhe .chavevalor {
+	min-width:200px;
+	float:left;
+}
+.layer .aluno_anamnese-detalhe .acoes{
+	clear:left;
+}
+/* aluno_anamnese-formulario */
+.layer .aluno_anamnese-formulario .chavevalor {
+	min-width:200px;
+	float:left;
+}
+.layer .aluno_anamnese-formulario .acoes{
+	clear:left;
+}
+/* aluno-detalhe */
+.layer .aluno-detalhe .chavevalor {
+	min-width:200px;
+	float:left;
+}
+.layer .aluno-detalhe .acoes{
+	clear:left;
+}
+/* aluno-formulario */
+.layer .aluno-formulario .chavevalor {
+	min-width:200px;
+	float:left;
+}
+.layer .aluno-formulario .acoes{
+	clear:left;
+}
+/* aluno-inicio */
+.layer .aluno-inicio .chavevalor {
+	min-width:200px;
+	float:left;
+}
+.layer .aluno-inicio .acoes{
+	clear:left;
+}
+/* aluno-lista */
+
+/* aluno_perimetria-detalhe */
+.layer .aluno_perimetria-detalhe .chavevalor {
+	min-width:200px;
+	float:left;
+}
+.layer .aluno_perimetria-detalhe .acoes{
+	clear:left;
+}
+/* aluno_perimetria-formulario */
+.layer .aluno_perimetria-formulario .chavevalor {
+	min-width:200px;
+	float:left;
+}
+.layer .aluno_perimetria-formulario .acoes{
+	clear:left;
+}
+/* aluno_treinamento-detalhe */
+.layer .aluno_treinamento-detalhe .chavevalor {
+	min-width:200px;
+	float:left;
+}
+.layer .aluno_treinamento-detalhe .acoes{
+	clear:left;
+}
+/* aluno_treinamento-exercicioformulario */
+.layer .aluno_treinamento-exercicioformulario .chavevalor {
+	min-width:200px;
+	float:left;
+}
+.layer .aluno_treinamento-exercicioformulario .acoes{
+	clear:left;
+}
+/* exercicio-detalhe */
+.layer .exercicio-detalhe img{
+	width:200px;
+	max-height:300px;	
+}
+.layer .exercicio-detalhe .view {
+	display:block;
+}
+/* exercicio-formulario */
+.layer .exercicio-formulario img{
+	width:200px;
+	max-height:300px;	
+}
+
+/* exercicio-lista */
+.layer .exercicio-lista .lista img{
+	width:280px;
+	max-width:calc(100% - 20px);
+	float:left;
+	margin:10px;
+}
+.layer .exercicio-lista .lista .nome{
+	float:left;
+	width:280px;
+	max-width:calc(100% - 20px);
+	font-size:20px;
+	margin:10px;
+}
+.layer .exercicio-lista .descricao{
+	width:280px;
+	max-width:calc(100% - 20px);
+	float:left;
+	margin:10px;
+}
 /* sessao-login */
 .layer .sessao-login {
     display:block;
@@ -343,107 +464,103 @@ p {
 
 }
 
-/* aluno-treinamento */
-.layer .aluno-treinamento .chavevalor {
-	min-width:200px;
-	float:left;
-}
-.layer .aluno-treinamento .acoes{
-	clear:left;
-}
-/* aluno-formulario */
-.layer .aluno-formulario .chavevalor {
-	min-width:200px;
-	float:left;
-}
-.layer .aluno-formulario .acoes{
-	clear:left;
-}
-/* aluno_anamnese-formulario */
-.layer .aluno_anamnese-formulario .chavevalor {
-	min-width:200px;
-	float:left;
-}
-.layer .aluno_anamnese-formulario .acoes{
-	clear:left;
-}
-/* aluno_anamnese-detalhe */
-.layer .aluno_anamnese-detalhe .chavevalor {
-	min-width:200px;
-	float:left;
-}
-.layer .aluno_anamnese-detalhe .acoes{
-	clear:left;
-}
-/* aluno-detalhe */
-.layer .aluno-detalhe .chavevalor {
-	min-width:200px;
-	float:left;
-}
-.layer .aluno-detalhe .acoes{
-	clear:left;
-}
-/* aluno-inicio */
-.layer .aluno-inicio .chavevalor {
-	min-width:200px;
-	float:left;
-}
-.layer .aluno-inicio .acoes{
-	clear:left;
-}
-/* aluno-perimetria */
-.layer .aluno-perimetria .chavevalor {
-	min-width:200px;
-	float:left;
-}
-.layer .aluno-perimetria .acoes{
-	clear:left;
-}
-/* aluno-lista */
-
-/* exercicio-formulario */
-.layer .exercicio-formulario img{
+/* treinamento-detalhe */
+.layer .treinamento-detalhe img{
 	width:200px;
 	max-height:300px;	
 }
 
-.layer .exercicio-formulario .dia {
-    background-color: lightyellow;
-    text-align: center;
+.layer .treinamento-detalhe .treinamento{
+	position: relative;
+	margin: 5px;
+	margin-left: 10px;
+	border: 1px solid lightgray;
+    box-shadow: 5px 5px 5px lightgray;
+    padding: 5px;
+    float: left;
+    overflow: auto; 	
 }
 
-.layer .exercicio-formulario .edit {
-    display: none;
+.layer .treinamento-detalhe .ciclo {
+	/*border-top: 1px solid gray;*/
+	display: block;
+	margin-top: 20px;
+	margin-bottom: 15px;
+	position: relative;
+	text-align: center;
+}
+.layer .treinamento-detalhe .ciclo .valor{
+	background-color: lightgrey;
+	/*background-image: -webkit-linear-gradient(top, #54ce3c, #2e861c);*/
+	padding: 3px;
+	display: inline-block;
+	text-align: center;
+	bottom: 0;
+	width: 50px;
+	left: calc(50% - 40px);
+}
+.layer .treinamento-detalhe .exercicio{
+	display: block;
+	position: relative;
+	margin-left: 5px;
+	padding: 5px;
+	border-top: 1px solid lightgrey;
+	border-left: 1px solid lightgrey;
+}
+.layer .treinamento-detalhe .exercicio .sequencia{
+	background-color: lightgrey;
+	position: absolute;
+	left: -5px;
+	border: lightgrey;
+	padding: 3px;
+	top: 5px;
+	font-size: 10px;
 }
 
-.layer .exercicio-formulario .view {
-	display:block;
+.layer .treinamento-detalhe .exercicio .exercicio_nome{
+	font-weight: bold;
 }
-/* exercicio-detalhe */
-.layer .exercicio-detalhe img{
+
+.layer .treinamento-detalhe .exercicio .exercicio_descricao{
+	font-size: 13px;
+	color: grey;
+}
+
+
+/* treinamento-exercicioformulario */
+.layer .treinamento-exercicioformulario img{
 	width:200px;
 	max-height:300px;	
 }
-.layer .exercicio-detalhe .view {
-	display:block;
+
+.layer .treinamento-exercicioformulario [name="duracao"]{
+	width: 50px;
 }
-/* exercicio-lista */
-.layer .exercicio-lista .lista img{
-	width:280px;
-	max-width:calc(100% - 20px);
-	float:left;
-	margin:10px;
+
+.layer .treinamento-exercicioformulario [name="duracao_tipo"]{
+	width: 100px;
 }
-.layer .exercicio-lista .lista .nome{
-	float:left;
-	width:280px;
-	max-width:calc(100% - 20px);
+/* treinamento-formulario */
+.layer .treinamento-formulario img{
+	width:200px;
+	max-height:300px;	
+}
+
+/* treinamento-lista */
+.layer .treinamento-lista .treinamento{
+	max-width: 280px;
+}
+
+.layer .treinamento-lista .lista .nome{
 	font-size:20px;
 	margin:10px;
 }
-.layer .exercicio-lista .descricao{
-	width:280px;
-	max-width:calc(100% - 20px);
-	float:left;
+
+.layer .treinamento-lista .descricao{
 	margin:10px;
+}
+
+.layer .treinamento-lista .acoes{
+	clear: both;
+	clear: left;
 }

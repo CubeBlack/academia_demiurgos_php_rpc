@@ -9,7 +9,7 @@ load: function(operacao) {
     //Carregar os dados do trienamento
     if(operacao == 'editar'){
         this.operacao = 'editar';
-        sys.cabecario.setTitulo('Treinamento ...');
+        sys.cabecario.setTitulo('Treinamento');
         document.querySelector('.layer .msg').innerHTML = 'Carregando...';
 
         //Pegar os dados do aluno e colocar no formulario
@@ -32,7 +32,13 @@ load: function(operacao) {
             }
             
         );
+
+        
+        return;
     }
+
+    //Apenas em caso de novo trienamento
+    sys.cabecario.setTitulo('Novo treinamento');
 },
 
 salvar:function(){
