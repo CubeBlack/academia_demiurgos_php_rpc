@@ -4,13 +4,11 @@ load:function(){
         'aluno/detalhe', { 'codigo': sys.getEntent('aluno').objeto.codigo },
         function(data) {
             if (data.result != true) {
-                ePagina.error(
-                    error.name,
-                    error.message + "\n" + this.responseText
-                );
+                console.log('erro!');
+                return;
             }
 
-            sys.getEntent('aluno').objeto.codigo = data.detalhe;
+            sys.getEntent('aluno').objeto = data.detalhe;
             sys.cabecario.setTitulo('Aluno ' + data.detalhe.nome);
             document.querySelector('.layer .nome').innerHTML = data.detalhe.nome;
             document.querySelector('.layer .codigo').innerHTML = data.detalhe.codigo;

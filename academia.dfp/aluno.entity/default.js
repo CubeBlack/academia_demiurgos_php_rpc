@@ -10,10 +10,10 @@ editar:function(){
     sys.layerLoadContent("conteudo",'aluno-formulario', 'editar');
 },
 perimetria:function(){
-    sys.layerLoadContent("conteudo",'aluno-perimetria');
+    sys.layerLoadContent("conteudo",'aluno_perimetria-detalhe');
 },
 treinamento:function(){
-    sys.layerLoadContent("conteudo",'aluno-perimetria');
+    sys.layerLoadContent("conteudo",'aluno_treinamento-detalhe');
 },
 anamnese:function(){
     sys.layerLoadContent("conteudo",'aluno_anamnese-detalhe');

@@ -1,67 +1,4 @@
 
-"aluno_anamnese":{
-	objeto:{"sessao_chave":""}
-},
-"aluno":{
-	objeto:{"codigo":""},
-	detalhe:function(codigo){
-	    this.objeto.codigo = codigo;
-	    sys.layerLoadContent("conteudo",'aluno-detalhe');
-	},
-	novo:function(){
-	    sys.layerLoadContent("conteudo",'aluno-formulario', 'novo');
-	},
-	editar:function(){
-	    sys.layerLoadContent("conteudo",'aluno-formulario', 'editar');
-	},
-	perimetria:function(){
-	    sys.layerLoadContent("conteudo",'aluno-perimetria');
-	},
-	treinamento:function(){
-	    sys.layerLoadContent("conteudo",'aluno-perimetria');
-	},
-	anamnese:function(){
-	    sys.layerLoadContent("conteudo",'aluno_anamnese-detalhe');
-	}
-},
-"aluno_perimetria":{
-	objeto:{"codigo":""}
-},
-"aluno_treinamento":{
-	objeto:{"codigo":""}
-},
-"exercicio":{
-	objeto:{codigo:null},
-	load:function(){
-	    
-	},
-	
-	lista:function(){
-	    sys.layerLoadContent('conteudo','exercicio-lista', 'listar');
-	},
-	selecionar:function(data){
-	    data.acao = 'selecionar';
-	    sys.layerLoadContent(
-	        'conteudo',
-	        'exercicio-lista', 
-	        data
-	    );
-	},
-	
-	detalhe:function(codigo){
-	    this.objeto.codigo = codigo;
-	    sys.layerLoadContent('conteudo','exercicio-detalhe');
-	},
-	
-	editar:function(){
-	    sys.layerLoadContent('conteudo','exercicio-formulario', 'editar');
-	},
-	
-	adicionar:function(){
-	    sys.layerLoadContent('conteudo','exercicio-formulario', 'novo');
-	}
-	
-},
 "sessao":{
 	objeto:{"sessao_chave":""},
 	paginaInicial:{
@@ -122,6 +59,69 @@
 	    this.logado(false);
 	    sys.menu.hidden();
 	}
+},
+"aluno_perimetria":{
+	objeto:{"codigo":""}
+},
+"aluno":{
+	objeto:{"codigo":""},
+	detalhe:function(codigo){
+	    this.objeto.codigo = codigo;
+	    sys.layerLoadContent("conteudo",'aluno-detalhe');
+	},
+	novo:function(){
+	    sys.layerLoadContent("conteudo",'aluno-formulario', 'novo');
+	},
+	editar:function(){
+	    sys.layerLoadContent("conteudo",'aluno-formulario', 'editar');
+	},
+	perimetria:function(){
+	    sys.layerLoadContent("conteudo",'aluno_perimetria-detalhe');
+	},
+	treinamento:function(){
+	    sys.layerLoadContent("conteudo",'aluno_treinamento-detalhe');
+	},
+	anamnese:function(){
+	    sys.layerLoadContent("conteudo",'aluno_anamnese-detalhe');
+	}
+},
+"aluno_anamnese":{
+	objeto:{"sessao_chave":""}
+},
+"aluno_treinamento":{
+	objeto:{"codigo":""}
+},
+"exercicio":{
+	objeto:{codigo:null},
+	load:function(){
+	    
+	},
+	
+	lista:function(){
+	    sys.layerLoadContent('conteudo','exercicio-lista', 'listar');
+	},
+	selecionar:function(data){
+	    data.acao = 'selecionar';
+	    sys.layerLoadContent(
+	        'conteudo',
+	        'exercicio-lista', 
+	        data
+	    );
+	},
+	
+	detalhe:function(codigo){
+	    this.objeto.codigo = codigo;
+	    sys.layerLoadContent('conteudo','exercicio-detalhe');
+	},
+	
+	editar:function(){
+	    sys.layerLoadContent('conteudo','exercicio-formulario', 'editar');
+	},
+	
+	adicionar:function(){
+	    sys.layerLoadContent('conteudo','exercicio-formulario', 'novo');
+	}
+	
 },
 "treinamento":{
 	objeto:{codigo:null},

@@ -6,13 +6,14 @@ class Core{
     }
 
     static function parametroObrigatorio($data, $parametro){
+        $data = Core::parametroOpcional($data, 'parametro_obrigatorio', true);
 		if(!isset($data[$parametro])){
 			$data['msg'] = "Parametro '$parametro' é obrigatorio";
             $data['parametro_obrigatorio'] = false;
             return $data;
 		}
 
-        $data['parametro_obrigatorio'] = true;
+        $data['parametro_obrigatorio'] = true && $data['parametro_obrigatorio'];
         return $data;
     }
 }

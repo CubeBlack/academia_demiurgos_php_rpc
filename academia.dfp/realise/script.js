@@ -1,6 +1,15 @@
+/*********************************
+ *  Dannke Demiurgo compilation 
+ * 
+ *  Projeto: Academia         
+ *  Build: 145
+ *  datahora:
+ * 
+ * ********************************/ 
+
 var sys = {
     config:{
-        apiURL:"http://hammer/dannke/academia/api/"
+        apiURL:"http://localhost/academia/api/"
     },
     apiRequest: function(endpoint, data, acao) {
         var xmlhttp = new XMLHttpRequest();
@@ -110,69 +119,6 @@ var sys = {
 	},
 	entities:{
 		
-		"aluno_anamnese":{
-			objeto:{"sessao_chave":""}
-		},
-		"aluno":{
-			objeto:{"codigo":""},
-			detalhe:function(codigo){
-			    this.objeto.codigo = codigo;
-			    sys.layerLoadContent("conteudo",'aluno-detalhe');
-			},
-			novo:function(){
-			    sys.layerLoadContent("conteudo",'aluno-formulario', 'novo');
-			},
-			editar:function(){
-			    sys.layerLoadContent("conteudo",'aluno-formulario', 'editar');
-			},
-			perimetria:function(){
-			    sys.layerLoadContent("conteudo",'aluno-perimetria');
-			},
-			treinamento:function(){
-			    sys.layerLoadContent("conteudo",'aluno-perimetria');
-			},
-			anamnese:function(){
-			    sys.layerLoadContent("conteudo",'aluno_anamnese-detalhe');
-			}
-		},
-		"aluno_perimetria":{
-			objeto:{"codigo":""}
-		},
-		"aluno_treinamento":{
-			objeto:{"codigo":""}
-		},
-		"exercicio":{
-			objeto:{codigo:null},
-			load:function(){
-			    
-			},
-			
-			lista:function(){
-			    sys.layerLoadContent('conteudo','exercicio-lista', 'listar');
-			},
-			selecionar:function(data){
-			    data.acao = 'selecionar';
-			    sys.layerLoadContent(
-			        'conteudo',
-			        'exercicio-lista', 
-			        data
-			    );
-			},
-			
-			detalhe:function(codigo){
-			    this.objeto.codigo = codigo;
-			    sys.layerLoadContent('conteudo','exercicio-detalhe');
-			},
-			
-			editar:function(){
-			    sys.layerLoadContent('conteudo','exercicio-formulario', 'editar');
-			},
-			
-			adicionar:function(){
-			    sys.layerLoadContent('conteudo','exercicio-formulario', 'novo');
-			}
-			
-		},
 		"sessao":{
 			objeto:{"sessao_chave":""},
 			paginaInicial:{
@@ -234,6 +180,69 @@ var sys = {
 			    sys.menu.hidden();
 			}
 		},
+		"aluno_perimetria":{
+			objeto:{"codigo":""}
+		},
+		"aluno":{
+			objeto:{"codigo":""},
+			detalhe:function(codigo){
+			    this.objeto.codigo = codigo;
+			    sys.layerLoadContent("conteudo",'aluno-detalhe');
+			},
+			novo:function(){
+			    sys.layerLoadContent("conteudo",'aluno-formulario', 'novo');
+			},
+			editar:function(){
+			    sys.layerLoadContent("conteudo",'aluno-formulario', 'editar');
+			},
+			perimetria:function(){
+			    sys.layerLoadContent("conteudo",'aluno_perimetria-detalhe');
+			},
+			treinamento:function(){
+			    sys.layerLoadContent("conteudo",'aluno_treinamento-detalhe');
+			},
+			anamnese:function(){
+			    sys.layerLoadContent("conteudo",'aluno_anamnese-detalhe');
+			}
+		},
+		"aluno_anamnese":{
+			objeto:{"sessao_chave":""}
+		},
+		"aluno_treinamento":{
+			objeto:{"codigo":""}
+		},
+		"exercicio":{
+			objeto:{codigo:null},
+			load:function(){
+			    
+			},
+			
+			lista:function(){
+			    sys.layerLoadContent('conteudo','exercicio-lista', 'listar');
+			},
+			selecionar:function(data){
+			    data.acao = 'selecionar';
+			    sys.layerLoadContent(
+			        'conteudo',
+			        'exercicio-lista', 
+			        data
+			    );
+			},
+			
+			detalhe:function(codigo){
+			    this.objeto.codigo = codigo;
+			    sys.layerLoadContent('conteudo','exercicio-detalhe');
+			},
+			
+			editar:function(){
+			    sys.layerLoadContent('conteudo','exercicio-formulario', 'editar');
+			},
+			
+			adicionar:function(){
+			    sys.layerLoadContent('conteudo','exercicio-formulario', 'novo');
+			}
+			
+		},
 		"treinamento":{
 			objeto:{codigo:null},
 			exercicio:{codigo:null},
@@ -263,7 +272,42 @@ var sys = {
 		},
 	},
 	views:{
-		"aluno_anamnese-detalhe":{
+		"sessao-login":{
+			load:function(){
+			    document.querySelector('.layer form').onsubmit = function(event) {
+			        event.preventDefault();
+			        sys.getView('sessao-login').logar();
+			    };
+			},
+			logar:function(para_inicio){
+			    document.querySelector('.layer .msg').innerHTML = 'Altenticando...';
+			    sys.apiRequest(
+			        'usuariosessao/adicionar', {
+			            "usuario": document.querySelector(".layer .usuario").value,
+			            "senha": document.querySelector(".layer .senha").value
+			        },
+			        function(data) {
+			            if (data.result == true) {
+			                sessionStorage.setItem(
+			                    'sessao_objeto',
+			                    JSON.stringify(data.detalhe)
+			                );
+			                sys.getEntent('sessao').objeto = data.detalhe;
+			                document.querySelector('.layer .msg').innerHTML = 'Login efetuado com sucesso. Aguarde';
+			                sys.layerLoadContent(
+			                    "conteudo",
+			                    sys.getEntent("sessao").paginaInicial["instrutor"]
+			                );
+			                sys.cabecario.show();
+			            } else {
+			                document.querySelector('.layer .msg').innerHTML = data.msg;
+			
+			            }
+			        }
+			    );
+			}
+		},
+		"aluno-inicio":{
 			load:function(){
 			    sys.cabecario.setTitulo('Aluno...');
 			    sys.apiRequest(
@@ -297,59 +341,7 @@ var sys = {
 			    );
 			}
 		},
-		"aluno_anamnese-formulario":{
-			load:function(tipo){
-			    sys.cabecario.setTitulo('Anammnese ....');
-			    
-			    //Carregar formulario
-			    sys.apiRequest(
-			        'anammnese/questionario', {},
-			        function(data) {
-			            //
-			            sys.getEntent('aluno').objeto.codigo = data.detalhe;
-			            sys.cabecario.setTitulo('Aluno ' + data.detalhe.nome);
-			            document.querySelector('.layer .nome').innerHTML = data.detalhe.nome;
-			            document.querySelector('.layer .codigo').innerHTML = data.detalhe.codigo;
-			            document.querySelector('.layer .cadastro').innerHTML = data.detalhe.cadastro;
-			            document.querySelector('.layer .cpf').innerHTML = data.detalhe.cpf;
-			            document.querySelector('.layer .genero').innerHTML = data.detalhe.genero;
-			            document.querySelector('.layer .endereco').innerHTML = data.detalhe.endereco;
-			            document.querySelector('.layer .numero').innerHTML = data.detalhe.numero;
-			            document.querySelector('.layer .bairro').innerHTML = data.detalhe.bairro;
-			            document.querySelector('.layer .cidade').innerHTML = data.detalhe.cidade;
-			            document.querySelector('.layer .estado').innerHTML = data.detalhe.estado;
-			            document.querySelector('.layer .telefone_a').innerHTML = data.detalhe.telefone_a;
-			            document.querySelector('.layer .telefone_b').innerHTML = data.detalhe.telefone_b;
-			            document.querySelector('.layer .email').innerHTML = data.detalhe.email;
-			            document.querySelector('.layer .senha').innerHTML = data.detalhe.senha;
-			
-			        }
-			        
-			    );
-			
-			    //Carregar respostas
-			    
-			},
-			salvar:function (){
-			    sys.apiRequest(
-			        'aluno/adicionar', 
-			        { 
-			            'nome':document.querySelector('.layer .nome').value,
-			
-			        },
-			        function(data) {
-			            sys.getEntent('aluno').objeto.codigo = data.detalhe;
-			            sys.cabecario.setTitulo('Aluno ' + data.detalhe.nome);
-			
-			        }
-			        
-			    );
-			},
-			voltar:function(){
-			    sys.layerLoadContent("conteudo",'aluno-lista');
-			}
-		},
-		"aluno-detalhe":{
+		"aluno-treinamento":{
 			load:function(){
 			    sys.cabecario.setTitulo('Aluno...');
 			    sys.apiRequest(
@@ -465,7 +457,61 @@ var sys = {
 			    sys.layerLoadContent("conteudo",'aluno-lista');
 			}
 		},
-		"aluno-inicio":{
+		"aluno-lista":{
+			load:function(){
+			    console.log('aluno-listar');
+			    sys.cabecario.setTitulo('Alunos');
+			
+			    document.querySelector('.layer [name="pesquisa"]').onkeyup = function(){
+			        sys.getView('aluno-lista').listar();
+			    };
+			
+			    document.querySelector('.layer form').onsubmit = function(event){
+			        event.preventDefault();
+			        sys.getView('aluno-lista').listar();
+			    };
+			
+			    sys.getView('aluno-lista').listar();
+			},
+			
+			listar:function(){
+			    sys.apiRequest(
+			        'aluno/listar', {
+			            'pesquisa':document.querySelector('.layer [name="pesquisa"]').value
+			        },
+			        function(data) {
+			
+			            var lista = document.querySelector(".layer .alunos");
+			            lista.innerHTML = '';
+			
+			            if (data.result != true) {
+			                lista.innerHTML = data.msg;
+			                return;
+			            }
+			
+			            data.lista.forEach(function(aluno, i) {
+			                var temp = document.querySelector(".layer .tem_aluno");
+			                var clon = temp.content.cloneNode(true);
+			
+			                clon.querySelector('.codigo').innerHTML = aluno.codigo;
+			                clon.querySelector('.nome').innerHTML = aluno.nome;
+			                clon.querySelector('.telefone_a').innerHTML = aluno.telefone_a;
+			                clon.querySelector('.telefone_b').innerHTML = aluno.telefone_b;
+			
+			
+			                clon.querySelector('.aluno').setAttribute(
+			                    'onclick',
+			                    "sys.getEntent('aluno').detalhe(" + aluno.codigo + ");"
+			                );
+			
+			                lista.appendChild(clon);
+			            });
+			        }
+			    );
+			}
+			
+		},
+		"aluno_perimetria-formulario":{
 			load:function(){
 			    sys.cabecario.setTitulo('Aluno...');
 			    sys.apiRequest(
@@ -499,7 +545,7 @@ var sys = {
 			    );
 			}
 		},
-		"aluno-lista":{
+		"aluno_perimetria-lista":{
 			load:function(){
 			    console.log('aluno-listar');
 			    sys.cabecario.setTitulo('Alunos');
@@ -555,52 +601,53 @@ var sys = {
 		},
 		"aluno_perimetria-detalhe":{
 			load:function(){
-			    sys.cabecario.setTitulo('Aluno...');
+			    sys.cabecario.setTitulo('Perimetria');
 			    sys.apiRequest(
-			        'aluno/detalhe', { 'codigo': sys.getEntent('aluno').objeto.codigo },
+			        'perimetria/detalhepordata', { 'aluno': sys.getEntent('aluno').objeto.codigo },
 			        function(data) {
 			            if (data.result != true) {
-			                ePagina.error(
-			                    error.name,
-			                    error.message + "\n" + this.responseText
-			                );
+			                console.log('erro!');
+			                return;
 			            }
 			
-			            sys.getEntent('aluno').objeto.codigo = data.detalhe;
-			            sys.cabecario.setTitulo('Aluno ' + data.detalhe.nome);
-			            document.querySelector('.layer .nome').innerHTML = data.detalhe.nome;
-			            document.querySelector('.layer .codigo').innerHTML = data.detalhe.codigo;
-			            document.querySelector('.layer .cadastro').innerHTML = data.detalhe.cadastro;
-			            document.querySelector('.layer .cpf').innerHTML = data.detalhe.cpf;
-			            document.querySelector('.layer .genero').innerHTML = data.detalhe.genero;
-			            document.querySelector('.layer .endereco').innerHTML = data.detalhe.endereco;
-			            document.querySelector('.layer .numero').innerHTML = data.detalhe.numero;
-			            document.querySelector('.layer .bairro').innerHTML = data.detalhe.bairro;
-			            document.querySelector('.layer .cidade').innerHTML = data.detalhe.cidade;
-			            document.querySelector('.layer .estado').innerHTML = data.detalhe.estado;
-			            document.querySelector('.layer .telefone_a').innerHTML = data.detalhe.telefone_a;
-			            document.querySelector('.layer .telefone_b').innerHTML = data.detalhe.telefone_b;
-			            document.querySelector('.layer .email').innerHTML = data.detalhe.email;
-			            document.querySelector('.layer .senha').innerHTML = data.detalhe.senha;
+			            sys.getEntent('aluno_perimetria').objeto.codigo = data.detalhe;
+			
+			            document.querySelector('.layer .torax').innerHTML = data.detalhe.torax;
+			            document.querySelector('.layer .abdomen').innerHTML = data.detalhe.abdomen;
+			            document.querySelector('.layer .braco_direito').innerHTML = data.detalhe.braco_direito;
+			            document.querySelector('.layer .braco_esquerdo').innerHTML = data.detalhe.braco_esquerdo;
+			            document.querySelector('.layer .coxa_superior_direita').innerHTML = data.detalhe.coxa_superior_direita;
+			            document.querySelector('.layer .coxa_superior_esquerda').innerHTML = data.detalhe.coxa_superior_esquerda;
+			            document.querySelector('.layer .coxa_inferior_direita').innerHTML = data.detalhe.coxa_inferior_direita;
+			            document.querySelector('.layer .coxa_inferior_esquerda').innerHTML = data.detalhe.coxa_inferior_esquerda;
+			            //document.querySelector('.layer .cidade').innerHTML = data.detalhe.cidade;
+			            //document.querySelector('.layer .estado').innerHTML = data.detalhe.estado;
 			
 			        }
 			    );
+			},
+			atualizar:function(){
+			
+			},
+			registrar:function(){
+			
+			},
+			registros:function(){
+			    
 			}
 		},
-		"aluno_perimetria-formulario":{
+		"aluno-detalhe":{
 			load:function(){
 			    sys.cabecario.setTitulo('Aluno...');
 			    sys.apiRequest(
 			        'aluno/detalhe', { 'codigo': sys.getEntent('aluno').objeto.codigo },
 			        function(data) {
 			            if (data.result != true) {
-			                ePagina.error(
-			                    error.name,
-			                    error.message + "\n" + this.responseText
-			                );
+			                console.log('erro!');
+			                return;
 			            }
 			
-			            sys.getEntent('aluno').objeto.codigo = data.detalhe;
+			            sys.getEntent('aluno').objeto = data.detalhe;
 			            sys.cabecario.setTitulo('Aluno ' + data.detalhe.nome);
 			            document.querySelector('.layer .nome').innerHTML = data.detalhe.nome;
 			            document.querySelector('.layer .codigo').innerHTML = data.detalhe.codigo;
@@ -621,7 +668,59 @@ var sys = {
 			    );
 			}
 		},
-		"aluno_treinamento-detalhe":{
+		"aluno_anamnese-formulario":{
+			load:function(tipo){
+			    sys.cabecario.setTitulo('Anammnese ....');
+			    
+			    //Carregar formulario
+			    sys.apiRequest(
+			        'anammnese/questionario', {},
+			        function(data) {
+			            //
+			            sys.getEntent('aluno').objeto.codigo = data.detalhe;
+			            sys.cabecario.setTitulo('Aluno ' + data.detalhe.nome);
+			            document.querySelector('.layer .nome').innerHTML = data.detalhe.nome;
+			            document.querySelector('.layer .codigo').innerHTML = data.detalhe.codigo;
+			            document.querySelector('.layer .cadastro').innerHTML = data.detalhe.cadastro;
+			            document.querySelector('.layer .cpf').innerHTML = data.detalhe.cpf;
+			            document.querySelector('.layer .genero').innerHTML = data.detalhe.genero;
+			            document.querySelector('.layer .endereco').innerHTML = data.detalhe.endereco;
+			            document.querySelector('.layer .numero').innerHTML = data.detalhe.numero;
+			            document.querySelector('.layer .bairro').innerHTML = data.detalhe.bairro;
+			            document.querySelector('.layer .cidade').innerHTML = data.detalhe.cidade;
+			            document.querySelector('.layer .estado').innerHTML = data.detalhe.estado;
+			            document.querySelector('.layer .telefone_a').innerHTML = data.detalhe.telefone_a;
+			            document.querySelector('.layer .telefone_b').innerHTML = data.detalhe.telefone_b;
+			            document.querySelector('.layer .email').innerHTML = data.detalhe.email;
+			            document.querySelector('.layer .senha').innerHTML = data.detalhe.senha;
+			
+			        }
+			        
+			    );
+			
+			    //Carregar respostas
+			    
+			},
+			salvar:function (){
+			    sys.apiRequest(
+			        'aluno/adicionar', 
+			        { 
+			            'nome':document.querySelector('.layer .nome').value,
+			
+			        },
+			        function(data) {
+			            sys.getEntent('aluno').objeto.codigo = data.detalhe;
+			            sys.cabecario.setTitulo('Aluno ' + data.detalhe.nome);
+			
+			        }
+			        
+			    );
+			},
+			voltar:function(){
+			    sys.layerLoadContent("conteudo",'aluno-lista');
+			}
+		},
+		"aluno_anamnese-detalhe":{
 			load:function(){
 			    sys.cabecario.setTitulo('Aluno...');
 			    sys.apiRequest(
@@ -689,32 +788,38 @@ var sys = {
 			    );
 			}
 		},
-		"exercicio-detalhe":{
-			load: function() {
-			    sys.cabecario.setTitulo('Exercicio ...');
-			
-			    //console.log(sys.getEntent('exercicio').objeto.codigo);
+		"aluno_treinamento-detalhe":{
+			load:function(){
+			    sys.cabecario.setTitulo('Aluno...');
 			    sys.apiRequest(
-			        'exercicio/detalhe',
-			        {'codigo':sys.getEntent('exercicio').objeto.codigo},
-			        function(data){
-			           
-			            var exercicio = data.detalhe;
-			            sys.getEntent('exercicio').objeto = exercicio;
+			        'aluno/detalhe', { 'codigo': sys.getEntent('aluno').objeto.codigo },
+			        function(data) {
+			            if (data.result != true) {
+			                ePagina.error(
+			                    error.name,
+			                    error.message + "\n" + this.responseText
+			                );
+			            }
 			
-			            sys.cabecario.setTitulo('Exercicio ' + exercicio.nome);
-			            
-			            document.querySelector('.layer .nome').innerHTML = exercicio.nome;
-			            document.querySelector('.layer .descricao').innerHTML = exercicio.descricao;
-			            document.querySelector('.layer img').setAttribute(
-			                'src', 
-			                sys.config.apiURL + 'exercicio/img/'+exercicio.codigo+'?u_' + sys.updatecount
-			            );
+			            sys.getEntent('aluno').objeto.codigo = data.detalhe;
+			            sys.cabecario.setTitulo('Aluno ' + data.detalhe.nome);
+			            document.querySelector('.layer .nome').innerHTML = data.detalhe.nome;
+			            document.querySelector('.layer .codigo').innerHTML = data.detalhe.codigo;
+			            document.querySelector('.layer .cadastro').innerHTML = data.detalhe.cadastro;
+			            document.querySelector('.layer .cpf').innerHTML = data.detalhe.cpf;
+			            document.querySelector('.layer .genero').innerHTML = data.detalhe.genero;
+			            document.querySelector('.layer .endereco').innerHTML = data.detalhe.endereco;
+			            document.querySelector('.layer .numero').innerHTML = data.detalhe.numero;
+			            document.querySelector('.layer .bairro').innerHTML = data.detalhe.bairro;
+			            document.querySelector('.layer .cidade').innerHTML = data.detalhe.cidade;
+			            document.querySelector('.layer .estado').innerHTML = data.detalhe.estado;
+			            document.querySelector('.layer .telefone_a').innerHTML = data.detalhe.telefone_a;
+			            document.querySelector('.layer .telefone_b').innerHTML = data.detalhe.telefone_b;
+			            document.querySelector('.layer .email').innerHTML = data.detalhe.email;
+			            document.querySelector('.layer .senha').innerHTML = data.detalhe.senha;
 			
-			            
 			        }
 			    );
-			
 			}
 		},
 		"exercicio-formulario":{
@@ -894,125 +999,109 @@ var sys = {
 			    );
 			}
 		},
-		"sessao-login":{
-			load:function(){
-			    document.querySelector('.layer form').onsubmit = function(event) {
-			        event.preventDefault();
-			        sys.getView('sessao-login').logar();
-			    };
-			},
-			logar:function(para_inicio){
-			    document.querySelector('.layer .msg').innerHTML = 'Altenticando...';
-			    sys.apiRequest(
-			        'usuariosessao/adicionar', {
-			            "usuario": document.querySelector(".layer .usuario").value,
-			            "senha": document.querySelector(".layer .senha").value
-			        },
-			        function(data) {
-			            if (data.result == true) {
-			                sessionStorage.setItem(
-			                    'sessao_objeto',
-			                    JSON.stringify(data.detalhe)
-			                );
-			                sys.getEntent('sessao').objeto = data.detalhe;
-			                document.querySelector('.layer .msg').innerHTML = 'Login efetuado com sucesso. Aguarde';
-			                sys.layerLoadContent(
-			                    "conteudo",
-			                    sys.getEntent("sessao").paginaInicial["instrutor"]
-			                );
-			                sys.cabecario.show();
-			            } else {
-			                document.querySelector('.layer .msg').innerHTML = data.msg;
-			
-			            }
-			        }
-			    );
-			}
-		},
-		"treinamento-detalhe":{
+		"exercicio-detalhe":{
 			load: function() {
-			    sys.cabecario.setTitulo('Treinamento ...');
+			    sys.cabecario.setTitulo('Exercicio ...');
 			
+			    //console.log(sys.getEntent('exercicio').objeto.codigo);
 			    sys.apiRequest(
-			        'treinamento/detalhe',
-			        {'codigo':sys.getEntent('treinamento').objeto.codigo},
+			        'exercicio/detalhe',
+			        {'codigo':sys.getEntent('exercicio').objeto.codigo},
 			        function(data){
 			           
-			            var treinamento = data.detalhe;
-			            sys.getEntent('treinamento').objeto = treinamento;
+			            var exercicio = data.detalhe;
+			            sys.getEntent('exercicio').objeto = exercicio;
 			
-			            sys.cabecario.setTitulo('Treinamento ' + treinamento.nome);
-			           
-			            //Cabecario
-			            document.querySelector('.layer .nome').innerHTML = treinamento.nome;
-			            document.querySelector('.layer .descricao').innerHTML = treinamento.descricao;
-			            document.querySelector('.layer .dias').innerHTML = treinamento.ciclo;
-			            document.querySelector('.layer .situacao').innerHTML = treinamento.situacao;
-			
-			            //Exercicios
-			            var lista = document.querySelector('.layer .exercicios');
-			            var t = document.querySelector('.layer .tem_exercicio');
-			            var tCiclo = document.querySelector('.layer .tem_ciclo');
-			            var tMsg = document.querySelector('.layer .tem_msg');
-			
-			            for (let iCiclo = 0; iCiclo < Object.keys(treinamento.ciclos).length; iCiclo++) {
-			                //acicionar cabeçario
-			                var clon = tCiclo.content.cloneNode(true);
-			                clon.querySelector('.valor').innerHTML =  Object.keys(treinamento.ciclos)[iCiclo];
-			                lista.appendChild(clon);
-			
-			                var ciclo = treinamento.ciclos[Object.keys(treinamento.ciclos)[iCiclo]];
-			
-			                //Adicionar exercicios
-			                for (let iExercicio = 0; iExercicio < ciclo.length; iExercicio++) {
-			                    var exercicio = ciclo[iExercicio];
-			
-			                    var clon = t.content.cloneNode(true);
-			
-			                    clon.querySelector('.sequencia').innerHTML = exercicio.sequencia;
-			                    clon.querySelector('.exercicio_nome').innerHTML = exercicio.exercicio_nome;
-			                    clon.querySelector('.exercicio_descricao').innerHTML = exercicio.descricao;
-			                    clon.querySelector('.duracao').innerHTML = exercicio.duracao;
-			                    clon.querySelector('.duracao_tipo').innerHTML = exercicio.duracao_tipo;
-			                    
-			                
-			                    clon.querySelector('.editar').setAttribute(
-			                        'onclick',
-			                        "sys.getView('treinamento-detalhe').exercicioEditar("+exercicio.codigo+");"
-			                    );
-			                
-			
-			                    lista.appendChild(clon);
-			                    
-			                }
-			
-			                //Se não tiver exercicio nesse ciclo
-			                if ( ciclo.length < 1) {
-			                    var clon = tMsg.content.cloneNode(true);
-			                    clon.querySelector('.msg').innerHTML =  'Nenhum exercicio para esse dia';
-			                    lista.appendChild(clon);
-			                }
-			
-			                
-			            }
+			            sys.cabecario.setTitulo('Exercicio ' + exercicio.nome);
+			            
+			            document.querySelector('.layer .nome').innerHTML = exercicio.nome;
+			            document.querySelector('.layer .descricao').innerHTML = exercicio.descricao;
+			            document.querySelector('.layer img').setAttribute(
+			                'src', 
+			                sys.config.apiURL + 'exercicio/img/'+exercicio.codigo+'?u_' + sys.updatecount
+			            );
 			
 			            
 			        }
 			    );
 			
-			},
-			editar:function(){
-			    sys.layerLoadContent('conteudo','treinamento-formularioexercicio', 'editar');
+			}
+		},
+		"treinamento-formulario":{
+			operacao:'novo',
+			load: function(operacao) {
+			    //Limpar msg
+			    document.querySelector('.layer .msg').innerHTML = '';
+			
+			    //Verificar a operação a ser feita pelo formulario
+			    this.operacao = (operacao == 'editar')?'editar':'novo';
+			
+			    //Carregar os dados do trienamento
+			    if(operacao == 'editar'){
+			        this.operacao = 'editar';
+			        sys.cabecario.setTitulo('Treinamento');
+			        document.querySelector('.layer .msg').innerHTML = 'Carregando...';
+			
+			        //Pegar os dados do aluno e colocar no formulario
+			        sys.apiRequest(
+			            'treinamento/detalhe', { 'codigo': sys.getEntent('treinamento').objeto.codigo },
+			            function(data) {
+			                if(data.result != true){
+			                    document.querySelector('.layer .msg').innerHTML = data.msg;
+			                    return;
+			                }
+			                document.querySelector('.layer .msg').innerHTML = '';
+			                
+			
+			                sys.getEntent('treinamento').objeto = data.detalhe;
+			                sys.cabecario.setTitulo('Treinamento ' + data.detalhe.nome);
+			                
+			                document.querySelector('.layer [name="nome"]').value = data.detalhe.nome;
+			                document.querySelector('.layer [name="dias"]').value = data.detalhe.ciclo;
+			                document.querySelector('.layer [name="descricao"]').innerHTML = data.detalhe.descricao;
+			            }
+			            
+			        );
+			
+			        
+			        return;
+			    }
+			
+			    //Apenas em caso de novo trienamento
+			    sys.cabecario.setTitulo('Novo treinamento');
 			},
 			
-			/* Exercicio */
-			exercicioEditar:function(codigo){
-			    sys.getEntent('treinamento').exercicio.codigo = codigo;
-			    sys.layerLoadContent('conteudo','treinamento-exercicioformulario', 'editar');
+			salvar:function(){
+			    document.querySelector('.layer .msg').innerHTML = 'Salvando...';
+			    sys.apiRequest(
+			        (sys.getView('treinamento-formulario').operacao == 'editar')?'treinamento/atualizar':'treinamento/adicionar',
+			        {
+			            'codigo':sys.getEntent('treinamento').objeto.codigo,
+			            'nome':document.querySelector('.layer [name="nome"]').value,
+			            'descricao':document.querySelector('.layer [name="descricao"]').value,
+			            'ciclo':document.querySelector('.layer [name="dias"]').value,
+			            'situacao':document.querySelector('.layer [name="situacao"]').value
+			        },function(data){
+			            if(data.result != true){
+			                document.querySelector('.layer .msg').innerHTML = data.msg;
+			                return;
+			            }
+			            sys.getEntent('treinamento').detalhe(data.codigo);
+			        }
+			    );
 			},
-			exercicioAdicionar:function(codigo){
-			    sys.layerLoadContent('conteudo','treinamento-exercicioformulario', 'novo');
+			
+			cancelar:function(){
+			    if(this.operacao == 'editar'){
+			        sys.getEntent('treinamento').detalhe(
+			            sys.getEntent('treinamento').objeto.codigo
+			        );
+			        return;
+			    }
+			
+			    sys.getEntent('treinamento').lista();
 			}
+			
 			
 		},
 		"treinamento-exercicioformulario":{
@@ -1145,83 +1234,6 @@ var sys = {
 			
 			
 		},
-		"treinamento-formulario":{
-			operacao:'novo',
-			load: function(operacao) {
-			    //Limpar msg
-			    document.querySelector('.layer .msg').innerHTML = '';
-			
-			    //Verificar a operação a ser feita pelo formulario
-			    this.operacao = (operacao == 'editar')?'editar':'novo';
-			
-			    //Carregar os dados do trienamento
-			    if(operacao == 'editar'){
-			        this.operacao = 'editar';
-			        sys.cabecario.setTitulo('Treinamento');
-			        document.querySelector('.layer .msg').innerHTML = 'Carregando...';
-			
-			        //Pegar os dados do aluno e colocar no formulario
-			        sys.apiRequest(
-			            'treinamento/detalhe', { 'codigo': sys.getEntent('treinamento').objeto.codigo },
-			            function(data) {
-			                if(data.result != true){
-			                    document.querySelector('.layer .msg').innerHTML = data.msg;
-			                    return;
-			                }
-			                document.querySelector('.layer .msg').innerHTML = '';
-			                
-			
-			                sys.getEntent('treinamento').objeto = data.detalhe;
-			                sys.cabecario.setTitulo('Treinamento ' + data.detalhe.nome);
-			                
-			                document.querySelector('.layer [name="nome"]').value = data.detalhe.nome;
-			                document.querySelector('.layer [name="dias"]').value = data.detalhe.ciclo;
-			                document.querySelector('.layer [name="descricao"]').innerHTML = data.detalhe.descricao;
-			            }
-			            
-			        );
-			
-			        
-			        return;
-			    }
-			
-			    //Apenas em caso de novo trienamento
-			    sys.cabecario.setTitulo('Novo treinamento');
-			},
-			
-			salvar:function(){
-			    document.querySelector('.layer .msg').innerHTML = 'Salvando...';
-			    sys.apiRequest(
-			        (sys.getView('treinamento-formulario').operacao == 'editar')?'treinamento/atualizar':'treinamento/adicionar',
-			        {
-			            'codigo':sys.getEntent('treinamento').objeto.codigo,
-			            'nome':document.querySelector('.layer [name="nome"]').value,
-			            'descricao':document.querySelector('.layer [name="descricao"]').value,
-			            'ciclo':document.querySelector('.layer [name="dias"]').value,
-			            'situacao':document.querySelector('.layer [name="situacao"]').value
-			        },function(data){
-			            if(data.result != true){
-			                document.querySelector('.layer .msg').innerHTML = data.msg;
-			                return;
-			            }
-			            sys.getEntent('treinamento').detalhe(data.codigo);
-			        }
-			    );
-			},
-			
-			cancelar:function(){
-			    if(this.operacao == 'editar'){
-			        sys.getEntent('treinamento').detalhe(
-			            sys.getEntent('treinamento').objeto.codigo
-			        );
-			        return;
-			    }
-			
-			    sys.getEntent('treinamento').lista();
-			}
-			
-			
-		},
 		"treinamento-lista":{
 			load: function() {
 			    sys.cabecario.setTitulo('Treinamentos');
@@ -1275,6 +1287,179 @@ var sys = {
 			        }
 			    );
 			}
+		},
+		"treinamento-detalhe":{
+			load: function() {
+			    sys.cabecario.setTitulo('Treinamento ...');
+			
+			    sys.apiRequest(
+			        'treinamento/detalhe',
+			        {'codigo':sys.getEntent('treinamento').objeto.codigo},
+			        function(data){
+			           
+			            var treinamento = data.detalhe;
+			            sys.getEntent('treinamento').objeto = treinamento;
+			
+			            sys.cabecario.setTitulo('Treinamento ' + treinamento.nome);
+			           
+			            //Cabecario
+			            document.querySelector('.layer .nome').innerHTML = treinamento.nome;
+			            document.querySelector('.layer .descricao').innerHTML = treinamento.descricao;
+			            document.querySelector('.layer .dias').innerHTML = treinamento.ciclo;
+			            document.querySelector('.layer .situacao').innerHTML = treinamento.situacao;
+			
+			            //Exercicios
+			            var lista = document.querySelector('.layer .exercicios');
+			            var t = document.querySelector('.layer .tem_exercicio');
+			            var tCiclo = document.querySelector('.layer .tem_ciclo');
+			            var tMsg = document.querySelector('.layer .tem_msg');
+			
+			            for (let iCiclo = 0; iCiclo < Object.keys(treinamento.ciclos).length; iCiclo++) {
+			                //acicionar cabeçario
+			                var clon = tCiclo.content.cloneNode(true);
+			                clon.querySelector('.valor').innerHTML =  Object.keys(treinamento.ciclos)[iCiclo];
+			                lista.appendChild(clon);
+			
+			                var ciclo = treinamento.ciclos[Object.keys(treinamento.ciclos)[iCiclo]];
+			
+			                //Adicionar exercicios
+			                for (let iExercicio = 0; iExercicio < ciclo.length; iExercicio++) {
+			                    var exercicio = ciclo[iExercicio];
+			
+			                    var clon = t.content.cloneNode(true);
+			
+			                    clon.querySelector('.sequencia').innerHTML = exercicio.sequencia;
+			                    clon.querySelector('.exercicio_nome').innerHTML = exercicio.exercicio_nome;
+			                    clon.querySelector('.exercicio_descricao').innerHTML = exercicio.descricao;
+			                    clon.querySelector('.duracao').innerHTML = exercicio.duracao;
+			                    clon.querySelector('.duracao_tipo').innerHTML = exercicio.duracao_tipo;
+			                    
+			                
+			                    clon.querySelector('.editar').setAttribute(
+			                        'onclick',
+			                        "sys.getView('treinamento-detalhe').exercicioEditar("+exercicio.codigo+");"
+			                    );
+			                
+			
+			                    lista.appendChild(clon);
+			                    
+			                }
+			
+			                //Se não tiver exercicio nesse ciclo
+			                if ( ciclo.length < 1) {
+			                    var clon = tMsg.content.cloneNode(true);
+			                    clon.querySelector('.msg').innerHTML =  'Nenhum exercicio para esse dia';
+			                    lista.appendChild(clon);
+			                }
+			
+			                
+			            }
+			
+			            
+			        }
+			    );
+			
+			},
+			editar:function(){
+			    sys.layerLoadContent('conteudo','treinamento-formularioexercicio', 'editar');
+			},
+			
+			/* Exercicio */
+			exercicioEditar:function(codigo){
+			    sys.getEntent('treinamento').exercicio.codigo = codigo;
+			    sys.layerLoadContent('conteudo','treinamento-exercicioformulario', 'editar');
+			},
+			exercicioAdicionar:function(codigo){
+			    sys.layerLoadContent('conteudo','treinamento-exercicioformulario', 'novo');
+			}
+			
+		},
+		"treinamento-formularioexercicio":{
+			load: function(operacao) {
+			    //Verificar a operação a ser feita pelo formulario
+			    this.operacao = (operacao == 'editar')?'editar':'novo';
+			
+			    //Limpar a image, para  não colocar a imagem errada
+			    this.imgBase64 = null;
+			
+			    //Carregar os dados do exercicio
+			    if(operacao == 'editar'){
+			        this.operacao = 'editar';
+			        sys.cabecario.setTitulo('Exercicio ...');
+			        //Pegar os dados do aluno e colocar no formulario
+			        sys.apiRequest(
+			            'exercicio/detalhe', { 'codigo': sys.getEntent('exercicio').objeto.codigo },
+			            function(data) {
+			                sys.getEntent('exercicio').objeto = data.detalhe;
+			                sys.cabecario.setTitulo('Exercicio '+data.detalhe.nome);
+			                
+			                document.querySelector('.layer [name="nome"]').value = data.detalhe.nome;
+			                document.querySelector('.layer [name="descricao"]').innerHTML = data.detalhe.descricao;
+			                document.querySelector('.layer img').setAttribute(
+			                    'src', 
+			                    sys.config.apiURL + 'exercicio/img/'+data.detalhe.codigo+'?rand=' + Math.floor( Math.random() * 99)
+			                );
+			            }
+			            
+			        );
+			    }
+			},
+			validar:function(){
+			    document.querySelector('.layer .msg').innerHTML = 'Salvando...';
+			    //Tratar imagem antes de enviar
+			    let input = document.querySelector('.layer input[type=file]');
+			    let img = input.files[0];
+			
+			    //Se não tiver imagem para atualizar
+			    if (img == undefined){
+			        this.salvar();
+			        return;
+			    }
+			
+			    //Ler a imagem antes de enviar
+			    //O melhor é ler a imagem quando for colocada, e usar o img
+			    //para visulizar a imagem
+			    let reader = new FileReader();
+			    reader.onloadend = function () {
+			        //Savlar a imagem carregada
+			        sys.getView('exercicio-formulario').imgBase64 = reader.result;
+			
+			        //Salvar
+			        sys.getView('exercicio-formulario').salvar();
+			    };
+			    
+			    reader.readAsDataURL(img);	
+			
+			},
+			salvar:function(){
+			  
+			    sys.apiRequest(
+			        (sys.getView('exercicio-formulario').operacao == 'editar')?'exercicio/atualizar':'exercicio/adicionar',
+			        {
+			            'codigo':sys.getEntent('exercicio').objeto.codigo,
+			            'nome':document.querySelector('.layer [name="nome"]').value,
+			            'descricao':document.querySelector('.layer [name="nome"]').value,
+			            'ciclo':document.querySelector('.layer [name="nome"]').value
+			        },function(data){
+			
+			            sys.getEntent('exercicio').detalhe(data.codigo);
+			        }
+			    );
+			},
+			
+			cancelar:function(){
+			    if(this.operacao == 'editar'){
+			        sys.getEntent('exercicio').detalhe(
+			            sys.getEntent('exercicio').objeto.codigo
+			        );
+			        return;
+			    }
+			
+			    sys.getEntent('exercicio').lista();
+			
+			}
+			
+			
 		},
 		
 	}

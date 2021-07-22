@@ -287,114 +287,6 @@ p {
 .menu .footer img {
     height: 30px;
 }
-/* aluno_anamnese-detalhe */
-.layer .aluno_anamnese-detalhe .chavevalor {
-	min-width:200px;
-	float:left;
-}
-.layer .aluno_anamnese-detalhe .acoes{
-	clear:left;
-}
-/* aluno_anamnese-formulario */
-.layer .aluno_anamnese-formulario .chavevalor {
-	min-width:200px;
-	float:left;
-}
-.layer .aluno_anamnese-formulario .acoes{
-	clear:left;
-}
-/* aluno-detalhe */
-.layer .aluno-detalhe .chavevalor {
-	min-width:200px;
-	float:left;
-}
-.layer .aluno-detalhe .acoes{
-	clear:left;
-}
-/* aluno-formulario */
-.layer .aluno-formulario .chavevalor {
-	min-width:200px;
-	float:left;
-}
-.layer .aluno-formulario .acoes{
-	clear:left;
-}
-/* aluno-inicio */
-.layer .aluno-inicio .chavevalor {
-	min-width:200px;
-	float:left;
-}
-.layer .aluno-inicio .acoes{
-	clear:left;
-}
-/* aluno-lista */
-
-/* aluno_perimetria-detalhe */
-.layer .aluno_perimetria-detalhe .chavevalor {
-	min-width:200px;
-	float:left;
-}
-.layer .aluno_perimetria-detalhe .acoes{
-	clear:left;
-}
-/* aluno_perimetria-formulario */
-.layer .aluno_perimetria-formulario .chavevalor {
-	min-width:200px;
-	float:left;
-}
-.layer .aluno_perimetria-formulario .acoes{
-	clear:left;
-}
-/* aluno_treinamento-detalhe */
-.layer .aluno_treinamento-detalhe .chavevalor {
-	min-width:200px;
-	float:left;
-}
-.layer .aluno_treinamento-detalhe .acoes{
-	clear:left;
-}
-/* aluno_treinamento-exercicioformulario */
-.layer .aluno_treinamento-exercicioformulario .chavevalor {
-	min-width:200px;
-	float:left;
-}
-.layer .aluno_treinamento-exercicioformulario .acoes{
-	clear:left;
-}
-/* exercicio-detalhe */
-.layer .exercicio-detalhe img{
-	width:200px;
-	max-height:300px;	
-}
-.layer .exercicio-detalhe .view {
-	display:block;
-}
-/* exercicio-formulario */
-.layer .exercicio-formulario img{
-	width:200px;
-	max-height:300px;	
-}
-
-/* exercicio-lista */
-.layer .exercicio-lista .lista img{
-	width:280px;
-	max-width:calc(100% - 20px);
-	float:left;
-	margin:10px;
-}
-.layer .exercicio-lista .lista .nome{
-	float:left;
-	width:280px;
-	max-width:calc(100% - 20px);
-	font-size:20px;
-	margin:10px;
-}
-.layer .exercicio-lista .descricao{
-	width:280px;
-	max-width:calc(100% - 20px);
-	float:left;
-	margin:10px;
-}
 /* sessao-login */
 .layer .sessao-login {
     display:block;
@@ -464,6 +356,174 @@ p {
 
 }
 
+/* aluno-inicio */
+.layer .aluno-inicio .chavevalor {
+	min-width:200px;
+	float:left;
+}
+.layer .aluno-inicio .acoes{
+	clear:left;
+}
+/* aluno-treinamento */
+.layer .aluno-treinamento .chavevalor {
+	min-width:200px;
+	float:left;
+}
+.layer .aluno-treinamento .acoes{
+	clear:left;
+}
+/* aluno-formulario */
+.layer .aluno-formulario .chavevalor {
+	min-width:200px;
+	float:left;
+}
+.layer .aluno-formulario .acoes{
+	clear:left;
+}
+/* aluno-lista */
+
+/* aluno_perimetria-formulario */
+.layer .aluno_perimetria-formulario .chavevalor {
+	min-width:200px;
+	float:left;
+}
+.layer .aluno_perimetria-formulario .acoes{
+	clear:left;
+}
+/* aluno_perimetria-lista */
+
+/* aluno_perimetria-detalhe */
+.layer .aluno_perimetria-detalhe .conteudo{
+	width:100%;
+	height: 100%;
+}
+
+.layer .aluno_perimetria-detalhe .corpo{
+	fill: white;
+	stroke: black;
+	stroke-width: 1px;
+	stroke-linecap:butt;
+	stroke-linejoin:miter;
+}
+
+.layer .aluno_perimetria-detalhe .tag{
+	fill: brown;
+}
+.layer .aluno_perimetria-detalhe .label{
+	font-size: 7px;
+	text-align: center;
+}
+/* aluno-detalhe */
+.layer .aluno-detalhe .chavevalor {
+	min-width:200px;
+	float:left;
+}
+.layer .aluno-detalhe .acoes{
+	clear:left;
+}
+/* aluno_anamnese-formulario */
+.layer .aluno_anamnese-formulario .chavevalor {
+	min-width:200px;
+	float:left;
+}
+.layer .aluno_anamnese-formulario .acoes{
+	clear:left;
+}
+/* aluno_anamnese-detalhe */
+.layer .aluno_anamnese-detalhe .chavevalor {
+	min-width:200px;
+	float:left;
+}
+.layer .aluno_anamnese-detalhe .acoes{
+	clear:left;
+}
+/* aluno_treinamento-exercicioformulario */
+.layer .aluno_treinamento-exercicioformulario .chavevalor {
+	min-width:200px;
+	float:left;
+}
+.layer .aluno_treinamento-exercicioformulario .acoes{
+	clear:left;
+}
+/* aluno_treinamento-detalhe */
+.layer .aluno_treinamento-detalhe .chavevalor {
+	min-width:200px;
+	float:left;
+}
+.layer .aluno_treinamento-detalhe .acoes{
+	clear:left;
+}
+/* exercicio-formulario */
+.layer .exercicio-formulario img{
+	width:200px;
+	max-height:300px;	
+}
+
+/* exercicio-lista */
+.layer .exercicio-lista .lista img{
+	width:280px;
+	max-width:calc(100% - 20px);
+	float:left;
+	margin:10px;
+}
+.layer .exercicio-lista .lista .nome{
+	float:left;
+	width:280px;
+	max-width:calc(100% - 20px);
+	font-size:20px;
+	margin:10px;
+}
+.layer .exercicio-lista .descricao{
+	width:280px;
+	max-width:calc(100% - 20px);
+	float:left;
+	margin:10px;
+}
+/* exercicio-detalhe */
+.layer .exercicio-detalhe img{
+	width:200px;
+	max-height:300px;	
+}
+.layer .exercicio-detalhe .view {
+	display:block;
+}
+/* treinamento-formulario */
+.layer .treinamento-formulario img{
+	width:200px;
+	max-height:300px;	
+}
+
+/* treinamento-exercicioformulario */
+.layer .treinamento-exercicioformulario img{
+	width:200px;
+	max-height:300px;	
+}
+
+.layer .treinamento-exercicioformulario [name="duracao"]{
+	width: 50px;
+}
+
+.layer .treinamento-exercicioformulario [name="duracao_tipo"]{
+	width: 100px;
+}
+/* treinamento-lista */
+.layer .treinamento-lista .treinamento{
+	max-width: 280px;
+}
+
+.layer .treinamento-lista .lista .nome{
+	font-size:20px;
+	margin:10px;
+}
+
+.layer .treinamento-lista .descricao{
+	margin:10px;
+}
+
+.layer .treinamento-lista .acoes{
+	clear: both;
+	clear: left;
+}
 /* treinamento-detalhe */
 .layer .treinamento-detalhe img{
 	width:200px;
@@ -527,40 +587,8 @@ p {
 }
 
 
-/* treinamento-exercicioformulario */
-.layer .treinamento-exercicioformulario img{
+/* treinamento-formularioexercicio */
+.layer .treinamento-formularioexercicio img{
 	width:200px;
 	max-height:300px;	
-}
-
-.layer .treinamento-exercicioformulario [name="duracao"]{
-	width: 50px;
-}
-
-.layer .treinamento-exercicioformulario [name="duracao_tipo"]{
-	width: 100px;
-}
-/* treinamento-formulario */
-.layer .treinamento-formulario img{
-	width:200px;
-	max-height:300px;	
-}
-
-/* treinamento-lista */
-.layer .treinamento-lista .treinamento{
-	max-width: 280px;
-}
-
-.layer .treinamento-lista .lista .nome{
-	font-size:20px;
-	margin:10px;
-}
-
-.layer .treinamento-lista .descricao{
-	margin:10px;
-}
-
-.layer .treinamento-lista .acoes{
-	clear: both;
-	clear: left;
 }
