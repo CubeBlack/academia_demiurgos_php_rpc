@@ -2,13 +2,12 @@ load:function(operacao){
     this.operacao = (operacao == 'editar')?'editar':'novo';
     if(operacao == 'editar'){
         this.operacao = 'editar';
-        sys.cabecario.setTitulo('Aluno ...');
+        sys.cabecario.setTitulo('Editar aluno');
         //Pegar os dados do aluno e colocar no formulario
         sys.apiRequest(
             'aluno/detalhe', { 'codigo': sys.getEntent('aluno').objeto.codigo },
             function(data) {
                 sys.getEntent('aluno').objeto = data.detalhe;
-                sys.cabecario.setTitulo('Aluno '+data.detalhe.nome);
                 
                 document.querySelector('.layer .nome').value = data.detalhe.nome;
                 document.querySelector('.layer .codigo').value = data.detalhe.codigo;
@@ -32,6 +31,8 @@ load:function(operacao){
         //
         return;
     }
+
+    //
     this.operacao = 'novo';
     sys.cabecario.setTitulo('Novo aluno');
 },

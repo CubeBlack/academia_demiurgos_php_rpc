@@ -298,113 +298,85 @@
 	<template class="template aluno_perimetria-formulario">
 		<div class="aluno_perimetria-formulario">
 			<div class="box">
-			    <h1>
-			        <span class="nome">...</span>
-			    </h1>
-			
+			    <h1 class="data"></h1>
+			    
 			    <p class="chavevalor">
-			        <label>Matricula:</label>				
-			        <span class="codigo">...</span>
-			    </p>
-			    <p class="chavevalor">
-			        <label>Cadastro:</label>				
-			        <span class="cadastro">...</span>
+			        <label>Abdome:</label>
+			        <input type="number" value = "0" class="abdome">
 			    </p>
 			
 			    <p class="chavevalor">
-			        <label for="">CPF:</label>
-			        <span class="cpf">...</span>
+			        <label>Torax:</label>
+			        <input type="number" value = "0"  class="torax">
 			    </p>
 			
 			    <p class="chavevalor">
-			        <label for="">Genero:</label>
-			        <span class="genero	">...</span>
+			        <label>Quadril:</label>
+			        <input type="number" value = "0"  class="quadril">
 			    </p>
 			
 			    <p class="chavevalor">
-			        <label for="">Endereço:</label>
-			        <span class="endereco">...</span>
-			    </p>
+			        <label>Braço Esquerdo:</label>
+			        <input type="number" value = "0"  class="braco_esquerdo">
+			    </p> 
 			
 			    <p class="chavevalor">
-			        <label for="">Numero:</label>
-			        <span class="numero">...</span>
-			    </p>
+			        <label>Braço Direito:</label>
+			        <input type="number" value = "0"  class="braco_direito">
+			    </p> 
 			
 			    <p class="chavevalor">
-			        <label for="">Bairro:</label>
-			        <span class="bairro">...</span>
-			    </p>
+			        <label>Coxa Superior Esquerda:</label>
+			        <input type="number" value = "0" class="coxa_superior_esquerda">
+			    </p> 
 			
 			    <p class="chavevalor">
-			        <label for="">Cidade:</label>
-			        <span class="cidade">...</span>
-			    </p>
+			        <label>Coxa Superior Direita:</label>
+			        <input type="number" value = "0" class="coxa_superior_direita">
+			    </p> 
 			
 			    <p class="chavevalor">
-			        <label for="">Estado:</label>
-			        <span class="estado">...</span>
-			    </p>
+			        <label>Coxa Inferior Esquerda:</label>
+			        <input type="number" value = "0" class="coxa_inferior_esquerda">
+			    </p> 
 			
 			    <p class="chavevalor">
-			        <label for="">Telefones:</label>
-			        <span class="telefone_a">...</span>
-			        <span class="telefone_b">...</span>
-			    </p>
-			
+			        <label>Coxa Inferior Direita:</label>
+			        <input type="number" value = "0" class="coxa_inferior_direita">
+			    </p> 
 			
 			    <p class="chavevalor">
-			        <label for="">E-mail</label>
-			        <span class="email">...</span>
-			    </p>
+			        <label>Perna Direita:</label>
+			        <input type="number" value = "0" class="perna_direita">
+			    </p> 
 			
 			    <p class="chavevalor">
-			        <label for="">Senha</label>
-			        <span class="senha">...</span>
-			    </p>
+			        <label>Perna Esquerda:</label>
+			        <input type="number" value = "0" class="perna_esquerda">
+			    </p> 
 			
-			    <div class="acoes">
-			        <button onclick="ePerimetria.pDetalhe()">Perimetria</button>
-			        <button onclick="eTreinamento.pDetalhe()">Treinamento</button>
-			        <button>??medico??</button>
-			    </div>
-			</div>	
+			    <div class="separador"></div>
+			
+			    <p>
+			        <button type="button" onclick="sys.getView('aluno_perimetria-formulario').salvar()">Salvar</button>
+			        <button type="button" onclick="sys.getEntent('aluno_perimetria').detalhe()">Cancelar</button>
+			    </p>
+			</div>
 		</div>
 	</template>
 
 
 	<template class="template aluno_perimetria-lista">
 		<div class="aluno_perimetria-lista">
-			<form class="box">
-			    <label for="pesquisa" class="">Pesquisa:</label>
-			    <input type="text" name="pesquisa" id="">
-			    <button type="submit">Pesquisar</button>
-			    <!--a href="aluno/adicionar" class="button">Novo Aluno</a-->
-			    <button type="button" onclick="sys.getEntent('aluno').novo()">Novo aluno</button>
-			</form>
-			<div class="alunos"></div>
+			<div>
+			    <h1 class="aluno">...</h1>
+			</div>
+			
+			<div class="lista"></div>
 			<!-- templates-->
 			
-			<template class="tem_aluno">
-			    <div class="box aluno">
-			        <h1 class="nome">...</h1>
-			
-			        <div class="chavevalor">
-			            <label>Matricula:</label>
-			            <span class="codigo">...</span>
-			        </div>
-			
-			        <div class="chavevalor">
-			            <label class="">Telefones:</label>
-			            <span class="telefone_a">...</span>
-			            <span class="telefone_b">...</span>
-			        </div>
-			
-			        <div class="acoes">
-			            <button class="detalhe">Detalhe</button>
-			        </div>
-			    </div>
-			
+			<template class="tem_item">
+			    <div class="perimetria">000-00-00</div>
 			</template>
 		</div>
 	</template>
@@ -412,8 +384,78 @@
 
 	<template class="template aluno_perimetria-detalhe">
 		<div class="aluno_perimetria-detalhe">
+			<div class="box">
+			    <h1 class="data"></h1>
+			    
+			    <p class="chavevalor">
+			        <label>Abdom:</label>
+			        <span class="abdome">00,00</span>
+			    </p>
+			
+			    <p class="chavevalor">
+			        <label>Torax:</label>
+			        <span class="torax">00,00</span>
+			    </p>
+			
+			    <p class="chavevalor">
+			        <label>Quadril:</label>
+			        <span class="quadril">00,00</span>
+			    </p>
+			
+			    <p class="chavevalor">
+			        <label>Braço Esquerdo:</label>
+			        <span class="braco_esquerdo">00,00</span>
+			    </p> 
+			
+			    <p class="chavevalor">
+			        <label>Braço Direito:</label>
+			        <span class="braco_direito">00,00</span>
+			    </p> 
+			
+			    <p class="chavevalor">
+			        <label>Coxa Superior Esquerda:</label>
+			        <span class="coxa_superior_esquerda">00,00</span>
+			    </p> 
+			
+			    <p class="chavevalor">
+			        <label>Coxa Superior Direita:</label>
+			        <span class="coxa_superior_direita">00,00</span>
+			    </p> 
+			
+			    <p class="chavevalor">
+			        <label>Coxa Inferior Esquerda:</label>
+			        <span class="coxa_inferior_esquerda">00,00</span>
+			    </p> 
+			
+			    <p class="chavevalor">
+			        <label>Coxa Inferior Direita:</label>
+			        <span class="coxa_inferior_direita">00,00</span>
+			    </p> 
+			
+			    <p class="chavevalor">
+			        <label>Perna Direita:</label>
+			        <span class="perna_direita">00,00</span>
+			    </p> 
+			
+			    <p class="chavevalor">
+			        <label>Perna Esquerda:</label>
+			        <span class="perna_esquerda">00,00</span>
+			    </p> 
+			
+			    <div class="divisor"></div>
+			
+			    <div class="">
+			        <button class="btn_voltar" onclick="sys.getEntent('aluno').detalhe()">Voltar ao aluno</button>
+			        <button class="btn_editar" onclick="sys.getEntent('aluno_perimetria').editar()">Editar</button>
+			        <button class="btn_lista" onclick="sys.getEntent('aluno_perimetria').listar()">Registros</button>
+			        <button class="btn_add" onclick="sys.getEntent('aluno_perimetria').registrar()">Novo registro</button>
+			    </div>
+			    
+			</div>
+			
+			<!--
 			<div class="data">00 de _____ de 0000</div>
-			<svg class="conteudo" viewBox="-0 0 50 50">
+			<svg class="conteudo" viewBox="0 0 50 50">
 			    <g transform="scale(0.2 0.2)">
 			        <path
 			            id="corpo_base"
@@ -432,55 +474,52 @@
 			            d="m 165.73891,15.156582 c 7.59479,3.465298 15.95908,21.179993 16.90884,21.977483 10.77428,9.047145 27.24223,29.147641 25.32591,38.266789 -4.69397,22.337053 -31.10943,59.315396 -36.13177,67.050776 -1.08646,1.67336 -6.26075,3.38635 -12.98019,6.83935 -8.19132,4.20935 -16.55329,10.63984 -18.19957,8.64087 -2.10636,-2.55764 14.13224,-10.86569 12.46169,-12.54823 -1.67056,-1.68257 -19.86399,11.86145 -21.90826,8.09232 -2.04427,-3.76912 18.10759,-13.41634 18.10759,-13.41634 1.10324,-3.09599 -18.74037,9.76643 -20.61231,9.42448 -4.83171,-1.94338 9.69093,-12.62099 19.02955,-15.41747 -8.06625,1.33798 -17.50799,11.31132 -18.44764,6.52481 -0.30186,-5.41302 13.1992,-11.12398 17.95312,-13.8321 -1.1967,-5.02799 -1.79306,-7.90202 -1.79306,-7.90202 0,0 11.1202,11.3626 17.07123,8.97037 5.95104,-2.39222 25.09299,-51.102475 23.55883,-51.102475 -10.23126,-11.874678 -20.55702,-24.97796 -30.38466,-31.605867 z"
 			            class="corpo"
 			        />
-			        <!--------------------- Tags ---------------->
-			        <!-- Torax -->
+			        <!--------------------- Tags ----------------/>
+			        <!-- Torax --/>
 			        <rect y="30" x="70" width="67" height="20" class="tag" />
 			        <text y="38" x="95" class="label">Torax</text>
 			        <text y="46" x="95" class="label">00.00</text>
 			
-			        <!-- Abdomen -->
+			        <!-- Abdomen --/>
 			        <rect y="85" x="70" width="67" height="20" class="tag" />
 			        <text y="93" x="85" class="label">Abdomen</text>
 			        <text y="101" x="95" class="label">00.00</text>
 			
-			        <!-- braco direito -->
+			        <!-- braco direito --/>
 			        <rect y="45" x="3" width="57" height="20" class="tag" />
 			        <text y="53" x="8" class="label">Braço direito</text>
 			        <text y="61" x="20" class="label">00.00</text>
 			
-			        <!-- braco Esquerdo -->
+			        <!-- braco Esquerdo --/>
 			        <rect y="45" x="145" width="67" height="20" class="tag" />
 			        <text y="53" x="150" class="label">Braço Esquerdo</text>
 			        <text y="61" x="165" class="label">00.00</text>
 			
-			        <!-- Coxa superior direita -->
+			        <!-- Coxa superior direita --/>
 			        <rect y="180" x="8" width="85" height="20" class="tag" />
 			        <text y="188" x="12" class="label">Coxa superior direita</text>
 			        <text y="196" x="40" class="label">00.00</text>
 			
-			        <!-- Coxa superior esquerda -->
+			        <!-- Coxa superior esquerda --/>
 			        <rect y="180" x="118" width="95" height="20" class="tag" />
 			        <text y="188" x="122" class="label">Coxa superior esquerda</text>
 			        <text y="196" x="155" class="label">00.00</text>
 			
-			        <!-- Coxa inferior direita -->
+			        <!-- Coxa inferior direita --/>
 			        <rect y="230" x="8" width="85" height="20" class="tag" />
 			        <text y="238" x="12" class="label">Coxa inferior direita</text>
 			        <text y="246" x="40" class="label">00.00</text>
 			
-			        <!-- Coxa superior esquerda -->
+			        <!-- Coxa superior esquerda --/>
 			        <rect y="230" x="118" width="95" height="20" class="tag" />
 			        <text y="238" x="122" class="label">Coxa Inferior esquerda</text>
 			        <text y="246" x="155" class="label">00.00</text>
 			        
 			    </g>
 			</svg>
+			-->
 			
-			<div class="">
-			    <button class="btn_atualizar" onclick="">Atualizar</button>
-			    <button class="btn_atualizar">Registros</button>
-			    <button class="btn_atualizar">Registrar</button>
-			</div>
+			
 			
 			
 		</div>
@@ -567,7 +606,7 @@
 			        <button onclick="sys.getEntent('aluno').perimetria();">Perimetria</button>
 			        <button onclick="sys.getEntent('aluno').treinamento();">Treinamento</button>
 			        <button onclick="sys.getEntent('aluno').anamnese();">Anamnese</button>
-			        <button onclick="sys.getEntent('aluno').alunos();">Alunos</button>
+			        <button onclick="sys.getEntent('aluno').lista();">Alunos</button>
 			    </div>
 			</div>	
 		</div>

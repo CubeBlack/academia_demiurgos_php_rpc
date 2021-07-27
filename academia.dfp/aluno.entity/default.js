@@ -1,6 +1,9 @@
 objeto:{"codigo":""},
+lista:function(){
+    sys.layerLoadContent("conteudo",'aluno-lista');
+},
 detalhe:function(codigo){
-    this.objeto.codigo = codigo;
+    this.objeto.codigo = codigo!=undefined?codigo:sys.getEntent('aluno').objeto.codigo;
     sys.layerLoadContent("conteudo",'aluno-detalhe');
 },
 novo:function(){

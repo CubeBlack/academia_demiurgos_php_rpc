@@ -1,50 +1,42 @@
 load:function(){
-    console.log('aluno-listar');
-    sys.cabecario.setTitulo('Alunos');
+    //
+    sys.cabecario.setTitulo('Registros de perimetria');
 
-    document.querySelector('.layer [name="pesquisa"]').onkeyup = function(){
-        sys.getView('aluno-lista').listar();
-    };
+    //Carregar aluno
 
-    document.querySelector('.layer form').onsubmit = function(event){
-        event.preventDefault();
-        sys.getView('aluno-lista').listar();
-    };
-
-    sys.getView('aluno-lista').listar();
+    //
+    this.listar();
 },
 
 listar:function(){
     sys.apiRequest(
-        'aluno/listar', {
-            'pesquisa':document.querySelector('.layer [name="pesquisa"]').value
+        'perimetria/lista', {
+            'aluno':sys.getEntent('aluno').objeto.codigo
         },
         function(data) {
-
-            var lista = document.querySelector(".layer .alunos");
-            lista.innerHTML = '';
-
+            var lista = document.querySelector(".layer .lista");
             if (data.result != true) {
                 lista.innerHTML = data.msg;
                 return;
             }
 
-            data.lista.forEach(function(aluno, i) {
-                var temp = document.querySelector(".layer .tem_aluno");
+            
+            lista.innerHTML = '';
+
+            data.lista.forEach(function(registro, i) {
+                
+                var temp = document.querySelector(".layer .tem_item");
                 var clon = temp.content.cloneNode(true);
 
-                clon.querySelector('.codigo').innerHTML = aluno.codigo;
-                clon.querySelector('.nome').innerHTML = aluno.nome;
-                clon.querySelector('.telefone_a').innerHTML = aluno.telefone_a;
-                clon.querySelector('.telefone_b').innerHTML = aluno.telefone_b;
+                clon.querySelector('.perimetria').innerHTML = registro.data;
 
-
-                clon.querySelector('.aluno').setAttribute(
+                clon.querySelector('.perimetria').setAttribute(
                     'onclick',
-                    "sys.getEntent('aluno').detalhe(" + aluno.codigo + ");"
+                    "sys.getEntent('aluno_perimetria').detalhe(" + registro.data + ");"
                 );
 
                 lista.appendChild(clon);
+                
             });
         }
     );

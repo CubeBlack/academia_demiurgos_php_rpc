@@ -1,0 +1,9 @@
+.perimetria{
+    position: relative;
+    display: block;
+    float: left;
+    border: 1px solid lightgray;
+    background-color: gray;
+    padding: 3px;
+    margin: 3px;
+}

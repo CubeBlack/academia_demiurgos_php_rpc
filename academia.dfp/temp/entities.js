@@ -61,12 +61,27 @@
 	}
 },
 "aluno_perimetria":{
-	objeto:{"codigo":""}
+	objeto:{"codigo":""},
+	detalhe:function(data){
+	    sys.layerLoadContent("conteudo",'aluno_perimetria-detalhe', data);
+	},
+	editar:function(){
+	    sys.layerLoadContent("conteudo",'aluno_perimetria-formulario', 'editar');
+	},
+	registrar:function(){
+	    sys.layerLoadContent("conteudo",'aluno_perimetria-formulario', 'novo');
+	},
+	listar:function(){
+	    sys.layerLoadContent("conteudo",'aluno_perimetria-lista');
+	}
 },
 "aluno":{
 	objeto:{"codigo":""},
+	lista:function(){
+	    sys.layerLoadContent("conteudo",'aluno-lista');
+	},
 	detalhe:function(codigo){
-	    this.objeto.codigo = codigo;
+	    this.objeto.codigo = codigo!=undefined?codigo:sys.getEntent('aluno').objeto.codigo;
 	    sys.layerLoadContent("conteudo",'aluno-detalhe');
 	},
 	novo:function(){

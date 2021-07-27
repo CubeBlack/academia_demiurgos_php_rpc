@@ -1,5 +1,104 @@
 <?php 
 class Perimetria{
+    static function _lista($data){
+        $data = Core::parametroObrigatorio($data, 'aluno');
+        if(!$data['parametro_obrigatorio']){
+            return $data;
+        }
+
+        $dbh = conect();
+        $parametro = ["usuario"=>$data['aluno']];
+        $query = 'SELECT *
+			FROM    perimetria 
+			WHERE   usuario = :usuario  
+		';
+
+        $query .= 'order by data desc ';
+
+
+		$sth = $dbh->prepare($query);
+
+		$sth->execute($parametro);
+
+		if($sth->errorInfo()[1]!=0) {
+			$data['msg'] = 'MySQL error '.$sth->errorInfo()[1].': '.$sth->errorInfo()[2];
+			return $data;
+		}
+
+		$data['lista'] = $sth->fetchAll(PDO::FETCH_ASSOC);
+
+        $data['result'] = true;
+        return $data;
+    }
+
+    static function _registrar($data){
+        //Tratar parametros
+        $data = Core::parametroObrigatorio($data, 'aluno');
+        $data = Core::parametroObrigatorio($data, 'torax');
+        $data = Core::parametroObrigatorio($data, 'abdome');
+        $data = Core::parametroObrigatorio($data, 'quadril');
+        $data = Core::parametroObrigatorio($data, 'braco_direito');
+        $data = Core::parametroObrigatorio($data, 'braco_esquerdo');
+        $data = Core::parametroObrigatorio($data, 'coxa_superior_direita');
+        $data = Core::parametroObrigatorio($data, 'coxa_superior_esquerda');
+        $data = Core::parametroObrigatorio($data, 'coxa_inferior_direita');
+        $data = Core::parametroObrigatorio($data, 'coxa_inferior_esquerda');
+        $data = Core::parametroObrigatorio($data, 'perna_direita');
+        $data = Core::parametroObrigatorio($data, 'perna_esquerda');
+        
+        if(!$data['parametro_obrigatorio']){
+            return $data;
+        }
+
+        //Pegar data atual
+        $data['data'] = date('Y-m-d');
+        
+        //registrar
+        $dbh = conect();
+		$sth = $dbh->prepare('INSERT INTO `perimetria` SET
+            `data` =                   :data, 
+            `usuario` =                :aluno, 
+            `braco_direito` =          :braco_direito,
+            `braco_esquerdo` =         :braco_esquerdo,
+            `torax` =                  :torax, 
+            `abdome` =                 :abdome, 
+            `quadril` =                :quadril, 
+            `coxa_superior_direita` =  :coxa_superior_direita,
+            `coxa_superior_esquerda` = :coxa_superior_esquerda,
+            `coxa_inferior_direita` =  :coxa_inferior_direita,
+            `coxa_inferior_esquerda` = :coxa_inferior_esquerda,
+            `perna_esquerda` =         :perna_esquerda,
+            `perna_direita` =          :perna_direita;
+		');
+		
+		$sth->execute([
+            'data'=>                  $data['data'],
+            'aluno'=>                 $data['aluno'],
+            'braco_direito'=>         $data['braco_direito'],
+            'braco_esquerdo'=>        $data['braco_esquerdo'],
+            'torax'=>                 $data['torax'],
+            'abdome'=>                $data['abdome'],
+            'quadril'=>               $data['quadril'],
+            'coxa_superior_direita'=> $data['coxa_superior_direita'],
+            'coxa_superior_esquerda'=>$data['coxa_superior_esquerda'],
+            'coxa_inferior_direita'=> $data['coxa_inferior_direita'],
+            'coxa_inferior_esquerda'=>$data['coxa_inferior_esquerda'],
+            'perna_esquerda'=>        $data['perna_esquerda'],
+            'perna_direita'=>         $data['perna_direita']			
+		]);
+		
+		if($sth->errorInfo()[1]!=0) {
+			$data['msg'] = 'MySQL error '.$sth->errorInfo()[1].': '.$sth->errorInfo()[2];
+			return $data;
+		}
+        
+        $data['codigo'] = $dbh->lastInsertId();
+        $data['result'] = true;
+        $data['msg'] = 'Adicionado';
+
+        return $data;
+    }
+
     static function _atualizarpordata($data){
         //Parametros
         $data = Core::parametroOpcional($data, 'braco_direito', 0);
@@ -178,78 +277,6 @@ class Perimetria{
         $data['detalhe'] = $resposta[0];
         
         $data['result'] = true;
-        return $data;
-    }
-
-    static function valoradicionar($data){
-        //Tratar perimetria
-        //Tratar instrutor
-        //Verificar se existe a chave
-        $dbh = conect();
-		$sth = $dbh->prepare('SELECT codigo
-			FROM    perimetria_valor 
-			WHERE   chave = :chave
-            AND     perimetria = :perimetria    
-		');
-
-		$sth->execute([
-            'perimetria'=>$data['perimetria'],
-            'chave'=>$data['chave']
-        ]);
-
-		if($sth->errorInfo()[1]!=0) {
-			$data['msg'] = 'MySQL error '.$sth->errorInfo()[1].': '.$sth->errorInfo()[2];
-			return $data;
-		}
-
-		$resposta = $sth->fetchAll(PDO::FETCH_ASSOC);
-		
-        if(empty($resposta)){
-            //Adicionar o valor
-            $dbh = conect();
-            $sth = $dbh->prepare('INSERT perimetria_valor SET 
-                perimetria = :perimetria,
-                chave = :chave,
-                valor = :valor
-            ');
-            
-            $sth->execute([
-                'perimetria' =>$data['perimetria'],
-                'chave'=>$data['chave'],
-                'valor'=>$data['valor']
-            ]);
-            
-            if($sth->errorInfo()[1]!=0) {
-                $data['msg'] = 'MySQL error '.$sth->errorInfo()[1].': '.$sth->errorInfo()[2];
-                return $data;
-            }
-            
-            $data['codigo'] = $dbh->lastInsertId();
-            $data['msg'] = 'Adicionado valor a perimetria';
-            $data['result'] = true;
-            return $data;
-        }
-
-        //Atualizar valor
-        $data['codigo'] = $resposta[0]['codigo'];
-        $dbh = conect();
-		$sth = $dbh->prepare('UPDATE perimetria_valor SET 
-			valor = :valor
-            where codigo = :codigo
-        ');
-		
-		$sth->execute([
-            'codigo'=>$data['codigo'],
-            'valor'=>$data['valor']
-		]);
-		
-		if($sth->errorInfo()[1]!=0) {
-			$data['msg'] = 'MySQL error '.$sth->errorInfo()[1].': '.$sth->errorInfo()[2];
-			return $data;
-		}
-        
-        $data['result'] = true;
-        $data['msg'] = 'Valor atualizado';
         return $data;
     }
 
