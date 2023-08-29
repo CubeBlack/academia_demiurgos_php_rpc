@@ -1,0 +1,27 @@
+<form class="box">
+    <span class="">Pesquisar</span>
+    <input type="text" class="pesquisa">
+    <p>
+        <input type="checkbox" class="inativos" onclick="sys.getView('treinamento-lista').listar();">
+        <label for="">Inativos</label>
+    </p>
+    <div class="separador"></div>
+    <button type="submit">Pesquisar</button>
+    <button type="button" onclick="sys.getEntent('treinamento').adicionar();">Novo Treinamento</a>
+</form>
+
+<div class="lista"></div>
+
+<!-- templates-->
+<template class="tem_treinamento">
+    <div class="box treinamento">
+        <h1 class="nome">...</h1>
+
+        <div class="descricao"></div>
+
+        <div class="acoes">
+            <button class="detalhe">Detalhe</button>
+        </div>
+    </div>
+
+</template>

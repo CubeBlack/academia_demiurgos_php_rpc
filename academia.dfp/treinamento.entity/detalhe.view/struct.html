@@ -1,0 +1,70 @@
+    <div class="box cabecario_detalhe">
+        <h1 class="nome">...</h1>
+        
+        <p class="chavevalor">
+            <label>Dias/Ciclos:</label>
+            <span class="dias">...</span>
+        </p>
+
+        <p class="chavevalor">
+            <label for="">Descricão:</label>
+            <span class="descricao">...</span>
+        </p>
+
+        
+    <p class="chavevalor">
+        <label for="">Situação:</label>
+        <span class="situacao">...</span>
+    </p>
+
+    <div class="separador"></div>
+        <p>
+            <button onclick="sys.getEntent('treinamento').editar()">Editar</button>
+            <button onclick="sys.getView('treinamento-detalhe').exercicioAdicionar()">Adicionar Exercicio</button>
+            <button onclick="sys.getEntent('treinamento').lista()">Treinamentos</button>
+        </p>
+    </div>
+  
+
+    <div class="exercicios"></div>
+
+    <!-- templates -->
+    <template class="tem_dia">
+        <div class="center dia">
+            <span class="dia"></span>º Dia/Ciclo
+        </div>
+    </template>
+
+
+    <template class="tem_exercicio">
+        <div class="exercicio">
+            <div class="sequencia">...</div>
+
+            <p class="exercicio_nome">...</p>
+            <p class="exercicio_descricao">...</p>
+
+            <div class="chavevalor">
+                <label for="">Duracao:</label>
+                <p>
+                    <span class="duracao">...</span>
+                    <span class="duracao_tipo">...</span>
+                </p>
+            </div>
+
+            <div class="acoes">
+                <button type="button" class="editar">Editar</button>
+            </div>
+        </div>
+
+    </template>
+
+    <template class="tem_ciclo">
+        <div class="ciclo">
+            <div class="valor">...</div>
+        </div>
+    </template>
+
+    <template class="tem_msg">
+        <div class="msg">...</div>
+    </template>
+

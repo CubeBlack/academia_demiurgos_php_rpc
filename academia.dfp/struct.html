@@ -1,0 +1,65 @@
+<div class="layer conteudo">Carregando...</div>
+
+<header class="cabecario">
+    <h1>
+        <span class="menu_btn" onclick="sys.menu.show();">&equiv;</span>
+        <span class="titulo">...</span>
+    </h1>
+</header>
+
+<div class="menu_base" onclick="sys.menu.hidden();"></div>
+
+<nav class="menu">
+    <span class="button close" onclick="sys.menu.hidden();">X</span>
+
+    <div class="header">
+        <img src="img/logo.svg" />
+    </div>
+
+    <div class="box">
+        <span>Usuario</span>
+        <span class="button" onclick="sys.getEntent('sessao').sair()">Sair</span>
+    </div>
+
+    <div class="lista suporte">
+        Suporte
+    </div>
+
+    <div class="lista aluno">
+        Aluno
+    </div>
+
+    <div class="lista instrutor">
+        <a class="item" onclick="sys.menu.open('aluno-lista');">
+            <img src="img/home-solid.svg" />
+            <label for="">Inicio</label>
+        </a>
+
+        <a class="item" onclick="sys.menu.open('aluno-lista');">
+            <img src="img/users-solid.svg" />
+            <label for="">Alunos</label>
+        </a>
+
+        <a  class="subitem subitem_alunodetalhe">
+            <label for="">Ver <span class="aluno">[aluno]</span></label>
+        </a>
+
+        <a  class="item" onclick="sys.menu.open('treinamento-lista');">
+            <img src="img/users-solid.svg" />
+            <label for="">Treinamentos</label>
+        </a>
+
+        <a  onclick="sys.menu.open('exercicio-lista');" class="item">
+            <img src="img/users-solid.svg" />
+            <label for="">Exercicios</label>
+        </a>
+    </div>
+
+    <div class="footer" onclick="window.open('http://dannkegames.com.br');">
+        <img src="img/logo_dannkenome.svg" alt="dannke_logo">
+    </div>
+</nav>
+
+
+
+<div class="layer popup"></div>

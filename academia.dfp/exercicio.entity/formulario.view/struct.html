@@ -1,0 +1,27 @@
+<div class="box edit">
+
+    <div class="msg">...</div>
+
+    <p class="chavevalor">
+        <label>Nome:</label>
+        <input name="nome">
+    </p>
+
+    <p class="chavevalor" > 
+        <label>Selecione a imagem:</label>
+
+        <input type="file" name="imagem">
+        <img src="" alt="">
+    </p>
+
+    <p class="chavevalor">
+        <label>Descrição: </label>
+        <textarea name="descricao"></textarea>
+    </p>
+
+    <p>
+        <button onclick="sys.getView('exercicio-formulario').validar()" type="button">Salvar</button>
+        <button onclick="sys.getView('exercicio-formulario').cancelar()" type="button">Cancelar</button>
+    </p>
+
+</div>

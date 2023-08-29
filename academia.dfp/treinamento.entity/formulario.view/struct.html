@@ -1,0 +1,34 @@
+<form class="box cabecario_form">
+    <p class="msg">...</p>
+
+    <p class='chavevalor'>
+        <label>Nome:</label>
+        <input type="text" name="nome" >
+    </p>
+
+    <P class="chavevalor">
+        <label for="">Dias/Ciclos:</label>
+        <input type="number" name="dias" id=""> 
+    </P>
+
+    <p class="chavevalor">
+        <label for="">Descrição:</label>
+        <textarea name="descricao" ></textarea>
+    </p>
+
+    <p class="chavevalor">
+        <label for="">Situação:</label>
+        <select name="situacao" id="">
+            <option value="ativo">Ativo</option>
+            <option value="inativo">Inativo</option>
+        </select>
+    </p>
+
+    <div class="separador"></div>
+
+    <p>
+        <button type="button" onClick="sys.getView('treinamento-formulario').salvar();">Salvar</button>
+        <button type="button" onClick="sys.getView('treinamento-formulario').cancelar();">Cancelar</button>					
+    </p>
+
+</form>

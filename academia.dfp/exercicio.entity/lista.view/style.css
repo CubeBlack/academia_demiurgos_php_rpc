@@ -1,0 +1,19 @@
+.lista img{
+	width:280px;
+	max-width:calc(100% - 20px);
+	float:left;
+	margin:10px;
+}
+.lista .nome{
+	float:left;
+	width:280px;
+	max-width:calc(100% - 20px);
+	font-size:20px;
+	margin:10px;
+}
+.descricao{
+	width:280px;
+	max-width:calc(100% - 20px);
+	float:left;
+	margin:10px;
+}

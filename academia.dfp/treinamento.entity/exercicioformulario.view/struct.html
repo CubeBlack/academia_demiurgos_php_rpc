@@ -1,0 +1,46 @@
+<!--form class="box exercicioadicionar"-->
+<div class="box">
+
+
+    <h2 class="exercicio_nome">Nenhum exercicio selecionado</h2>
+    <img src="" alt="">
+    <p class="exercicio_descricao"></p>
+    <button type="button" onclick="sys.getView('treinamento-exercicioformulario').exercicioSelecionar();">Selecionar exercicio</button>
+
+    <div class="separador"></div>
+
+   
+    <p class="chavevalor">
+        <label>Dia:</label>
+        <input type="number" name="ciclo" value="1"/>
+    </p>
+
+    <p class="chavevalor">
+        <label>Ordem(1º, 2º... a ser execudo no dia):</label>
+        <input type="number" name="ordem" value="1" />
+    </p>
+
+    <p class="chavevalor">
+        <label>Duração(5 vezes, 10min, 30s):</label>
+
+        <span>
+            <input type="number" name="duracao" value="1" />
+            <select name="duracao_tipo" id="">
+                <option value="x">x - Vezes</option>
+                <option value="mim">mim - Minutos</option>
+                <option value="mim">s - Segundos</option>
+            </select>
+        </span>
+        
+    </p>
+
+    <div class="separador"></div>
+    
+    <p>
+        <button type="button" onclick="sys.getView('treinamento-exercicioformulario').salvar()">Salvar</button>
+        <button type="button" onClick="sys.getView('treinamento-exercicioformulario').cancelar()">Cancelar</button>	
+        <button type="button" onClick="sys.getView('treinamento-exercicioformulario').remover()" class="btnremover">Remover</button>	
+
+    </p>
+</div>    
+<!--/form-->

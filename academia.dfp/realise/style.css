@@ -1,0 +1,602 @@
+@media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {}
+
+@font-face {
+    font-family: "osc";
+    src: url("etc/open_sans_condensed/OpenSansCondensed-Light.ttf");
+}
+
+@font-face {
+    font-family: "osl";
+    src: url("etc/open_sans/OpenSans-Light.ttf");
+}
+
+* {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+    margin: 0;
+    padding: 0;
+    font-family: "osl";
+}
+
+body {
+    background-color: white;
+    font-family: osl;
+    font-size: 15px;
+}
+
+input:focus, select:focus, textarea:focus, button:focus {
+    outline: none;
+}
+
+input[type=text], 
+input[type=password], 
+input[type=tel], 
+input[type=number], 
+input[type=email], select {
+    padding: 5px;
+    font-size: 16px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #888888;
+    box-shadow: 5px 5px 5px lightgray;
+    margin: 3px;
+    height: 18px;
+    color: #444444;
+    font-size: 18px;
+    background-color: #FFFFFF;
+}
+
+select{
+    height: 30px;
+    padding: 0px;
+}
+
+.BUTTON, button, .button, input[type='button'], input[type='submit'] {
+    background: #54ce3c;
+    background-image: -webkit-linear-gradient(top, #54ce3c, #2e861c);
+    background-image: -moz-linear-gradient(top, #54ce3c, #2e861c);
+    background-image: -ms-linear-gradient(top, #54ce3c, #2e861c);
+    background-image: -o-linear-gradient(top, #54ce3c, #2e861c);
+    background-image: -webkit-gradient(top, #54ce3c, #2e861c);
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    color: white;
+    /*font-size: 20px;*/
+    padding: 5px 10px;
+    margin: 5px 5px;;
+    -webkit-box-shadow: 1px 1px 5px 0 #000000;
+    -moz-box-shadow: 1px 1px 5px 0 #000000;
+    box-shadow: 3px 3px 3px lightgray;
+    border: 1px solid lightgray;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    text-align: center;
+
+    font-family: osc;
+}
+
+.BUTTON:hover, button:hover, .button:hover, input[type='button']:hover, input[type='submit']:hover {
+    background: #3D94F6;
+    background-image: -webkit-linear-gradient(top, #8cb9ec, #444444);
+    background-image: -moz-linear-gradient(top, #8cb9ec, #444444);
+    background-image: -ms-linear-gradient(top, #8cb9ec, #444444);
+    background-image: -o-linear-gradient(top, #8cb9ec, #444444);
+    background-image: -webkit-gradient(to bottom, #8cb9ec, #444444);
+}
+
+.BUTTON:active {
+    background: #777777;
+    background-image: -webkit-linear-gradient(top, #777777, #888888);
+    background-image: -moz-linear-gradient(top, #777777, #888888);
+    background-image: -ms-linear-gradient(top, #777777, #888888);
+    background-image: -o-linear-gradient(top, #777777, #888888);
+    background-image: -webkit-gradient(to bottom, #777777, #888888);
+    box-shadow: none;
+    border: 1px solid #555555;
+}
+
+p {
+    margin: 5px;
+}
+
+.box {
+    background: rgba(255, 255, 255, 0.5);
+    border: 1px solid lightgray;
+    box-shadow: 5px 5px 5px lightgray;
+    margin: 5px;
+    padding: 5px;
+    clear: left;
+    overflow: auto;
+}
+
+.separador{
+    position: relative;
+    width: calc(100% - 20px);
+    height: 0;
+    border-top: 2px solid lightgrey;
+    display: block;
+    clear: both;
+    clear: left;
+}
+
+.block {
+    background: rgba(255, 255, 255, 0.5);
+    border: 1px solid lightgray;
+    box-shadow: 5px 5px 5px lightgray;
+    margin: 5px;
+    padding: 5px;
+}
+
+@media screen and (min-width: 600px) {
+    .block {
+        width: 300px;
+        float: left;
+    }
+}
+
+.chavevalor {
+    display: grid;
+}
+
+.chavevalor label {
+    color: grey;
+    font-size: 12px;
+}
+
+.layer.conteudo {
+    position: relative;
+    margin: auto;
+    margin-top: 50px;
+    max-width: 680px;
+}
+
+.cabecario {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    background-color: rgb(40, 40, 40);
+    background-image: linear-gradient(top, rgb(40, 40, 40), rgb(20, 20, 20));
+    color: white;
+    padding: 5px;
+}
+
+.cabecario .menu_btn{
+    display: inline-block;
+    border: 1px solid grey;
+    color: grey;
+    padding: 0px 9px 5px 9px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+
+.cabecario .menu_btn:hover{
+    background-color: rgb(40, 40, 40);
+    color: white;
+    border-color: white;
+    transition: 0.2s;
+}
+
+.cabecario h1 {
+    display: inline;
+    font-size: 21px;
+}
+
+/* menu */
+
+.menu_base {
+    position: fixed;
+    display: none;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    cursor: pointer;
+    /*filter: blur(5px);*/
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    display: none;
+    background: white;
+    box-shadow: 1px 1px 5px #000000;
+}
+
+.menu .close {
+    position: absolute;
+    right: -53px;
+    top: 5px;
+    width: 25px;
+}
+
+.menu .header {}
+
+.menu .header img {
+    width: 300px;
+}
+
+.menu .cabecario {
+    text-align: center;
+}
+
+.menu .lista {
+    display: grid;
+}
+
+.lista>div {}
+
+.menu .lista label {
+    margin-left: 10px;
+}
+
+.menu .lista .item {
+    display: flex;
+    align-items: center;
+    background-image: linear-gradient(to bottom, gray, lightgray, gray);
+    font-size: 20px;
+    text-decoration: none;
+    font-weight: bold;
+    margin: 3px;
+    color: black;
+    cursor: pointer;
+    translate: 0.5s;
+}
+
+.menu .lista .item:hover {
+    font-size: 21px;
+    background-image: linear-gradient(to bottom, gray, yellow, gray);
+    translate: 0.5s;
+}
+
+.menu .lista .subitem {
+    margin: 3px 3px 3px 50px;
+    background-image: linear-gradient(to bottom, gray, lightgray, gray);
+    color: black;
+    padding: 5px;
+    text-decoration: none;
+}
+
+.menu .lista img {
+    width: 50px;
+}
+
+.menu .footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    border-top: 1px solid lightgray;
+    background-color: white;
+    cursor: pointer;
+    translate: 1s;
+}
+
+.menu .footer:hover {
+    background-color: purple;
+    translate: 1s;
+}
+
+.menu .footer img {
+    height: 30px;
+}
+/* sessao-login */
+.layer .sessao-login {
+    display:block;
+    position:fixed;
+    overFlow:visible;
+    top:calc(50vh - 145px);
+    left:calc(50vw - 120px);
+    width: 240px;
+    height: 290px;
+}
+
+.layer .sessao-login .formulario {
+    position: relative;
+    display: block;
+
+    border: 1px solid gray
+}
+
+.layer .sessao-login .logo {
+    position: absolute;
+    top: -80px;
+    width: 300px;
+    left: -25px;
+}
+
+.layer .sessao-login .msg {
+    font-size: 15px;
+    text-align: center;
+    margin-top: 80px;
+}
+
+.layer .sessao-login .cv {
+    display: grid;
+}
+
+.layer .sessao-login .cv label {
+    color: grey;
+}
+
+.layer .sessao-login .acao {
+    text-align: center;
+}
+
+@media screen and (max-width: 700px) {/**/
+.layer .sessao-login     {
+        position: relative;
+        left: 0;
+        width: 100vw;
+        max-width: 300px;
+        height: auto;
+        margin: 10px;
+        
+        border:none;
+        margin:auto;
+        
+    }
+.layer .sessao-login     .logo {
+        position: absolute;
+        top: -80px;
+        max-width: 320px;
+        width: calc(100% + 20px);
+        left:-10px;
+    }
+.layer .sessao-login     .msg {
+        margin-top: 80px;
+    }
+
+}
+
+/* aluno-inicio */
+.layer .aluno-inicio .chavevalor {
+	min-width:200px;
+	float:left;
+}
+.layer .aluno-inicio .acoes{
+	clear:left;
+}
+/* aluno-treinamento */
+.layer .aluno-treinamento .chavevalor {
+	min-width:200px;
+	float:left;
+}
+.layer .aluno-treinamento .acoes{
+	clear:left;
+}
+/* aluno-formulario */
+.layer .aluno-formulario .chavevalor {
+	min-width:200px;
+	float:left;
+}
+.layer .aluno-formulario .acoes{
+	clear:left;
+}
+/* aluno-lista */
+
+/* aluno_perimetria-formulario */
+.layer .aluno_perimetria-formulario .chavevalor {
+	min-width:200px;
+	float:left;
+}
+.layer .aluno_perimetria-formulario .acoes{
+	clear:left;
+}
+/* aluno_perimetria-lista */
+.layer .aluno_perimetria-lista .perimetria{
+    position: relative;
+    display: block;
+    float: left;
+    border: 1px solid lightgray;
+    background-color: gray;
+    padding: 3px;
+    margin: 3px;
+}
+/* aluno_perimetria-detalhe */
+.layer .aluno_perimetria-detalhe .conteudo{
+	width:100%;
+	height: 100%;
+}
+
+.layer .aluno_perimetria-detalhe .corpo{
+	fill: white;
+	stroke: black;
+	stroke-width: 1px;
+	stroke-linecap:butt;
+	stroke-linejoin:miter;
+}
+
+.layer .aluno_perimetria-detalhe .tag{
+	fill: brown;
+}
+.layer .aluno_perimetria-detalhe .label{
+	font-size: 7px;
+	text-align: center;
+}
+/* aluno-detalhe */
+.layer .aluno-detalhe .chavevalor {
+	min-width:200px;
+	float:left;
+}
+.layer .aluno-detalhe .acoes{
+	clear:left;
+}
+/* aluno_anamnese-formulario */
+.layer .aluno_anamnese-formulario .chavevalor {
+	min-width:200px;
+	float:left;
+}
+.layer .aluno_anamnese-formulario .acoes{
+	clear:left;
+}
+/* aluno_anamnese-detalhe */
+.layer .aluno_anamnese-detalhe .chavevalor {
+	min-width:200px;
+	float:left;
+}
+.layer .aluno_anamnese-detalhe .acoes{
+	clear:left;
+}
+/* aluno_treinamento-exercicioformulario */
+.layer .aluno_treinamento-exercicioformulario .chavevalor {
+	min-width:200px;
+	float:left;
+}
+.layer .aluno_treinamento-exercicioformulario .acoes{
+	clear:left;
+}
+/* aluno_treinamento-detalhe */
+.layer .aluno_treinamento-detalhe .chavevalor {
+	min-width:200px;
+	float:left;
+}
+.layer .aluno_treinamento-detalhe .acoes{
+	clear:left;
+}
+/* exercicio-formulario */
+.layer .exercicio-formulario img{
+	width:200px;
+	max-height:300px;	
+}
+
+/* exercicio-lista */
+.layer .exercicio-lista .lista img{
+	width:280px;
+	max-width:calc(100% - 20px);
+	float:left;
+	margin:10px;
+}
+.layer .exercicio-lista .lista .nome{
+	float:left;
+	width:280px;
+	max-width:calc(100% - 20px);
+	font-size:20px;
+	margin:10px;
+}
+.layer .exercicio-lista .descricao{
+	width:280px;
+	max-width:calc(100% - 20px);
+	float:left;
+	margin:10px;
+}
+/* exercicio-detalhe */
+.layer .exercicio-detalhe img{
+	width:200px;
+	max-height:300px;	
+}
+.layer .exercicio-detalhe .view {
+	display:block;
+}
+/* treinamento-formulario */
+.layer .treinamento-formulario img{
+	width:200px;
+	max-height:300px;	
+}
+
+/* treinamento-exercicioformulario */
+.layer .treinamento-exercicioformulario img{
+	width:200px;
+	max-height:300px;	
+}
+
+.layer .treinamento-exercicioformulario [name="duracao"]{
+	width: 50px;
+}
+
+.layer .treinamento-exercicioformulario [name="duracao_tipo"]{
+	width: 100px;
+}
+/* treinamento-lista */
+.layer .treinamento-lista .treinamento{
+	max-width: 280px;
+}
+
+.layer .treinamento-lista .lista .nome{
+	font-size:20px;
+	margin:10px;
+}
+
+.layer .treinamento-lista .descricao{
+	margin:10px;
+}
+
+.layer .treinamento-lista .acoes{
+	clear: both;
+	clear: left;
+}
+/* treinamento-detalhe */
+.layer .treinamento-detalhe img{
+	width:200px;
+	max-height:300px;	
+}
+
+.layer .treinamento-detalhe .treinamento{
+	position: relative;
+	margin: 5px;
+	margin-left: 10px;
+	border: 1px solid lightgray;
+    box-shadow: 5px 5px 5px lightgray;
+    padding: 5px;
+    float: left;
+    overflow: auto; 	
+}
+
+.layer .treinamento-detalhe .ciclo {
+	/*border-top: 1px solid gray;*/
+	display: block;
+	margin-top: 20px;
+	margin-bottom: 15px;
+	position: relative;
+	text-align: center;
+}
+.layer .treinamento-detalhe .ciclo .valor{
+	background-color: lightgrey;
+	/*background-image: -webkit-linear-gradient(top, #54ce3c, #2e861c);*/
+	padding: 3px;
+	display: inline-block;
+	text-align: center;
+	bottom: 0;
+	width: 50px;
+	left: calc(50% - 40px);
+}
+.layer .treinamento-detalhe .exercicio{
+	display: block;
+	position: relative;
+	margin-left: 5px;
+	padding: 5px;
+	border-top: 1px solid lightgrey;
+	border-left: 1px solid lightgrey;
+}
+.layer .treinamento-detalhe .exercicio .sequencia{
+	background-color: lightgrey;
+	position: absolute;
+	left: -5px;
+	border: lightgrey;
+	padding: 3px;
+	top: 5px;
+	font-size: 10px;
+}
+
+.layer .treinamento-detalhe .exercicio .exercicio_nome{
+	font-weight: bold;
+}
+
+.layer .treinamento-detalhe .exercicio .exercicio_descricao{
+	font-size: 13px;
+	color: grey;
+}
+
+
+/* treinamento-formularioexercicio */
+.layer .treinamento-formularioexercicio img{
+	width:200px;
+	max-height:300px;	
+}
